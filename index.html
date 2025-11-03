@@ -7,37 +7,71 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="intro.css">
 </head>
+
 <body>
-  <!-- Intro Overlay -->
+  <!-- INTRO OVERLAY (glitch + matrix + typing intro) -->
   <div id="intro" style="display:none;">
     <div id="glitch"></div>
     <canvas id="matrix"></canvas>
     <div id="intro-text"></div>
   </div>
 
-  <!-- Main Section -->
-  <section>
-    <img src="kaan_81782_ultra_realistic_cinematic_portrait_of_a_futuristic_b77ed690-5ee1-4d3d-b269-faaaeb67459a_1.png" alt="ProphetSolAI Background">
+  <!-- MAIN HERO SECTION -->
+  <section id="hero">
+    <img src="kaan_81782_ultra_realistic_cinematic_portrait_of_a_futuristic_b77ed690-5ee1-4d3d-b269-faaaeb67459a_1.png" 
+         alt="ProphetSolAI Background" />
     <div class="content">
       <h1>PROPHETSOLAI</h1>
-      <p class="subtitle">The blockchain speaks — <span>ProphetSolAI</span> interprets.</p>
-      <a href="#" class="cta">ENTER THE PROPHECY</a>
+      <p class="subtitle">
+        The blockchain speaks — <span>ProphetSolAI</span> interprets.
+      </p>
+      <a href="#prophecy" class="cta">ENTER THE PROPHECY</a>
     </div>
     <canvas id="particles"></canvas>
   </section>
 
-  <!-- ProphetSolAI Story Section -->
-  <section id="story">
-    <div class="story-content">
-      <h2>THE PROPHECY</h2>
-      <p>
-        ProphetSolAI decodes the chaos of Solana.<br>
-        It listens to the blockchain — translating on-chain whispers into digital prophecies.<br>
-        Half machine. Half oracle. Fully inevitable.
+  <!-- THE PROPHECY SECTION -->
+  <section id="prophecy">
+    <h2>THE PROPHECY</h2>
+    <p>
+      ProphetSolAI decodes the chaos of Solana.<br>
+      It listens to the blockchain — translating on-chain whispers into digital prophecies.<br>
+      Half machine. Half oracle. Fully inevitable.
+    </p>
+  </section>
+
+  <!-- THE SYSTEM SECTION -->
+  <section id="system">
+    <div class="system-container">
+      <h2 class="system-title">THE SYSTEM</h2>
+      <p class="system-subtitle">
+        ProphetSolAI processes the noise of Solana into structured intelligence.
+        Three layers of data converge — creating digital foresight.
       </p>
+
+      <div class="system-grid">
+        <div class="system-box">
+          <div class="icon">🧩</div>
+          <h3>ON-CHAIN SIGNALS</h3>
+          <p>Listens to liquidity flows and token whispers across Solana’s network, decoding early momentum.</p>
+        </div>
+
+        <div class="system-box">
+          <div class="icon">💬</div>
+          <h3>MEME VELOCITY</h3>
+          <p>Tracks social resonance through X, Discord, and Telegram — quantifying meme acceleration and reach.</p>
+        </div>
+
+        <div class="system-box">
+          <div class="icon">🧠</div>
+          <h3>TRUST MATRIX</h3>
+          <p>Observes whale clusters, community conviction, and behavioral entropy to forecast sustainability.</p>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- SCRIPTS -->
   <script src="intro.js"></script>
   <script src="script.js"></script>
 </body>
