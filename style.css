@@ -127,7 +127,42 @@ canvas {
   flex-direction: column;
   animation: introFadeOut 1s ease-in-out 8s forwards;
 }
+/* --- STORY SECTION --- */
+#story {
+  background: radial-gradient(circle at center, #020205 0%, #000 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 4rem 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-in-out;
+}
 
+#story.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-content h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 30px #0077ff;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+}
+
+.story-content p {
+  font-family: 'Courier New', monospace;
+  color: #c0c0ff;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 700px;
+}
 @keyframes introFadeOut {
   to { opacity: 0; visibility: hidden; pointer-events: none; }
 }
