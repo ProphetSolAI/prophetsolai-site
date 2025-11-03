@@ -11,6 +11,7 @@ body {
   color: #e0e0ff;
 }
 
+/* Section (main site) */
 section {
   position: relative;
   width: 100%;
@@ -21,12 +22,13 @@ section {
   transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out;
 }
 
-/* Site kararma efekti */
+/* Hack effect (darken + blur) */
 #intro.active ~ section {
   opacity: 0.15;
   filter: blur(3px);
 }
 
+/* Background Image */
 img {
   position: absolute;
   top: 0;
@@ -38,7 +40,7 @@ img {
   z-index: 0;
 }
 
-/* --- Centered Content --- */
+/* Centered Content */
 .content {
   position: absolute;
   top: 50%;
@@ -109,7 +111,7 @@ canvas {
   pointer-events: none;
 }
 
-/* Glitch & Matrix overlay coordination */
+/* Intro Container */
 #intro {
   position: fixed;
   top: 0;
