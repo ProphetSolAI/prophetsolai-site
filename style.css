@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000010;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  filter: blur(4px) saturate(140%);
+  animation: pulse 8s infinite alternate;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(103, 0, 255, 0.2) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: shimmer 6s linear infinite;
+}
+
+.content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+}
+
+.glitch {
+  font-size: 5rem;
+  color: #a07bff;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px #a07bff, 0 0 40px #00f0ff;
+  animation: flicker 3s infinite;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  letter-spacing: 2px;
+  color: #b4b4ff;
+  animation: glow 5s linear infinite alternate;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 12px 28px;
+  border: 2px solid #00ffff;
+  border-radius: 50px;
+  color: #00ffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: flicker 6s infinite;
+}
+
+.cta:hover {
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+}
+
+/* Animations */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #6c63ff, 0 0 10px #a07bff;
+  }
+  100% {
+    text-shadow: 0 0 25px #6c63ff, 0 0 50px #00ffff;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 0.35;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
