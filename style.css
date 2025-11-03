@@ -104,3 +104,16 @@ canvas {
   z-index: 1;
   pointer-events: none;
 }
+html, body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+section {
+  opacity: 0;
+  animation: fadeInMain 1s ease-in-out 8s forwards;
+}
+
+@keyframes fadeInMain {
+  to { opacity: 1; }
+}
