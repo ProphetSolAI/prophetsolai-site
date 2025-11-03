@@ -1,4 +1,4 @@
-// ProphetSolAI - Ultimate Hack Intro (glitch first, matrix second + fixed text)
+// ProphetSolAI - Ultimate Hack Intro (glitch first, matrix second + fixed text + full black background)
 
 setTimeout(() => {
   const intro = document.getElementById("intro");
@@ -12,40 +12,49 @@ setTimeout(() => {
 }, 8000);
 
 function startIntro() {
-  const canvas = document.getElementById('matrix');
-  const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const fontSize = 14;
-  const columns = canvas.width / fontSize;
-  const drops = Array(Math.floor(columns)).fill(1);
+  const fontSize = 18;
+  const columns = Math.floor(canvas.width / fontSize);
+  const drops = Array(columns).fill(1);
+  const letters = "01";
 
-  // 1. Glitch effect before matrix starts
+  // --- 1. Glitch patlaması ---
   const glitch = document.getElementById("glitch");
   glitch.style.animation = "glitchFlash 0.15s steps(2,end) 6 alternate";
   glitch.style.opacity = "1";
-  setTimeout(() => { glitch.style.opacity = "0"; }, 1000);
+  setTimeout(() => {
+    glitch.style.opacity = "0";
+  }, 1000);
 
-  // 2. Matrix after glitch
-  setTimeout(() => { setInterval(drawMatrix, 33); }, 1000);
+  // --- 2. Matrix efekti ---
+  setTimeout(() => {
+    setInterval(drawMatrix, 33);
+  }, 1000);
 
   function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    // TAM SİYAH ARKA PLAN (parlak yeşil kodlar)
+    ctx.fillStyle = "rgba(0, 0, 0, 1)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#0F0';
-    ctx.font = fontSize + 'px monospace';
+
+    ctx.fillStyle = "#0F0";
+    ctx.font = `${fontSize}px monospace`;
+
     for (let i = 0; i < drops.length; i++) {
-      const text = Math.random() > 0.5 ? '1' : '0';
-      const x = i * fontSize;
-      const y = drops[i] * fontSize;
-      ctx.fillText(text, x, y);
-      if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
       drops[i]++;
     }
   }
 
-  // 3. Typewriter text
+  // --- 3. Typewriter metni ---
   const introText = "The Oracle awakens.";
   const textContainer = document.getElementById("intro-text");
   let idx = 0;
@@ -61,7 +70,7 @@ function startIntro() {
     }, 100);
   }, 2500);
 
-  // 4. Hide intro
+  // --- 4. Intro bitiş ---
   setTimeout(() => {
     document.getElementById("intro").style.display = "none";
   }, 8000);
