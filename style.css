@@ -210,3 +210,13 @@ section, #story {
   line-height: 1.5;
   color: #cbd5e1;
 }
+#system {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+#system.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
