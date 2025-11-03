@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ProphetSolAI — The Blockchain Speaks</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="overlay"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProphetSolAI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="intro.css">
+</head>
+<body>
+  <!-- Intro Overlay -->
+  <div id="intro">
+    <div id="glitch"></div>
+    <canvas id="matrix"></canvas>
+    <div id="intro-text"></div>
+  </div>
 
-    <section class="hero">
-      <img
-        src="kaan_81782_ultra_realistic_cinematic_portrait_of_a_futuristic_b77ed690-5ee1-4d3d-b269-faaaeb67459a_1.png"
-        alt="ProphetSolAI"
-        class="background"
-      />
+  <!-- Main Section -->
+  <section>
+    <img src="kaan_81782_ultra_realistic_cinematic_portrait_of_a_futuristic_b77ed690-5ee1-4d3d-b269-faaaeb67459a_1.png" alt="ProphetSolAI Background">
+    <div class="content">
+      <h1>PROPHETSOLAI</h1>
+      <p class="subtitle">The blockchain speaks — <span>ProphetSolAI</span> interprets.</p>
+      <a href="#" class="cta">ENTER THE PROPHECY</a>
+    </div>
+    <canvas id="particles"></canvas>
+  </section>
 
-      <div class="content">
-        <h1 class="glitch" data-text="ProphetSolAI">ProphetSolAI</h1>
-        <p class="subtitle">
-          The blockchain speaks — <span>ProphetSolAI</span> interprets.
-        </p>
-        <a href="#" class="cta">Enter the Prophecy</a>
-      </div>
-
-      <canvas id="particles"></canvas>
-    </section>
-
-    <script src="script.js"></script>
-  </body>
+  <script src="intro.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
