@@ -63,3 +63,11 @@ window.addEventListener('scroll', () => {
     story.classList.add('visible');
   }
 });
+// Scroll-triggered story reveal
+window.addEventListener('scroll', () => {
+  const story = document.getElementById('story');
+  const rect = story.getBoundingClientRect();
+  if (rect.top < window.innerHeight * 0.8) {
+    story.classList.add('visible');
+  }
+});
