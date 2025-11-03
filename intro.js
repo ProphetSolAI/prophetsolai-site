@@ -1,14 +1,19 @@
-// ProphetSolAI - Matrix + Typewriter Intro (v3 - with delay)
+// ProphetSolAI - Ultimate Hack Intro (glitch first, matrix second + fixed text)
 
 setTimeout(() => {
-  document.getElementById("intro").style.display = "flex";
+  const intro = document.getElementById("intro");
+  intro.style.display = "flex";
+  intro.classList.add("active");
   startIntro();
 }, 2000);
+
+setTimeout(() => {
+  document.getElementById("intro").classList.remove("active");
+}, 8000);
 
 function startIntro() {
   const canvas = document.getElementById('matrix');
   const ctx = canvas.getContext('2d');
-
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
@@ -16,12 +21,20 @@ function startIntro() {
   const columns = canvas.width / fontSize;
   const drops = Array(Math.floor(columns)).fill(1);
 
+  // 1. Glitch effect before matrix starts
+  const glitch = document.getElementById("glitch");
+  glitch.style.animation = "glitchFlash 0.15s steps(2,end) 6 alternate";
+  glitch.style.opacity = "1";
+  setTimeout(() => { glitch.style.opacity = "0"; }, 1000);
+
+  // 2. Matrix after glitch
+  setTimeout(() => { setInterval(drawMatrix, 33); }, 1000);
+
   function drawMatrix() {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#0F0';
     ctx.font = fontSize + 'px monospace';
-
     for (let i = 0; i < drops.length; i++) {
       const text = Math.random() > 0.5 ? '1' : '0';
       const x = i * fontSize;
@@ -31,14 +44,13 @@ function startIntro() {
       drops[i]++;
     }
   }
-  setInterval(drawMatrix, 33);
 
-  // Typewriter text
+  // 3. Typewriter text
   const introText = "The Oracle awakens.";
   const textContainer = document.getElementById("intro-text");
   let idx = 0;
-
   setTimeout(() => {
+    textContainer.style.opacity = "1";
     const interval = setInterval(() => {
       if (idx < introText.length) {
         textContainer.textContent += introText[idx];
@@ -47,9 +59,9 @@ function startIntro() {
         clearInterval(interval);
       }
     }, 100);
-  }, 3300);
+  }, 2500);
 
-  // Auto hide intro after 8s
+  // 4. Hide intro
   setTimeout(() => {
     document.getElementById("intro").style.display = "none";
   }, 8000);
