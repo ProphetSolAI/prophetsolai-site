@@ -71,3 +71,12 @@ window.addEventListener('scroll', () => {
     story.classList.add('visible');
   }
 });
+// Fade-in on scroll for THE SYSTEM
+window.addEventListener("scroll", () => {
+  const system = document.querySelector("#system");
+  const rect = system.getBoundingClientRect();
+  if (rect.top < window.innerHeight - 150) {
+    system.classList.add("visible");
+  }
+});
+
