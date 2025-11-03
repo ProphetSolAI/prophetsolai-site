@@ -1,87 +1,71 @@
-/* ProphetSolAI - Cinematic Intro Sequence (v2) */
+// ProphetSolAI - Ultimate Hack Intro (glitch first, matrix second)
 
-#intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  overflow: hidden;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  animation: introFadeOut 1s ease-in-out 8s forwards;
-}
+setTimeout(() => {
+  const intro = document.getElementById("intro");
+  intro.style.display = "flex";
+  intro.classList.add("active");
+  startIntro();
+}, 2000);
 
-/* Matrix Canvas */
-#matrix {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 1;
-  opacity: 0.8;
-  animation: fadeInMatrix 0.8s ease-in-out 1.8s forwards;
-}
+setTimeout(() => {
+  document.getElementById("intro").classList.remove("active");
+}, 8000);
 
-/* Glitch Overlay */
-#glitch {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(0deg, #0f0 0px, #0f0 1px, transparent 2px, transparent 4px);
-  mix-blend-mode: screen;
-  opacity: 0;
-  z-index: 2;
-  animation: glitchAnim 0.3s steps(2, end) 1.8s 3;
-}
+function startIntro() {
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-@keyframes glitchAnim {
-  0% { opacity: 1; transform: skew(20deg); }
-  50% { opacity: 0.4; transform: skew(-10deg); }
-  100% { opacity: 0; transform: none; }
-}
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
 
-@keyframes fadeInMatrix {
-  from { opacity: 0; }
-  to { opacity: 0.8; }
-}
+  // 1. Glitch effect before matrix starts
+  const glitch = document.getElementById("glitch");
+  glitch.style.opacity = "1";
+  glitch.style.animation = "glitchFlash 0.15s steps(2,end) 5 alternate";
+  setTimeout(() => {
+    glitch.style.opacity = "0";
+  }, 1000);
 
-/* Typewriter Text */
-#intro-text {
-  color: #0f0;
-  font-family: 'Courier New', monospace;
-  font-size: 2rem;
-  text-shadow: 0 0 12px #0f0;
-  z-index: 3;
-  opacity: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #0f0;
-  width: 0;
-  animation:
-    typeText 2.6s steps(20) 3.3s forwards,
-    blink 0.7s infinite step-end alternate,
-    fadeOutText 1s ease-in-out 7s forwards;
-}
+  // 2. Start matrix 0.5s after glitch
+  setTimeout(() => {
+    setInterval(drawMatrix, 33);
+  }, 1000);
 
-@keyframes typeText {
-  from { opacity: 1; width: 0; }
-  to { opacity: 1; width: 300px; }
-}
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0F0';
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+      const text = Math.random() > 0.5 ? '1' : '0';
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+      ctx.fillText(text, x, y);
+      if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
 
-@keyframes blink {
-  50% { border-color: transparent; }
-}
+  // 3. Typewriter text
+  const introText = "The Oracle awakens.";
+  const textContainer = document.getElementById("intro-text");
+  let idx = 0;
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      if (idx < introText.length) {
+        textContainer.textContent += introText[idx];
+        idx++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+  }, 2500);
 
-@keyframes fadeOutText {
-  to { opacity: 0; }
-}
-
-/* Hide intro overlay after animation */
-@keyframes introFadeOut {
-  to { opacity: 0; visibility: hidden; pointer-events: none; }
+  // 4. Hide intro
+  setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+  }, 8000);
 }
