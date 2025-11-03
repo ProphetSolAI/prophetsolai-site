@@ -55,3 +55,11 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+// Scroll-triggered story reveal
+window.addEventListener('scroll', () => {
+  const story = document.getElementById('story');
+  const rect = story.getBoundingClientRect();
+  if (rect.top < window.innerHeight * 0.8) {
+    story.classList.add('visible');
+  }
+});
