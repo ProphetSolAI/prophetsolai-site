@@ -17,9 +17,9 @@ window.MatrixRain = (function(){
 
   function draw(){
     if(!active) return;
-    ctx.fillStyle = 'rgba(7,5,18,0.22)';
+   ctx.fillStyle = 'rgba(7,5,18,0.18)';
     ctx.fillRect(0,0,w,h);
-    ctx.fillStyle = 'rgba(0,255,123,0.9)';
+    ctx.fillStyle = 'rgba(0,255,160,1)';
     for(let i=0;i<cols;i++){
       const ch = chars[Math.random()*chars.length|0];
       const x = i*font;
