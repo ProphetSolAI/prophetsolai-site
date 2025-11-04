@@ -8,40 +8,35 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="./css/cyber.css">
-  <link rel="stylesheet" href="./css/hero.css">
+  <!-- Styles (dosyalar ana dizinde olduğu için ./css/ kaldırıldı) -->
+  <link rel="stylesheet" href="./cyber.css">
+  <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
 
   <!-- INTRO SECTION -->
   <section id="intro" class="intro">
     <video id="intro-bg" class="intro-bg" autoplay muted loop playsinline>
-      <source src="./assets/prophet-bg.webm" type="video/webm">
+      <source src="./prophet-bg.webm" type="video/webm">
     </video>
 
-    <!-- visual overlays -->
     <div class="fx grid"></div>
     <div class="fx scanlines"></div>
     <div class="fx noise"></div>
 
-    <!-- glitch effect -->
     <div class="glitch">
       <div class="g g1"></div>
       <div class="g g2"></div>
       <div class="g g3"></div>
     </div>
 
-    <!-- matrix rain -->
     <canvas id="matrix" class="matrix"></canvas>
 
-    <!-- boot sequence text -->
     <div class="boot center">
       <div id="boot-line-1" class="boot-line"></div>
       <div id="boot-line-2" class="boot-line"></div>
     </div>
 
-    <!-- hero overlay after intro -->
     <div id="hero-overlay" class="hero-overlay hide">
       <h1 class="brand">ProphetSolAI</h1>
       <p class="strap">The blockchain speaks — <span class="accent">we interpret</span>.</p>
@@ -51,14 +46,11 @@
 
   <!-- MAIN CONTENT -->
   <main id="main" class="hide">
-
-    <!-- THE PROPHECY -->
     <section id="the-prophecy" class="panel">
       <h2 class="neon">THE PROPHECY</h2>
       <p class="mono typewrap"><span id="type-desc"></span><span class="cursor">|</span></p>
     </section>
 
-    <!-- THE SYSTEM -->
     <section id="the-system" class="panel system">
       <div class="system-bg"></div>
       <h2 class="neon">THE SYSTEM</h2>
@@ -70,7 +62,6 @@
       </div>
     </section>
 
-    <!-- FRAMEWORK -->
     <section id="the-framework" class="panel">
       <h2 class="neon">THE FRAMEWORK</h2>
       <canvas id="graph" class="graph"></canvas>
@@ -79,11 +70,11 @@
     <footer class="foot">© ProphetSolAI</footer>
   </main>
 
-  <!-- Scripts -->
-  <script src="./js/matrix.js"></script>
-  <script src="./js/typing.js"></script>
-  <script src="./js/graph.js"></script>
-  <script src="./js/boot.js"></script>
+  <!-- Scripts (dosyalar ana dizinde olduğu için ./js/ kaldırıldı) -->
+  <script src="./matrix.js"></script>
+  <script src="./typing.js"></script>
+  <script src="./graph.js"></script>
+  <script src="./boot.js"></script>
 
 </body>
 </html>
