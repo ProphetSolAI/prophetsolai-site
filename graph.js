@@ -29,37 +29,23 @@
 
   function draw(){
     ctx.clearRect(0,0,w,h);
-
-    // soft radial glow
     const grd = ctx.createRadialGradient(cx,cy,20,cx,cy,Math.max(w,h)/1.2);
-    grd.addColorStop(0,'rgba(0,234,255,.14)');
-    grd.addColorStop(1,'rgba(7,5,18,0)');
+    grd.addColorStop(0,'rgba(0,234,255,.14)'); grd.addColorStop(1,'rgba(7,5,18,0)');
     ctx.fillStyle = grd; ctx.fillRect(0,0,w,h);
 
-    // center node
     ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2);
     ctx.fillStyle='rgba(0,234,255,.9)'; ctx.fill();
 
-    hue += 0.25; // slow color drift
-    const lineColor = `hsla(${hue}, 90%, 60%, .18)`;
+    hue += 0.25; const lineColor = `hsla(${hue}, 90%, 60%, .18)`;
 
     nodes.forEach(n=>{
       n.x += n.vx; n.y += n.vy;
       if(Math.random()>.985){ n.vx*=-1; n.vy*=-1; }
-      // link
-      ctx.beginPath();
-      ctx.moveTo(cx,cy);
-      ctx.lineTo(n.x,n.y);
-      ctx.strokeStyle=lineColor;
-      ctx.lineWidth=1;
-      ctx.stroke();
-      // node
-      ctx.beginPath();
-      ctx.arc(n.x,n.y,n.s,0,Math.PI*2);
-      ctx.fillStyle='rgba(255,255,255,.35)';
-      ctx.fill();
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(n.x,n.y);
+      ctx.strokeStyle=lineColor; ctx.lineWidth=1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.s,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,.35)'; ctx.fill();
     });
-
     requestAnimationFrame(draw);
   }
 
