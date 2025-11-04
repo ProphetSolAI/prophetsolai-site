@@ -202,3 +202,38 @@ if (canvas) {
 
   draw();
 }
+// === BINARY RAIN EFFECT ===
+const binaryCanvas = document.getElementById('binary-rain');
+if (binaryCanvas) {
+  const ctx = binaryCanvas.getContext('2d');
+  binaryCanvas.width = window.innerWidth;
+  binaryCanvas.height = window.innerHeight;
+
+  const letters = '01';
+  const fontSize = 16;
+  const columns = binaryCanvas.width / fontSize;
+  const drops = Array.from({ length: columns }).map(() => Math.random() * binaryCanvas.height);
+
+  function drawRain() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
+    ctx.fillRect(0, 0, binaryCanvas.width, binaryCanvas.height);
+    ctx.fillStyle = '#00ffe1';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters.charAt(Math.floor(Math.random() * letters.length));
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > binaryCanvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawRain, 35);
+
+  window.addEventListener('resize', () => {
+    binaryCanvas.width = window.innerWidth;
+    binaryCanvas.height = window.innerHeight;
+  });
+}
