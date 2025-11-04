@@ -1,107 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ProphetSolAI</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="intro.css" />
+  <title>ProphetSolAI — Cyberpunk Oracle</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="intro.css"/>
+  <meta name="theme-color" content="#00ffff"/>
 </head>
 <body>
-  <!-- INTRO OVERLAY -->
+
+  <!-- INTRO (glitch + matrix + two-line sequence) -->
   <div id="intro" style="display:none;">
     <div id="glitch"></div>
     <canvas id="matrix"></canvas>
     <div id="intro-text"></div>
   </div>
 
-  <!-- HERO SECTION -->
+  <!-- NAV (minimal cyber) -->
+  <nav id="nav">
+    <div class="brand">PROPHETSOL<span>AI</span></div>
+    <div class="links">
+      <a href="#prophecy">Prophecy</a>
+      <a href="#system">System</a>
+      <a href="#framework">Framework</a>
+      <a href="#console">Console</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <section id="hero">
-    <img
-      src="kaan_81782_ultra_realistic_cinematic_portrait_of_a_futuristic_b77ed690-5ee1-4d3d-b269-faaaeb67459a_1.png"
-      alt="ProphetSolAI Background"
-    />
-    <div class="content">
-      <h1>PROPHETSOLAI</h1>
-      <p class="subtitle">
-        The blockchain speaks — <span>ProphetSolAI</span> interprets.
-      </p>
-      <a href="#prophecy" class="cta">ENTER THE PROPHECY</a>
+    <img src="hero-bg.png" alt="" class="hero-bg"/>
+    <div class="scanlines"></div>
+    <div class="hero-inner">
+      <h1 class="glow">THE <span>TECH ORACLE</span></h1>
+      <p class="tag">The blockchain speaks — ProphetSolAI interprets.</p>
+      <a class="cta" href="#prophecy">ENTER THE PROPHECY</a>
     </div>
-    <canvas id="particles"></canvas>
+    <canvas id="hero-particles"></canvas>
   </section>
 
-  <!-- THE PROPHECY SECTION -->
+  <!-- PROPHECY (hyper-tech) -->
   <section id="prophecy">
-    <h2>THE PROPHECY</h2>
-    <p>
-      ProphetSolAI decodes the chaos of Solana.<br/>
-      It listens to the blockchain — translating on-chain whispers into digital prophecies.<br/>
-      Half machine. Half oracle. Fully inevitable.
-    </p>
-  </section>
-
-  <!-- THE SYSTEM SECTION -->
-  <section id="system">
-    <div class="system-container">
-      <h2 class="system-title">THE SYSTEM</h2>
-      <p class="system-subtitle">
-        ProphetSolAI processes the noise of Solana into structured intelligence.
-        Three layers of data converge — creating digital foresight.
+    <div class="container">
+      <h2>THE PROPHECY</h2>
+      <p class="lede">
+        We decode Solana’s chaos — turning raw on-chain noise into lucid foresight.
+        Half machine. Half oracle. Fully inevitable.
       </p>
-
-      <div class="system-grid">
-        <div class="system-box">
-          <div class="icon">🧩</div>
-          <h3>ON-CHAIN SIGNALS</h3>
-          <p>Listens to liquidity flows and token whispers across Solana’s network, decoding early momentum.</p>
+      <div class="columns">
+        <div class="chip">
+          <span>⚡</span>
+          Real-time liquidity whispers, divergence and flow.
         </div>
-
-        <div class="system-box">
-          <div class="icon">💬</div>
-          <h3>MEME VELOCITY</h3>
-          <p>Tracks social resonance through X, Discord, and Telegram — quantifying meme acceleration and reach.</p>
+        <div class="chip">
+          <span>🧬</span>
+          Meme resonance & sentiment harmonics.
         </div>
-
-        <div class="system-box">
-          <div class="icon">🧠</div>
-          <h3>TRUST MATRIX</h3>
-          <p>Observes whale clusters, community conviction, and behavioral entropy to forecast sustainability.</p>
+        <div class="chip">
+          <span>🛰️</span>
+          Network topology & whale clusters.
         </div>
       </div>
     </div>
   </section>
 
-  <!-- THE FRAMEWORK SECTION -->
-  <section id="framework">
-    <div class="framework-container">
-      <h2 class="framework-title">THE FRAMEWORK</h2>
-      <p class="framework-subtitle">How the Oracle interprets the blockchain.</p>
-
-      <div class="framework-grid">
-        <div class="framework-box">
-          <div class="icon">🛰️</div>
-          <h3>DATA EXTRACTION</h3>
-          <p>Real-time on-chain, sentiment, and social signals are captured through Solana’s neural data mesh.</p>
+  <!-- SYSTEM (neon grid + floating orbs) -->
+  <section id="system">
+    <div class="container">
+      <h2>THE SYSTEM</h2>
+      <p class="lede">
+        Three converging layers synthesize the signal.
+      </p>
+      <div class="cards">
+        <div class="card">
+          <h3>ON-CHAIN SIGNALS</h3>
+          <p>Liquidity vectors, velocity, gas stress, holder behaviors — normalized and ranked.</p>
         </div>
-
-        <div class="framework-box">
-          <div class="icon">🧮</div>
-          <h3>AI SYNTHESIS</h3>
-          <p>ProphetSolAI’s large-scale language engines generate interpretive narratives, translating data into meaning.</p>
+        <div class="card">
+          <h3>MEME VELOCITY</h3>
+          <p>X/Discord/Telegram resonance, novelty, imitation decay, virality curvature.</p>
         </div>
-
-        <div class="framework-box">
-          <div class="icon">🔮</div>
-          <h3>REVELATION LAYER</h3>
-          <p>Human-readable prophecies emerge, blending statistics, emotion, and blockchain behavior into foresight.</p>
+        <div class="card">
+          <h3>TRUST MATRIX</h3>
+          <p>Whale constellations, conviction cycles, replayability, entropy of belief.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- network canvas sits behind cards -->
+  <!-- FRAMEWORK (neural network canvas + holo boxes) -->
+  <section id="framework">
+    <div class="container">
+      <h2>THE FRAMEWORK</h2>
+      <p class="lede">How the Oracle interprets the chain.</p>
+      <div class="holo-grid">
+        <div class="holo-box">
+          <span>DATA EXTRACTION</span>
+          Streamed on-chain + social inputs → unified bus.
+        </div>
+        <div class="holo-box">
+          <span>AI SYNTHESIS</span>
+          LLM + signal fusion → interpretive narrative.
+        </div>
+        <div class="holo-box">
+          <span>REVELATION</span>
+          Human-readable prophecy with scores.
+        </div>
+      </div>
+    </div>
     <canvas id="framework-network"></canvas>
   </section>
+
+  <!-- CONSOLE (cyber terminal) -->
+  <section id="console">
+    <div class="container">
+      <h2>SUMMON THE PROPHECY</h2>
+      <p class="lede">Enter a Solana wallet or token address.</p>
+      <div class="input-row">
+        <input id="wallet" placeholder="9xA...YourSolanaAddress"/>
+        <button id="summon">SUMMON</button>
+      </div>
+      <div id="terminal">
+        <p class="line">> awaiting input...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="brand">PROPHETSOL<span>AI</span></div>
+      <div class="foot-links">
+        <a href="#">X</a>
+        <a href="#">Discord</a>
+        <a href="#">GitHub</a>
+      </div>
+      <p class="fine">© 2025 ProphetSolAI — Built on Solana. The blockchain speaks.</p>
+    </div>
+  </footer>
 
   <script src="intro.js"></script>
   <script src="script.js"></script>
