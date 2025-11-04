@@ -1,152 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ProphetSolAI — Cyberpunk Oracle</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="intro.css"/>
-  <meta name="theme-color" content="#00ffff"/>
-</head>
-<body>
+const intro = document.getElementById('intro');
+const introText = document.getElementById('intro-text');
+const hero = document.getElementById('hero');
 
-  <!-- INTRO (glitch + matrix + two-line sequence) -->
-  <div id="intro" style="display:none;">
-    <div id="glitch"></div>
-    <canvas id="matrix"></canvas>
-    <div id="intro-text"></div>
-  </div>
+function typeText(text, delay) {
+  let i = 0;
+  const interval = setInterval(() => {
+    introText.textContent = text.slice(0, i++);
+    if (i > text.length) clearInterval(interval);
+  }, delay);
+}
 
-  <!-- NAV (minimal cyber) -->
-  <nav id="nav">
-    <div class="brand">PROPHETSOL<span>AI</span></div>
-    <div class="links">
-      <a href="#prophecy">Prophecy</a>
-      <a href="#system">System</a>
-      <a href="#framework">Framework</a>
-      <a href="#console">Console</a>
-    </div>
-  </nav>
+window.addEventListener('load', () => {
+  hero.style.display = 'block';
+  intro.style.display = 'flex';
+  hero.style.opacity = '0';
 
-<!-- HERO SECTION -->
-<section id="hero">
-  <video autoplay loop muted playsinline id="hero-bg">
-    <source src="prophet-bg.webm" type="video/webm">
-  </video>
+  // aşamalar
+  setTimeout(() => {
+    typeText('stay calm human...', 80);
+  }, 1000);
 
-  <div class="content">
-    <h1>PROPHETSOLAI</h1>
-    <p class="subtitle">
-      The blockchain speaks — <span>ProphetSolAI</span> interprets.
-    </p>
-    <a href="#prophecy" class="cta">ENTER THE PROPHECY</a>
-  </div>
+  setTimeout(() => {
+    introText.textContent = 'The Oracle Awakens';
+  }, 3500);
 
-  <canvas id="particles"></canvas>
-</section>
-  
-<!-- THE PROPHECY SECTION -->
-<section id="prophecy">
-  <!-- Arka plan network + veri akışı -->
-  <canvas id="prophecy-network"></canvas>
-  <canvas id="binary-rain"></canvas>
+  setTimeout(() => {
+    intro.style.opacity = '0';
+    hero.style.transition = 'opacity 1.2s ease';
+    hero.style.opacity = '1';
+  }, 5500);
 
-  <div class="prophecy-container">
-    <h2 class="prophecy-title glitch" data-text="THE PROPHECY">THE PROPHECY</h2>
-    <p class="prophecy-description">
-      ProphetSolAI decodes Solana’s chaos — turning raw on-chain noise into lucid foresight.<br>
-      <span class="oracle-voice">Half machine. Half oracle. Fully inevitable.</span>
-    </p>
-
-    <div class="prophecy-stream">
-      <p class="data-line">> Capturing liquidity whispers...</p>
-      <p class="data-line">> Tracking meme resonance across digital ether...</p>
-      <p class="data-line">> Mapping whale clusters and sentiment harmonics...</p>
-      <p class="data-line">> Forecast signal convergence → Prophecy score pending...</p>
-    </div>
-  </div>
-</section>
-
-  <!-- SYSTEM (neon grid + floating orbs) -->
-  <section id="system">
-    <div class="container">
-      <h2>THE SYSTEM</h2>
-      <p class="lede">
-        Three converging layers synthesize the signal.
-      </p>
-      <div class="cards">
-        <div class="card">
-          <h3>ON-CHAIN SIGNALS</h3>
-          <p>Liquidity vectors, velocity, gas stress, holder behaviors — normalized and ranked.</p>
-        </div>
-        <div class="card">
-          <h3>MEME VELOCITY</h3>
-          <p>X/Discord/Telegram resonance, novelty, imitation decay, virality curvature.</p>
-        </div>
-        <div class="card">
-          <h3>TRUST MATRIX</h3>
-          <p>Whale constellations, conviction cycles, replayability, entropy of belief.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!-- THE FRAMEWORK SECTION -->
-<section id="framework">
-  <!-- Neon network background -->
-  <canvas id="framework-network"></canvas>
-
-  <!-- Hologram overlay layer -->
-  <div class="holo-layer"></div>
-
-  <!-- Main content overlay -->
-  <div class="framework-overlay">
-    <h2 class="framework-title">THE FRAMEWORK</h2>
-    <p class="framework-subtitle">How the Oracle interprets the blockchain.</p>
-
-    <div class="framework-nodes">
-      <div class="node" data-title="DATA EXTRACTION" data-text="Streamed on-chain + social inputs → unified bus."></div>
-      <div class="node" data-title="AI SYNTHESIS" data-text="LLM + signal fusion → interpretive narrative."></div>
-      <div class="node" data-title="REVELATION" data-text="Human-readable prophecy emerges with scores."></div>
-    </div>
-
-    <div id="framework-info">
-      <h3 id="info-title"></h3>
-      <p id="info-text"></p>
-    </div>
-  </div>
-</section>
-
-
-  <!-- CONSOLE (cyber terminal) -->
-  <section id="console">
-    <div class="container">
-      <h2>SUMMON THE PROPHECY</h2>
-      <p class="lede">Enter a Solana wallet or token address.</p>
-      <div class="input-row">
-        <input id="wallet" placeholder="9xA...YourSolanaAddress"/>
-        <button id="summon">SUMMON</button>
-      </div>
-      <div id="terminal">
-        <p class="line">> awaiting input...</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="container">
-      <div class="brand">PROPHETSOL<span>AI</span></div>
-      <div class="foot-links">
-        <a href="#">X</a>
-        <a href="#">Discord</a>
-        <a href="#">GitHub</a>
-      </div>
-      <p class="fine">© 2025 ProphetSolAI — Built on Solana. The blockchain speaks.</p>
-    </div>
-  </footer>
-
-  <script src="intro.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+  setTimeout(() => {
+    intro.remove();
+  }, 6500);
+});
