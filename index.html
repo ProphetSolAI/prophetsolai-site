@@ -94,28 +94,26 @@
     </div>
   </section>
 
-  <!-- FRAMEWORK (neural network canvas + holo boxes) -->
-  <section id="framework">
-    <div class="container">
-      <h2>THE FRAMEWORK</h2>
-      <p class="lede">How the Oracle interprets the chain.</p>
-      <div class="holo-grid">
-        <div class="holo-box">
-          <span>DATA EXTRACTION</span>
-          Streamed on-chain + social inputs → unified bus.
-        </div>
-        <div class="holo-box">
-          <span>AI SYNTHESIS</span>
-          LLM + signal fusion → interpretive narrative.
-        </div>
-        <div class="holo-box">
-          <span>REVELATION</span>
-          Human-readable prophecy with scores.
-        </div>
-      </div>
+ <!-- THE FRAMEWORK SECTION -->
+<section id="framework">
+  <canvas id="framework-network"></canvas>
+
+  <div class="framework-overlay">
+    <h2 class="framework-title">THE FRAMEWORK</h2>
+    <p class="framework-subtitle">How the Oracle interprets the blockchain.</p>
+
+    <div class="framework-nodes">
+      <div class="node" data-title="DATA EXTRACTION" data-text="Streamed on-chain + social inputs → unified bus."></div>
+      <div class="node" data-title="AI SYNTHESIS" data-text="LLM + signal fusion → interpretive narrative."></div>
+      <div class="node" data-title="REVELATION" data-text="Human-readable prophecy emerges with scores."></div>
     </div>
-    <canvas id="framework-network"></canvas>
-  </section>
+
+    <div id="framework-info">
+      <h3 id="info-title"></h3>
+      <p id="info-text"></p>
+    </div>
+  </div>
+</section>
 
   <!-- CONSOLE (cyber terminal) -->
   <section id="console">
