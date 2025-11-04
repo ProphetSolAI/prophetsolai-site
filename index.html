@@ -1,90 +1,82 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ProphetSolAI — The Prophecy Begins</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="intro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/cyber.css">
+  <link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
-  <!-- INTRO / HERO -->
-  <header id="intro">
-    <video id="intro-bg" autoplay loop muted playsinline>
+  <!-- INTRO: 5s cinematic sequence -->
+  <section id="intro" class="intro">
+    <video id="intro-bg" class="intro-bg" autoplay muted loop playsinline>
       <source src="prophet-bg.webm" type="video/webm">
     </video>
 
-    <canvas id="matrix"></canvas>
+    <!-- holographic grid + scanlines -->
+    <div class="fx grid"></div>
+    <div class="fx scanlines"></div>
+    <div class="fx noise"></div>
 
-    <div class="intro-overlay">
+    <!-- glitch layers -->
+    <div class="glitch">
+      <div class="g g1"></div>
+      <div class="g g2"></div>
+      <div class="g g3"></div>
+    </div>
+
+    <!-- matrix rain appears during sequence -->
+    <canvas id="matrix" class="matrix"></canvas>
+
+    <!-- boot messages -->
+    <div class="boot center">
+      <div id="boot-line-1" class="boot-line"></div>
+      <div id="boot-line-2" class="boot-line"></div>
+    </div>
+
+    <!-- main hero copy (revealed after sequence) -->
+    <div id="hero-overlay" class="hero-overlay hide">
       <h1 class="brand">ProphetSolAI</h1>
-      <p class="tag">The blockchain speaks — <span class="prophecy">ProphetSolAI</span> interprets</p>
-
-      <div id="type-wrap" aria-hidden="true">
-        <span id="typed"></span><span class="cursor">|</span>
-      </div>
-
-      <a class="cta" href="#the-prophecy">Enter the Prophecy</a>
-    </div>
-  </header>
-
-  <!-- THE PROPHECY (type effect + description) -->
-  <section id="the-prophecy" class="panel">
-    <div class="container">
-      <h2>THE PROPHECY</h2>
-      <p class="lead" id="prophecy-desc">
-        <span id="type-desc"></span><span class="cursor small">_</span>
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <h3>Prophecy Score</h3>
-          <p>On-chain health + sentiment + meme velocity.</p>
-        </div>
-        <div class="card">
-          <h3>Deep Scan</h3>
-          <p>Micropaid AI scans & downloadable report.</p>
-        </div>
-        <div class="card">
-          <h3>Community Radar</h3>
-          <p>Whale flow, social velocity, trust.</p>
-        </div>
-      </div>
+      <p class="strap">The blockchain speaks — <span class="accent">we interpret</span>.</p>
+      <a href="#the-prophecy" class="cta">Enter</a>
     </div>
   </section>
 
-  <!-- THE FRAMEWORK (nodes from a point) -->
-  <section id="the-framework" class="panel">
-    <div class="frame-canvas-wrap">
-      <canvas id="frame-canvas"></canvas>
-      <div class="frame-overlay">
-        <h2>THE FRAMEWORK</h2>
-        <p>Real-time signals projected from a central node.</p>
+  <!-- MAIN -->
+  <main id="main" class="hide">
+    <!-- THE PROPHECY -->
+    <section id="the-prophecy" class="panel">
+      <h2 class="neon">THE PROPHECY</h2>
+      <p class="mono typewrap"><span id="type-desc"></span><span class="cursor">|</span></p>
+    </section>
+
+    <!-- THE SYSTEM -->
+    <section id="the-system" class="panel system">
+      <div class="system-bg"></div>
+      <h2 class="neon">THE SYSTEM</h2>
+      <div class="system-lines">
+        <div class="line"><span>On-Chain Health</span></div>
+        <div class="line"><span>Meme Velocity</span></div>
+        <div class="line"><span>Whale Flow</span></div>
+        <div class="line"><span>Trust Index</span></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- THE SYSTEM (moving background + content) -->
-  <section id="the-system" class="panel">
-    <div class="system-bg"></div>
-    <div class="container">
-      <h2>THE SYSTEM</h2>
-      <p>Engineered stacks: analytics, memetics, oracle.</p>
-      <div class="system-grid">
-        <div class="sys">Analytics</div>
-        <div class="sys">Signals</div>
-        <div class="sys">Oracles</div>
-        <div class="sys">Memetics</div>
-      </div>
-    </div>
-  </section>
+    <!-- FRAMEWORK (graph) -->
+    <section id="the-framework" class="panel">
+      <h2 class="neon">THE FRAMEWORK</h2>
+      <canvas id="graph" class="graph"></canvas>
+    </section>
 
-  <footer class="site-footer">
-    <small>© ProphetSolAI</small>
-  </footer>
+    <footer class="foot">© ProphetSolAI</footer>
+  </main>
 
-  <script src="matrix.js"></script>
-  <script src="typing.js"></script>
-  <script src="script.js"></script>
+  <script src="js/matrix.js"></script>
+  <script src="js/typing.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/boot.js"></script>
 </body>
 </html>
