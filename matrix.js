@@ -1,5 +1,5 @@
 window.MatrixRain = (function(){
-  let raf=0, active=false, ctx, w, h, cols=0, drops=[], font=16, chars;
+  let raf=0, active=false, ctx, w, h, cols=0, drops=[], font=18, chars;
 
   function init(canvas){
     ctx = canvas.getContext('2d');
@@ -17,7 +17,7 @@ window.MatrixRain = (function(){
 
   function draw(){
     if(!active) return;
-   ctx.fillStyle = 'rgba(7,5,18,0.18)';
+    ctx.fillStyle = 'rgba(7,5,18,0.18)';
     ctx.fillRect(0,0,w,h);
     ctx.fillStyle = 'rgba(0,255,160,1)';
     for(let i=0;i<cols;i++){
@@ -26,7 +26,7 @@ window.MatrixRain = (function(){
       const y = drops[i]*font;
       ctx.fillText(ch, x, y);
       if(y > h && Math.random() > 0.975) drops[i] = 0;
-      drops[i]++;
+      drops[i] += 0.85; // daha yavaş
     }
     raf = requestAnimationFrame(draw);
   }
