@@ -1,298 +1,112 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
-
-/* GENERAL */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #000;
-  font-family: 'Orbitron', sans-serif;
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* HERO SECTION */
-#hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-#hero img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  opacity: 0.6;
-}
-
-#hero .content {
-  position: relative;
-  z-index: 2;
-  color: #d0eaff;
-  text-shadow: 0 0 20px #00e5ff;
-}
-
-#hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  letter-spacing: 4px;
-  margin: 0;
-}
-
-#hero .subtitle {
-  font-size: 1rem;
-  margin-top: 10px;
-  color: #a0b8ff;
-}
-
-#hero .subtitle span {
-  color: #00f0ff;
-}
-
-.cta {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 10px 28px;
-  border: 1px solid #00f7ff;
-  color: #00f7ff;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-  text-shadow: 0 0 8px #00f7ff;
-}
-
-.cta:hover {
-  background: #00f7ff;
-  color: #000;
-  box-shadow: 0 0 20px #00f7ff;
-}
-
-/* --- THE PROPHECY --- */
-#prophecy {
-  background: radial-gradient(circle at center, #020205 0%, #000 100%);
-  min-height: 120vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 6rem 2rem;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease-in-out;
-  position: relative;
-  z-index: 1;
-}
-
-#prophecy.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#prophecy h2 {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  color: #00f0ff;
-  letter-spacing: 4px;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px #00f0ff, 0 0 30px #0077ff;
-}
-
-#prophecy p {
-  color: #c0c6ff;
-  font-family: 'Courier New', monospace;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-/* --- THE SYSTEM --- */
-#system {
-  background: radial-gradient(circle at center, #020614 0%, #000 80%);
-  color: #c9d6ff;
-  padding: 120px 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-}
-
-#system.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#system::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px),
-                    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 20s linear infinite;
-  z-index: 0;
-}
-
-@keyframes gridMove {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(60px, 60px); }
-}
-
-.system-container {
-  position: relative;
-  z-index: 2;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.system-title {
-  font-size: 2.8rem;
-  letter-spacing: 2px;
-  color: #00f7ff;
-  text-shadow: 0 0 20px #00f7ff;
-  margin-bottom: 20px;
-}
-
-.system-subtitle {
-  color: #b3b3b3;
-  font-size: 1rem;
-  max-width: 700px;
-  margin: 0 auto 70px;
-  line-height: 1.7;
-}
-
-.system-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
-
-.system-box {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
-  border-radius: 16px;
-  width: 300px;
-  padding: 40px 25px;
-  transition: all 0.4s ease;
-  position: relative;
-  box-shadow: 0 0 15px rgba(0,255,255,0.05);
-}
-
-.system-box:hover {
-  border-color: rgba(0,255,255,0.5);
-  box-shadow: 0 0 25px rgba(0,255,255,0.3);
-  transform: translateY(-6px);
-}
-
-.system-box .icon {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-  color: #00f7ff;
-}
-
-.system-box h3 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #00f7ff;
-}
-
-.system-box p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #cbd5e1;
-}
-/* --- THE FRAMEWORK --- */
+/* --- THE FRAMEWORK (Holographic Network Redesign) --- */
 #framework {
   position: relative;
-  background: radial-gradient(circle at center, #01060f 0%, #000 100%);
-  color: #c9d6ff;
+  background: radial-gradient(circle at 50% 30%, #021020 0%, #000 100%);
+  color: #e0faff;
   text-align: center;
-  padding: 140px 0;
+  padding: 180px 0 220px;
   overflow: hidden;
 }
 
 .framework-container {
   position: relative;
-  z-index: 2;
-  max-width: 1100px;
+  z-index: 3;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .framework-title {
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   color: #00f7ff;
-  text-shadow: 0 0 25px #00f7ff;
-  letter-spacing: 3px;
+  text-shadow: 0 0 25px #00f7ff, 0 0 40px #00ffff;
   margin-bottom: 10px;
+  letter-spacing: 2px;
 }
 
 .framework-subtitle {
-  color: #b3b3b3;
-  font-size: 1rem;
-  margin-bottom: 60px;
+  font-size: 1.1rem;
+  color: #9ed9ff;
+  margin-bottom: 80px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
 }
 
 .framework-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 60px;
+  position: relative;
   z-index: 3;
 }
 
 .framework-box {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(0,255,255,0.1);
-  border-radius: 16px;
-  width: 300px;
-  padding: 40px 25px;
-  transition: all 0.4s ease;
-  backdrop-filter: blur(6px);
+  width: 320px;
+  height: 260px;
+  padding: 40px 30px;
+  background: linear-gradient(180deg, rgba(0,255,255,0.08) 0%, rgba(0,255,255,0.02) 100%);
+  border: 1px solid rgba(0,255,255,0.15);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0,255,255,0.05);
+  transition: all 0.6s ease;
+  transform-style: preserve-3d;
   position: relative;
-  box-shadow: 0 0 15px rgba(0,255,255,0.05);
+}
+
+.framework-box::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px; right: -1px; bottom: -1px;
+  border-radius: 18px;
+  background: linear-gradient(45deg, rgba(0,255,255,0.2), rgba(0,0,0,0), rgba(0,255,255,0.2));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
 .framework-box:hover {
-  border-color: rgba(0,255,255,0.5);
-  box-shadow: 0 0 25px rgba(0,255,255,0.3);
-  transform: translateY(-6px);
+  transform: translateY(-10px) rotateX(5deg);
+  border-color: rgba(0,255,255,0.4);
+  box-shadow: 0 0 35px rgba(0,255,255,0.2);
+}
+
+.framework-box:hover::before {
+  opacity: 1;
 }
 
 .framework-box .icon {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
+  font-size: 2.4rem;
+  margin-bottom: 20px;
   color: #00f7ff;
 }
 
 .framework-box h3 {
   font-size: 1.1rem;
-  margin-bottom: 10px;
   color: #00f7ff;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
 }
 
 .framework-box p {
   font-size: 0.9rem;
-  color: #cbd5e1;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: #cde4ff;
 }
 
-/* Animated network background */
+/* Animated network behind cards */
 #framework-network {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: 1;
-  pointer-events: none;
   opacity: 0.15;
+  pointer-events: none;
+  animation: fadeInNetwork 2s ease-out forwards;
+}
+
+@keyframes fadeInNetwork {
+  from { opacity: 0; transform: scale(1.1); }
+  to { opacity: 0.15; transform: scale(1); }
 }
