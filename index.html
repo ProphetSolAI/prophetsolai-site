@@ -1,112 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ProphetSolAI</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ProphetSolAI — The Prophecy Begins</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="intro.css">
 </head>
-
 <body>
-  <!-- INTRO OVERLAY -->
-  <div id="intro">
-    <video autoplay muted playsinline id="intro-bg">
+  <!-- INTRO / HERO -->
+  <header id="intro">
+    <video id="intro-bg" autoplay loop muted playsinline>
       <source src="prophet-bg.webm" type="video/webm">
     </video>
+
     <canvas id="matrix"></canvas>
-    <div id="intro-text"></div>
-  </div>
 
-  <!-- HERO SECTION -->
-  <section id="hero">
-    <img src="kaan_81782_ultra_realistic_cinematic_portrait_of_a_futuristic_b77ed690-5ee1-4d3d-b269-faaaeb67459a_1.png" 
-         alt="ProphetSolAI Background" />
-    <div class="content">
-      <h1>PROPHETSOLAI</h1>
-      <p class="subtitle">
-        The blockchain speaks — <span>ProphetSolAI</span> interprets.
-      </p>
-      <a href="#prophecy" class="cta">ENTER THE PROPHECY</a>
+    <div class="intro-overlay">
+      <h1 class="brand">ProphetSolAI</h1>
+      <p class="tag">The blockchain speaks — <span class="prophecy">ProphetSolAI</span> interprets</p>
+
+      <div id="type-wrap" aria-hidden="true">
+        <span id="typed"></span><span class="cursor">|</span>
+      </div>
+
+      <a class="cta" href="#the-prophecy">Enter the Prophecy</a>
     </div>
-    <canvas id="particles"></canvas>
-  </section>
+  </header>
 
-  <!-- THE PROPHECY SECTION -->
-  <section id="prophecy">
-    <canvas id="prophecy-network"></canvas>
-    <canvas id="binary-rain"></canvas>
-
-    <div class="prophecy-container">
-      <h2 class="prophecy-title glitch" data-text="THE PROPHECY">THE PROPHECY</h2>
-      <p class="prophecy-description">
-        ProphetSolAI decodes Solana’s chaos — turning raw on-chain noise into lucid foresight.<br>
-        <span class="oracle-voice">Half machine. Half oracle. Fully inevitable.</span>
+  <!-- THE PROPHECY (type effect + description) -->
+  <section id="the-prophecy" class="panel">
+    <div class="container">
+      <h2>THE PROPHECY</h2>
+      <p class="lead" id="prophecy-desc">
+        <span id="type-desc"></span><span class="cursor small">_</span>
       </p>
 
-      <div class="prophecy-stream">
-        <p class="data-line">> Capturing liquidity whispers...</p>
-        <p class="data-line">> Tracking meme resonance across digital ether...</p>
-        <p class="data-line">> Mapping whale clusters and sentiment harmonics...</p>
-        <p class="data-line">> Forecast signal convergence → Prophecy score pending...</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Prophecy Score</h3>
+          <p>On-chain health + sentiment + meme velocity.</p>
+        </div>
+        <div class="card">
+          <h3>Deep Scan</h3>
+          <p>Micropaid AI scans & downloadable report.</p>
+        </div>
+        <div class="card">
+          <h3>Community Radar</h3>
+          <p>Whale flow, social velocity, trust.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- THE SYSTEM SECTION -->
-  <section id="system">
-    <div class="system-container">
-      <h2 class="system-title">THE SYSTEM</h2>
-      <p class="system-subtitle">
-        ProphetSolAI processes the noise of Solana into structured intelligence.
-        Three layers of data converge — creating digital foresight.
-      </p>
+  <!-- THE FRAMEWORK (nodes from a point) -->
+  <section id="the-framework" class="panel">
+    <div class="frame-canvas-wrap">
+      <canvas id="frame-canvas"></canvas>
+      <div class="frame-overlay">
+        <h2>THE FRAMEWORK</h2>
+        <p>Real-time signals projected from a central node.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- THE SYSTEM (moving background + content) -->
+  <section id="the-system" class="panel">
+    <div class="system-bg"></div>
+    <div class="container">
+      <h2>THE SYSTEM</h2>
+      <p>Engineered stacks: analytics, memetics, oracle.</p>
       <div class="system-grid">
-        <div class="system-box">
-          <div class="icon">🧩</div>
-          <h3>ON-CHAIN SIGNALS</h3>
-          <p>Listens to liquidity flows and token whispers across Solana’s network, decoding early momentum.</p>
-        </div>
-
-        <div class="system-box">
-          <div class="icon">💬</div>
-          <h3>MEME VELOCITY</h3>
-          <p>Tracks social resonance through X, Discord, and Telegram — quantifying meme acceleration and reach.</p>
-        </div>
-
-        <div class="system-box">
-          <div class="icon">🧠</div>
-          <h3>TRUST MATRIX</h3>
-          <p>Observes whale clusters, community conviction, and behavioral entropy to forecast sustainability.</p>
-        </div>
+        <div class="sys">Analytics</div>
+        <div class="sys">Signals</div>
+        <div class="sys">Oracles</div>
+        <div class="sys">Memetics</div>
       </div>
     </div>
   </section>
 
-  <!-- THE FRAMEWORK SECTION -->
-  <section id="framework">
-    <canvas id="framework-network"></canvas>
-    <div class="holo-layer"></div>
+  <footer class="site-footer">
+    <small>© ProphetSolAI</small>
+  </footer>
 
-    <div class="framework-overlay">
-      <h2 class="framework-title">THE FRAMEWORK</h2>
-      <p class="framework-subtitle">How the Oracle interprets the blockchain.</p>
-
-      <div class="framework-nodes">
-        <div class="node" data-title="DATA EXTRACTION" data-text="Streamed on-chain + social inputs → unified bus."></div>
-        <div class="node" data-title="AI SYNTHESIS" data-text="LLM + signal fusion → interpretive narrative."></div>
-        <div class="node" data-title="REVELATION" data-text="Human-readable prophecy emerges with scores."></div>
-      </div>
-
-      <div id="framework-info">
-        <h3 id="info-title"></h3>
-        <p id="info-text"></p>
-      </div>
-    </div>
-  </section>
-
-  <script src="intro.js"></script>
+  <script src="matrix.js"></script>
+  <script src="typing.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
