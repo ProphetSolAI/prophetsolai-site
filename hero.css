@@ -42,3 +42,39 @@
 .hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg, rgba(7,5,18,.25), rgba(7,5,18,.05));backdrop-filter:blur(2px);transition:opacity .6s ease}
 .hero-overlay.hide{opacity:0;pointer-events:none}
 .hero-overlay.show{opacity:1}
+/* ==== TRUE GLITCH EFFECT ==== */
+@keyframes rgbShift {
+  0% { transform: translate(0); }
+  25% { transform: translate(-1px,1px); }
+  50% { transform: translate(1px,-1px); }
+  75% { transform: translate(-1px,-1px); }
+  100% { transform: translate(0); }
+}
+
+.glitch.on {
+  opacity: 1;
+  filter: contrast(150%) brightness(1.2) saturate(1.5);
+  animation: rgbShift 0.06s steps(2,end) 20;
+  mix-blend-mode: lighten;
+}
+
+.g::before, .g::after {
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  clip-path: inset(0 0 0 0);
+}
+
+.g::before {
+  color: #00ffff;
+  transform: translate(2px, 0);
+}
+
+.g::after {
+  color: #ff00ff;
+  transform: translate(-2px, 0);
+}
