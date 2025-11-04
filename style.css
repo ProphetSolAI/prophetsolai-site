@@ -172,3 +172,102 @@ section{position:relative}
   color: #000;
   box-shadow: 0 0 15px #0ff;
 }
+/* CYBERPUNK FRAMEWORK SECTION */
+#framework {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #02040a 0%, #000 100%);
+  color: #fff;
+}
+
+#framework-network {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.framework-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #baf7ff;
+  font-family: 'Orbitron', sans-serif;
+  padding-top: 10vh;
+}
+
+.framework-title {
+  font-size: 2.5rem;
+  color: #00faff;
+  text-shadow: 0 0 20px #00ffff, 0 0 60px #0066ff;
+  letter-spacing: 2px;
+  animation: flicker 2s infinite alternate;
+}
+
+.framework-subtitle {
+  color: #8ab0d7;
+  margin-top: 10px;
+  margin-bottom: 60px;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.framework-nodes {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 160px;
+}
+
+.node {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00ffff 0%, #0055ff 70%);
+  box-shadow: 0 0 25px #00ffff, inset 0 0 15px #00ccff;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.node:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 40px #00ffff, 0 0 100px #00aaff;
+}
+
+#framework-info {
+  margin-top: 60px;
+  text-align: center;
+  color: #baf7ff;
+  min-height: 80px;
+  transition: all 0.3s ease;
+}
+
+#info-title {
+  font-size: 1.2rem;
+  color: #00ffff;
+  text-shadow: 0 0 15px #00ffff;
+}
+
+#info-text {
+  font-size: 0.95rem;
+  color: #8ab0d7;
+  opacity: 0.85;
+}
+
+/* Animations */
+@keyframes flicker {
+  0% { opacity: 1; text-shadow: 0 0 25px #00ffff; }
+  50% { opacity: 0.8; text-shadow: 0 0 35px #00aaff; }
+  100% { opacity: 1; text-shadow: 0 0 25px #00ffff; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
