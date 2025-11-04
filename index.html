@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ProphetSolAI — The Prophecy Begins</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ProphetSolAI — The Oracle Access Protocol</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -14,53 +14,63 @@
 </head>
 <body>
 
-  <!-- INTRO (cinematic) -->
+  <!-- 0) OPENING VISION + GLITCH -->
+  <section id="opening" class="opening">
+    <img src="./intro-image.jpg" class="opening-img" alt="ProphetSolAI Vision"/>
+    <div class="opening-overlay scanlines"></div>
+    <div class="opening-cli mono" id="opening-cli">&gt; initializing ProphetSolAI...</div>
+
+    <!-- brutal glitch overlay -->
+    <div class="glitch-seq" id="glitch-seq" aria-hidden="true">
+      <div class="gframe gf1"></div>
+      <div class="gframe gf2"></div>
+      <div class="gframe gf3"></div>
+      <div class="flash"></div>
+    </div>
+
+    <!-- boot vertical rain appears after glitch -->
+    <canvas id="boot-matrix" class="boot-matrix"></canvas>
+  </section>
+
+  <!-- 1) HERO -->
   <section id="intro" class="intro">
     <video id="intro-bg" class="intro-bg" autoplay muted loop playsinline>
       <source src="./prophet-bg.webm" type="video/webm">
     </video>
 
-    <!-- holographic overlays -->
     <div class="fx grid"></div>
     <div class="fx scanlines"></div>
     <div class="fx noise"></div>
 
-    <!-- glitch (rgb split) -->
-    <div class="glitch">
-      <div class="g" data-text="THE PROPHECY IS LOADING..."></div>
-    </div>
-
-    <!-- matrix rain during boot -->
-    <canvas id="matrix" class="matrix"></canvas>
-
-    <!-- boot text -->
-    <div class="boot center">
+    <!-- boot text (shown during access boot then fades) -->
+    <div class="boot center" id="boot-typing">
       <div id="boot-line-1" class="boot-line"></div>
       <div id="boot-line-2" class="boot-line"></div>
+      <div id="boot-line-3" class="boot-line"></div>
     </div>
 
-    <!-- hero overlay after intro -->
+    <!-- hero overlay -->
     <div id="hero-overlay" class="hero-overlay hide">
       <h1 class="brand">ProphetSolAI</h1>
       <p class="strap">The blockchain speaks — <span class="accent">we interpret</span>.</p>
-      <a href="#the-prophecy" class="cta" aria-label="Enter">Enter</a>
-      <div class="scroll-hint">Scroll</div>
+      <a href="#the-prophecy" class="cta">INITIATE PROPHECY</a>
+      <div class="scroll-hint">Scroll ↓ Access the Oracle</div>
     </div>
   </section>
 
-  <!-- MAIN -->
   <main id="main" class="hide">
 
-    <!-- THE PROPHECY -->
-    <section id="the-prophecy" class="panel">
+    <!-- 2) THE PROPHECY -->
+    <section id="the-prophecy" class="panel prophecy">
       <h2 class="neon">THE PROPHECY</h2>
+      <canvas id="prophecy-binary" class="prophecy-binary" aria-hidden="true"></canvas>
       <p class="mono typewrap">
         <span id="type-desc"></span><span class="cursor">|</span>
       </p>
       <div class="divider"></div>
     </section>
 
-    <!-- THE SYSTEM -->
+    <!-- 3) THE SYSTEM -->
     <section id="the-system" class="panel system">
       <div class="system-bg"></div>
       <h2 class="neon">THE SYSTEM</h2>
@@ -72,11 +82,14 @@
       </div>
     </section>
 
-    <!-- THE FRAMEWORK -->
+    <!-- 4) THE FRAMEWORK -->
     <section id="the-framework" class="panel framework">
       <h2 class="neon">THE FRAMEWORK — The Prophecy Engine</h2>
+
+      <!-- moving network -->
       <canvas id="graph" class="graph" aria-hidden="true"></canvas>
 
+      <!-- long technical text -->
       <article class="framework-text">
         <p>
           <strong>Overview.</strong> ProphetSolAI unifies on-chain, off-chain, and cultural signals inside a single prediction engine to detect momentum <em>before</em> it becomes obvious. The output is a composite probability — the <strong>Prophecy Score</strong> — representing a token’s near-term ability to attract attention and capital.
@@ -105,16 +118,17 @@
         <p class="why">Markets price narratives; ProphetSolAI prices the <em>birth</em> of the narrative.</p>
       </article>
 
+      <!-- CLI logs -->
       <div class="cli">
         <div class="logline">&gt; parsing transaction clusters_</div>
-        <div class="logline">&gt; analyzing whale wallets_</div>
-        <div class="logline">&gt; computing meme propagation entropy_</div>
+        <div class="logline">&gt; analyzing whale topology_</div>
+        <div class="logline">&gt; decoding memetic networks_</div>
         <div class="logline">&gt; backtesting anomaly signals_</div>
-        <div class="logline strong">&gt; prophecy score generated: 82.3/100_</div>
+        <div class="logline strong">&gt; prophecy score generated: 92.4/100_</div>
       </div>
     </section>
 
-    <!-- THE CORE -->
+    <!-- 5) THE CORE -->
     <section id="the-core" class="panel core">
       <div class="core-pulse" aria-hidden="true"></div>
       <h2 class="oracle-line">The Oracle never sleeps.</h2>
