@@ -8,46 +8,44 @@
   const heroOverlay = document.getElementById('hero-overlay');
   const main = document.getElementById('main');
 
+  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function show(el){ el.classList.add('show'); el.classList.remove('hide'); }
   function hide(el){ el.classList.add('hide'); el.classList.remove('show'); }
 
   function matrixOn(){ if(window.MatrixRain) MatrixRain.start(matrixCanvas); matrixCanvas.classList.add('on'); }
   function matrixOff(){ if(window.MatrixRain) MatrixRain.stop(); matrixCanvas.classList.remove('on'); }
 
-  function typeBoot(el, text, speed=28, cb){
+  function typeBoot(el, text, speed=34, cb){
     let i=0; el.textContent='';
-    const step=()=>{ 
-      if(i<text.length){ el.textContent+=text[i++]; setTimeout(step,speed);} 
-      else if(cb) cb(); 
-    };
-    step();
+    (function step(){
+      if(i<text.length){ el.textContent += text.charAt(i++); setTimeout(step, speed); }
+      else if(cb) cb();
+    })();
   }
 
   function run(){
-    // 1️⃣ Giriş glitch'i 1.4 saniye
-    setTimeout(()=> glitch.classList.add('on'), 1000);
+    if(prefersReduce){
+      heroOverlay.classList.add('show'); show(main);
+      return;
+    }
+    // 0.8–1.6s: glitch
+    setTimeout(()=> glitch.classList.add('on'), 800);
+    setTimeout(()=> glitch.classList.remove('on'), 1600);
 
-    // 2️⃣ Matrix başlat + yazı sekansı (3.5 saniye)
+    // 1.6s: matrix + boot
     setTimeout(()=>{
-      glitch.classList.remove('on');
-      matrixOn();
-      show(boot);
+      matrixOn(); show(boot);
       typeBoot(line1, "Don't be scared, human...", 40, ()=>{
-        setTimeout(()=> typeBoot(line2, "The Oracle awakens...", 36), 900);
+        setTimeout(()=> typeBoot(line2, "The Oracle is online.", 36), 800);
       });
-    }, 2500);
+    }, 1600);
 
-    // 3️⃣ Matrix fade-out + sahne geçişi (daha yavaş)
-    setTimeout(()=>{ 
-      hide(boot);
-      matrixOff();
-    }, 6500);
+    // 4.6s: fade out boot + matrix
+    setTimeout(()=>{ hide(boot); matrixOff(); }, 4600);
 
-    // 4️⃣ Ana ekran fade-in (daha sinematik)
-    setTimeout(()=>{ 
-      heroOverlay.classList.add('show'); 
-      show(main);
-    }, 7200);
+    // 5.0s: reveal hero + main
+    setTimeout(()=>{ heroOverlay.classList.add('show'); show(main); }, 5000);
   }
 
   if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', run); }
