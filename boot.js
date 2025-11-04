@@ -16,22 +16,38 @@
 
   function typeBoot(el, text, speed=28, cb){
     let i=0; el.textContent='';
-    const step=()=>{ if(i<text.length){ el.textContent+=text[i++]; setTimeout(step,speed);} else if(cb) cb(); };
+    const step=()=>{ 
+      if(i<text.length){ el.textContent+=text[i++]; setTimeout(step,speed);} 
+      else if(cb) cb(); 
+    };
     step();
   }
 
   function run(){
-    setTimeout(()=>{ glitch.classList.add('on'); }, 1500);
+    // 1️⃣ Giriş glitch'i 1.4 saniye
+    setTimeout(()=> glitch.classList.add('on'), 1000);
+
+    // 2️⃣ Matrix başlat + yazı sekansı (3.5 saniye)
     setTimeout(()=>{
       glitch.classList.remove('on');
       matrixOn();
       show(boot);
-      typeBoot(line1, "Don't be scared, human...", 22, ()=>{
-        setTimeout(()=> typeBoot(line2, "The Oracle awakens...", 26), 200);
+      typeBoot(line1, "Don't be scared, human...", 40, ()=>{
+        setTimeout(()=> typeBoot(line2, "The Oracle awakens...", 36), 900);
       });
-    }, 2100);
-    setTimeout(()=>{ hide(boot); matrixOff(); }, 4200);
-    setTimeout(()=>{ heroOverlay.classList.add('show'); show(main); }, 4400);
+    }, 2500);
+
+    // 3️⃣ Matrix fade-out + sahne geçişi (daha yavaş)
+    setTimeout(()=>{ 
+      hide(boot);
+      matrixOff();
+    }, 6500);
+
+    // 4️⃣ Ana ekran fade-in (daha sinematik)
+    setTimeout(()=>{ 
+      heroOverlay.classList.add('show'); 
+      show(main);
+    }, 7200);
   }
 
   if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', run); }
