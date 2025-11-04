@@ -58,3 +58,26 @@
 
 /* Scanlines helper (also used in opening) */
 .scanlines{background:repeating-linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0) 2px, rgba(0,234,255,.06) 3px);opacity:.25}
+/* --- HACK GLITCH EFFECT --- */
+@keyframes screenShake{
+  0%,100%{transform:translate(0,0)}
+  20%{transform:translate(-3px,3px)}
+  40%{transform:translate(3px,-2px)}
+  60%{transform:translate(-4px,2px)}
+  80%{transform:translate(2px,3px)}
+}
+.shake{animation:screenShake .6s steps(2) 1}
+
+.glitch-seq.distort .gf1{
+  animation:rgbshake .3s steps(2) 3 alternate;
+  opacity:.6;
+}
+.glitch-seq.distort .gf2,
+.glitch-seq.distort .gf3{
+  animation:tear .6s steps(2) 2 alternate;
+  opacity:.4;
+}
+.glitch-seq.invert{
+  filter:invert(1) contrast(1.5) saturate(1.8);
+  background:#fff0;
+}
