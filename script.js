@@ -140,3 +140,65 @@ const observer = new IntersectionObserver(
   { threshold: 0.2 }
 );
 document.querySelectorAll("section").forEach((sec) => observer.observe(sec));
+// Interactive node info display
+const nodes = document.querySelectorAll('.node');
+const infoTitle = document.getElementById('info-title');
+const infoText = document.getElementById('info-text');
+
+nodes.forEach(node => {
+  node.addEventListener('mouseenter', () => {
+    infoTitle.textContent = node.getAttribute('data-title');
+    infoText.textContent = node.getAttribute('data-text');
+  });
+  node.addEventListener('mouseleave', () => {
+    infoTitle.textContent = '';
+    infoText.textContent = '';
+  });
+});
+
+// Animated network background
+const canvas = document.getElementById('framework-network');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+
+  const nodes = Array(60).fill().map(() => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = 'rgba(0, 255, 255, 0.6)';
+    ctx.strokeStyle = 'rgba(0, 255, 255, 0.2)';
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      a.x += a.vx;
+      a.y += a.vy;
+      if (a.x < 0 || a.x > w) a.vx *= -1;
+      if (a.y < 0 || a.y > h) a.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
