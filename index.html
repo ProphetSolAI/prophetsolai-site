@@ -8,70 +8,126 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-  <!-- Styles (dosyalar ana dizinde olduğu için ./css/ kaldırıldı) -->
-  <link rel="stylesheet" href="./cyber.css">
-  <link rel="stylesheet" href="./hero.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="./css/cyber.css">
+  <link rel="stylesheet" href="./css/hero.css">
 </head>
 <body>
 
-  <!-- INTRO SECTION -->
+  <!-- INTRO (cinematic) -->
   <section id="intro" class="intro">
     <video id="intro-bg" class="intro-bg" autoplay muted loop playsinline>
-      <source src="./prophet-bg.webm" type="video/webm">
+      <source src="./assets/prophet-bg.webm" type="video/webm">
     </video>
 
+    <!-- holographic overlays -->
     <div class="fx grid"></div>
     <div class="fx scanlines"></div>
     <div class="fx noise"></div>
 
+    <!-- glitch (rgb split) -->
     <div class="glitch">
-  <div class="g" data-text="THE PROPHECY IS LOADING..."></div>
-</div>
+      <div class="g" data-text="THE PROPHECY IS LOADING..."></div>
+    </div>
+
+    <!-- matrix rain during boot -->
     <canvas id="matrix" class="matrix"></canvas>
 
+    <!-- boot text -->
     <div class="boot center">
       <div id="boot-line-1" class="boot-line"></div>
       <div id="boot-line-2" class="boot-line"></div>
     </div>
 
+    <!-- hero overlay after intro -->
     <div id="hero-overlay" class="hero-overlay hide">
       <h1 class="brand">ProphetSolAI</h1>
       <p class="strap">The blockchain speaks — <span class="accent">we interpret</span>.</p>
-      <a href="#the-prophecy" class="cta">Enter</a>
+      <a href="#the-prophecy" class="cta" aria-label="Enter">Enter</a>
+      <div class="scroll-hint">Scroll</div>
     </div>
   </section>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main id="main" class="hide">
+
+    <!-- THE PROPHECY -->
     <section id="the-prophecy" class="panel">
       <h2 class="neon">THE PROPHECY</h2>
-      <p class="mono typewrap"><span id="type-desc"></span><span class="cursor">|</span></p>
+      <p class="mono typewrap">
+        <span id="type-desc"></span><span class="cursor">|</span>
+      </p>
+      <div class="divider"></div>
     </section>
 
+    <!-- THE SYSTEM (observables) -->
     <section id="the-system" class="panel system">
       <div class="system-bg"></div>
       <h2 class="neon">THE SYSTEM</h2>
       <div class="system-lines">
-        <div class="line"><span>On-Chain Health</span></div>
-        <div class="line"><span>Meme Velocity</span></div>
-        <div class="line"><span>Whale Flow</span></div>
-        <div class="line"><span>Trust Index</span></div>
+        <div class="line"><span>ON-CHAIN HEALTH</span> — liquidity depth, holder age mix, active-address elasticity, slippage resilience.</div>
+        <div class="line"><span>MEME VELOCITY</span> — propagation entropy, source authority, visual-text alignment, narrative half-life.</div>
+        <div class="line"><span>WHALE RADAR</span> — cluster coordination, net-inflow intent, distribution-phase detection.</div>
+        <div class="line"><span>TRUST INDEX</span> — dev cadence, version quality, bytecode risk, community retention.</div>
       </div>
     </section>
 
-    <section id="the-framework" class="panel">
-      <h2 class="neon">THE FRAMEWORK</h2>
-      <canvas id="graph" class="graph"></canvas>
+    <!-- THE FRAMEWORK (engine + long technical text + graph + CLI logs) -->
+    <section id="the-framework" class="panel framework">
+      <h2 class="neon">THE FRAMEWORK — The Prophecy Engine</h2>
+      <canvas id="graph" class="graph" aria-hidden="true"></canvas>
+
+      <article class="framework-text">
+        <p>
+          <strong>Overview.</strong> ProphetSolAI unifies on-chain, off-chain, and cultural signals inside a single prediction engine to detect momentum <em>before</em> it becomes obvious. The output is a composite probability — the <strong>Prophecy Score</strong> — representing a token’s near-term ability to attract attention and capital.
+        </p>
+        <p>
+          <strong>Data Ingestion.</strong> The engine ingests blockchain activity (transfer graphs, DEX liquidity, contract calls, holder distribution, CEX flows) in minute-level snapshots. In parallel, cultural streams (X/Telegram/Discord, search trends, GitHub cadence, meme detection) are pulled and timestamp-normalized with robust imputation for gaps and outliers.
+        </p>
+        <p>
+          <strong>Feature Engineering.</strong> Signals are organized into four bundles: <em>On-Chain Health</em> (active-address elasticity, holder-age mix, AMM depth, MEV sensitivity), <em>Whale Topology</em> (cluster coordination, accumulation→distribution phase detection), <em>Meme Velocity</em> (propagation entropy, source authority, CLIP-like visual-text coherence, narrative half-life), and <em>Trust & Credibility</em> (dev speed, version quality, dependency risk, contract anomaly score). Each bundle yields derivative momentum and regime features.
+        </p>
+        <p>
+          <strong>Modeling.</strong> Temporal modules (state-space / temporal-fusion) blend with graph neural networks over wallet-transaction graphs and contrastive multimodal encoders for memes. The ensemble is stacked via Bayesian evidence weighting, adapting per-asset and per-regime. Objective is not raw price — it is <em>early attention & liquidity attraction</em>.
+        </p>
+        <p>
+          <strong>Prophecy Score.</strong> The 0–100 score ships with auxiliaries: <em>MoP</em> (momentum-onset probability), <em>MVQ</em> (memetic vector quality), and <em>WTI</em> (whale transfer intent). Calibration uses leakage-safe walk-forward backtests across regimes.
+        </p>
+        <p>
+          <strong>Risk Controls.</strong> Outlier dampening, regime-switch penalties, and news-shock guardrails protect against overconfidence. Bytecode similarity checks flag copy/ponzi patterns; upgradeability risk is surfaced. Low-confidence outputs include uncertainty bands.
+        </p>
+        <p>
+          <strong>Continuous Learning.</strong> Daily online fine-tuning pushes live outcomes into the backtest pool, monitors data/concept drift, and reward-shapes successful early warnings while penalizing false positives — keeping the Oracle adaptive to new cycles.
+        </p>
+        <p>
+          <strong>Interpretability.</strong> Every score ships with Top-5 feature attributions (“Score 78 because: whale net-inflow ↑, memetic coherence ↑, sufficient DEX depth, accelerating dev cadence, propagation > threshold”), enabling transparent, repeatable reasoning.
+        </p>
+        <p class="why">Markets price narratives; ProphetSolAI prices the <em>birth</em> of the narrative.</p>
+      </article>
+
+      <div class="cli">
+        <div class="logline">&gt; parsing transaction clusters_</div>
+        <div class="logline">&gt; analyzing whale wallets_</div>
+        <div class="logline">&gt; computing meme propagation entropy_</div>
+        <div class="logline">&gt; backtesting anomaly signals_</div>
+        <div class="logline strong">&gt; prophecy score generated: 82.3/100_</div>
+      </div>
+    </section>
+
+    <!-- THE CORE / ORACLE -->
+    <section id="the-core" class="panel core">
+      <div class="core-pulse" aria-hidden="true"></div>
+      <h2 class="oracle-line">The Oracle never sleeps.</h2>
+      <p class="mono idle">&gt; awaiting next prophecy... <span class="cursor">|</span></p>
     </section>
 
     <footer class="foot">© ProphetSolAI</footer>
   </main>
 
-  <!-- Scripts (dosyalar ana dizinde olduğu için ./js/ kaldırıldı) -->
-  <script src="./matrix.js"></script>
-  <script src="./typing.js"></script>
-  <script src="./graph.js"></script>
-  <script src="./boot.js"></script>
-
+  <!-- Scripts -->
+  <script src="./js/matrix.js"></script>
+  <script src="./js/typing.js"></script>
+  <script src="./js/graph.js"></script>
+  <script src="./js/boot.js"></script>
 </body>
 </html>
