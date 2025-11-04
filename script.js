@@ -1,111 +1,80 @@
-// === PROPHECY NETWORK BACKGROUND ===
-const prophecyCanvas = document.getElementById('prophecy-network');
-if (prophecyCanvas) {
-  const ctx = prophecyCanvas.getContext('2d');
-  prophecyCanvas.width = window.innerWidth;
-  prophecyCanvas.height = window.innerHeight;
+// frame canvas (nodes radiating) + small interactions
+(function(){
+  /* FRAMEWORK canvas */
+  const fc = document.getElementById('frame-canvas');
+  if(fc){
+    const ctx = fc.getContext('2d');
+    let w,h, cx, cy, nodes=[];
+    function resizeF(){ w=fc.width=window.innerWidth; h=fc.height=400; cx=w/2; cy=200; generateNodes(); }
+    window.addEventListener('resize', resizeF);
 
-  let nodes = [];
-  const nodeCount = 90;
-
-  for (let i = 0; i < nodeCount; i++) {
-    nodes.push({
-      x: Math.random() * prophecyCanvas.width,
-      y: Math.random() * prophecyCanvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      radius: Math.random() * 1.8 + 0.8
-    });
-  }
-
-  function animateProphecy() {
-    ctx.clearRect(0, 0, prophecyCanvas.width, prophecyCanvas.height);
-    for (let i = 0; i < nodeCount; i++) {
-      const node = nodes[i];
-      node.x += node.vx;
-      node.y += node.vy;
-
-      if (node.x < 0 || node.x > prophecyCanvas.width) node.vx *= -1;
-      if (node.y < 0 || node.y > prophecyCanvas.height) node.vy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 255, 255, 0.6)';
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = '#00ffff';
-      ctx.fill();
-    }
-
-    for (let i = 0; i < nodeCount; i++) {
-      for (let j = i + 1; j < nodeCount; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < 120) {
-          const opacity = 1 - distance / 120;
-          ctx.strokeStyle = `rgba(0, 255, 255, ${opacity * 0.25})`;
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.stroke();
-        }
+    function generateNodes(){
+      nodes = [];
+      const count = Math.floor(Math.max(12, Math.min(40, w/60)));
+      for(let i=0;i<count;i++){
+        const angle = (Math.PI*2)*(i/count);
+        const dist = 80 + Math.random()*220;
+        nodes.push({
+          x: cx + Math.cos(angle)*dist,
+          y: cy + Math.sin(angle)*dist,
+          size: 1 + Math.random()*3,
+          alpha: 0.2 + Math.random()*0.8,
+          vx: (Math.random()-0.5)*0.2,
+          vy: (Math.random()-0.5)*0.2
+        });
       }
     }
-    requestAnimationFrame(animateProphecy);
-  }
-  animateProphecy();
-  window.addEventListener('resize', () => {
-    prophecyCanvas.width = window.innerWidth;
-    prophecyCanvas.height = window.innerHeight;
-  });
-}
 
-// === BINARY RAIN EFFECT ===
-const binaryCanvas = document.getElementById('binary-rain');
-if (binaryCanvas) {
-  const ctx = binaryCanvas.getContext('2d');
-  binaryCanvas.width = window.innerWidth;
-  binaryCanvas.height = window.innerHeight;
+    function drawFrame(){
+      ctx.clearRect(0,0,w,400);
+      // central node
+      ctx.beginPath();
+      ctx.arc(cx,cy,6,0,Math.PI*2);
+      ctx.fillStyle='rgba(201,162,39,0.95)';
+      ctx.fill();
 
-  const letters = '01';
-  const fontSize = 16;
-  const columns = binaryCanvas.width / fontSize;
-  const drops = Array.from({ length: columns }).map(() => Math.random() * binaryCanvas.height);
+      nodes.forEach(n=>{
+        // subtle movement
+        n.x += n.vx; n.y += n.vy;
+        // line
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.lineTo(n.x,n.y);
+        ctx.strokeStyle = 'rgba(43,231,255,'+ (0.06 + n.alpha*0.2) +')';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        // node
+        ctx.beginPath();
+        ctx.arc(n.x,n.y,n.size,0,Math.PI*2);
+        ctx.fillStyle = 'rgba(255,255,255,'+(0.15 + n.alpha*0.7)+')';
+        ctx.fill();
+      });
 
-  function drawRain() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
-    ctx.fillRect(0, 0, binaryCanvas.width, binaryCanvas.height);
-    ctx.fillStyle = '#00ffe1';
-    ctx.font = fontSize + 'px monospace';
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters.charAt(Math.floor(Math.random() * letters.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > binaryCanvas.height && Math.random() > 0.975) drops[i] = 0;
-      drops[i]++;
+      requestAnimationFrame(drawFrame);
     }
+
+    resizeF();
+    drawFrame();
   }
-  setInterval(drawRain, 35);
-  window.addEventListener('resize', () => {
-    binaryCanvas.width = window.innerWidth;
-    binaryCanvas.height = window.innerHeight;
-  });
-}
 
-// === FRAMEWORK NODE HOVER INFO ===
-const nodes = document.querySelectorAll('.node');
-const infoBox = document.getElementById('framework-info');
-const titleBox = document.getElementById('info-title');
-const textBox = document.getElementById('info-text');
-
-nodes.forEach(node => {
-  node.addEventListener('mouseenter', () => {
-    titleBox.textContent = node.getAttribute('data-title');
-    textBox.textContent = node.getAttribute('data-text');
-    infoBox.classList.add('active');
-  });
-  node.addEventListener('mouseleave', () => {
-    infoBox.classList.remove('active');
-  });
-});
+  /* SYSTEM moving bg micro-parallax */
+  const sysBg = document.querySelector('.system-bg');
+  if(sysBg){
+    // create layered moving background using CSS + small JS
+    sysBg.style.position='absolute';
+    sysBg.style.inset='0';
+    sysBg.style.zIndex='0';
+    sysBg.style.background='linear-gradient(120deg, rgba(2,6,12,0.9), rgba(3,8,22,0.95))';
+    sysBg.style.opacity='0.95';
+    sysBg.style.transformOrigin='center';
+    let t=0;
+    function animateSys(){
+      t += 0.0025;
+      const sx = Math.sin(t)*6;
+      const sy = Math.cos(t*0.8)*8;
+      sysBg.style.backgroundPosition = `${sx}% ${sy}%`;
+      requestAnimationFrame(animateSys);
+    }
+    animateSys();
+  }
+})();
