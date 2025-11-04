@@ -122,3 +122,53 @@ section{position:relative}
   .input-row{flex-direction:column}
   #nav .links{display:none}
 }
+/* HERO SECTION BACKGROUND VIDEO */
+#hero {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+}
+
+#hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.45;
+  filter: brightness(0.9) contrast(1.15) saturate(1.2);
+}
+
+#hero .content {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(2px);
+}
+
+#hero .cta {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  color: #0ff;
+  border: 1px solid #0ff;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+#hero .cta:hover {
+  background: #0ff;
+  color: #000;
+  box-shadow: 0 0 15px #0ff;
+}
