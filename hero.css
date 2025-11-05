@@ -1,36 +1,97 @@
-.opening{
-  position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;
-  flex-direction:column;z-index:50;overflow:hidden;
+/* hero.css */
+/* Opening sequence layers */
+#boot{
+  position:fixed; inset:0;
+  background:#000;
+  display:block;
+  z-index:9999;
+  overflow:hidden;
 }
-.opening-img{max-width:80vw;max-height:80vh;filter:contrast(1.1) brightness(1.05) saturate(1.2);}
-.scanlines{background:repeating-linear-gradient(0deg,transparent 0,transparent 2px,rgba(0,234,255,.05) 3px);opacity:.2;}
-.opening-cli{position:absolute;bottom:8vh;left:50%;transform:translateX(-50%);
-  color:#9fffcf;font-size:.95rem;text-shadow:0 0 8px rgba(0,255,123,.35);}
-.boot-matrix{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;z-index:1}
-.boot-matrix.show{opacity:1;}
-/* glitch + invert */
-.opening.glitch{
-  animation:glitchFlash 1s ease;
+#introImage{
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  max-width:80vw; max-height:80vh;
+  object-fit:contain;
+  opacity:1;
+}
+#glitchFlash{
+  position:absolute; inset:0;
+  mix-blend-mode:screen;
+  pointer-events:none;
+  opacity:0;
+}
+#glitchFlash.active{
+  animation: glitchFlash 1000ms steps(1,end);
 }
 @keyframes glitchFlash{
-  0%{filter:none;}
-  25%{filter:contrast(2) saturate(2) hue-rotate(60deg);}
-  50%{filter:invert(1);}
-  75%{filter:contrast(1.2) saturate(1.4);}
-  100%{filter:none;}
+  0%{
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px),
+      linear-gradient(0deg, #fff, #fff);
+    filter: invert(1);
+    opacity:1;
+  }
+  40%{ background: linear-gradient(90deg, #fff 0, #000 100%); opacity:.9; }
+  60%{ background: linear-gradient(90deg, #000 0, #fff 100%); opacity:.8; }
+  80%{ background: #fff; opacity:.6; }
+  100%{ background: transparent; opacity:0; }
 }
-.intro{position:relative;height:100vh;overflow:hidden;transition:opacity 1.2s ease;}
-.intro-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.15);}
-.hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-.hero-overlay h1{color:#fff;text-shadow:0 0 15px rgba(0,234,255,.35);}
-.fx{position:absolute;inset:0;pointer-events:none}
-.grid{
-  background:
-    linear-gradient(transparent 24px, rgba(0,234,255,.05) 25px) 0 0 / 100% 25px,
-    linear-gradient(90deg, transparent 24px, rgba(167,0,255,.05) 25px) 0 0 / 25px 100%;
-  mix-blend-mode:screen;opacity:.2;
+
+#matrixBoot{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  display:none;
+  background:#000;
+}
+#matrixBoot.active{ display:block; }
+
+#bootType{
+  position:absolute; inset:auto 0 18vh 0;
+  display:flex; flex-direction:column; align-items:center;
+  gap:10px; text-align:center;
+  opacity:0;
+  transition: opacity 300ms ease;
+  color:#CFFFF1;
+  text-shadow: 0 0 6px rgba(0,255,144,.5);
+}
+#bootType .line{
+  font-size:clamp(1rem, .9rem + .6vw, 1.4rem);
+}
+
+/* Boot fade out */
+#boot.fade-out{
+  animation: bootFade 800ms ease forwards;
+}
+@keyframes bootFade{
+  to{ opacity:0; visibility:hidden; }
+}
+
+/* Hero helpers */
+.scanlines{
+  position:absolute; inset:0;
+  background: linear-gradient(transparent 95%, rgba(255,255,255,.05) 100%);
+  background-size:100% 2px;
+  opacity:.12;
+  pointer-events:none;
 }
 .noise{
-  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.04"/></svg>');
-  background-size:160px 160px;opacity:.6;mix-blend-mode:overlay;
+  position:absolute; inset:0;
+  background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:3px 3px;
+  opacity:.06; pointer-events:none;
+}
+
+/* Chromatic aberration on hover links and labels */
+a:hover, .holo-line:hover .label{
+  text-shadow:
+    -1px 0 0 rgba(0,255,247,.5),
+    1px 0 0 rgba(143,0,255,.5),
+    0 0 18px rgba(0,255,247,.25);
+}
+
+/* Reduce motion — neutralize the heavy opening visuals */
+@media (prefers-reduced-motion: reduce){
+  #glitchFlash{ display:none !important; }
+  #matrixBoot{ display:none !important; }
+  #bootType{ opacity:1 !important; }
 }
