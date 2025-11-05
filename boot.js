@@ -1,55 +1,78 @@
-(function(){
-  const opening = document.getElementById('opening');
-  const img = document.querySelector('.opening-img');
-  const cli = document.getElementById('opening-cli');
-  const bootRain = document.getElementById('boot-matrix');
-  const hero = document.getElementById('intro');
-  const main = document.getElementById('main');
-  const glitchSound = document.getElementById('glitch-sound');
-  const typeSound = document.getElementById('type-sound');
+// boot.js
+(() => {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function type(el, text, speed=60, done){
-    let i=0; el.textContent='';
-    (function step(){
-      if(i<text.length){
-        el.textContent += text.charAt(i++);
-        typeSound.currentTime=0; typeSound.play();
-        setTimeout(step, speed);
-      }else if(done) done();
-    })();
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  async function typeLine(el, text, perChar = 100) {
+    el.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      el.textContent += text[i];
+      if (!prefersReduced) {
+        try {
+          const tap = new Audio('./type.mp3');
+          tap.volume = 0.15;
+          // Don't await; fire and forget to avoid stalls
+          tap.play().catch(() => {});
+        } catch(_) {}
+      }
+      await sleep(prefersReduced ? 0 : perChar);
+    }
   }
 
-  function runTimeline(){
-    // 0–1.5s image visible
-    setTimeout(()=>{
-      // glitch
-      opening.classList.add('glitch');
-      glitchSound.currentTime=0; glitchSound.play();
-      cli.textContent='> signal corrupted...';
-    },1500);
+  async function boot() {
+    const bootEl = document.getElementById('boot');
+    const intro = document.getElementById('introImage');
+    const glitch = document.getElementById('glitchFlash');
+    const matrixCanvas = document.getElementById('matrixBoot');
+    const typeWrap = document.getElementById('bootType');
+    const l1 = document.getElementById('bootLine1');
+    const l2 = document.getElementById('bootLine2');
 
-    setTimeout(()=>{
-      cli.textContent='> rebooting system...';
-    },2000);
+    // 0–1.5s: show image
+    bootEl.classList.remove('fade-out');
+    intro.style.opacity = '1';
+    await sleep(1500);
 
-    // 2.8s → black + matrix rain
-    setTimeout(()=>{
-      opening.classList.remove('glitch');
-      img.style.display='none';
-      cli.textContent='';
-      bootRain.classList.add('show');
-      if(window.BinaryRainBoot) BinaryRainBoot.start(bootRain,{mode:'vertical'});
-      setTimeout(()=> type(cli, '> stay calm, human.', 100, ()=>{
-        setTimeout(()=>{
-          bootRain.classList.remove('show');
-          opening.style.display='none';
-          hero.classList.remove('hide'); hero.classList.add('show');
-          main.classList.remove('hide'); main.classList.add('show');
-        },2000);
-      }),800);
-    },2800);
+    // 1.5–2.5s: glitch (play glitch.mp3)
+    if (!prefersReduced) {
+      glitch.classList.add('active');
+      try {
+        const s = new Audio('./glitch.mp3');
+        s.volume = 0.5;
+        s.play().catch(() => {});
+      } catch(_) {}
+      await sleep(1000);
+      glitch.classList.remove('active');
+    }
+
+    // 2.5s+: start BinaryRainBoot, type lines
+    matrixCanvas.classList.add('active');
+    const rain = new window.BinaryRainBoot(matrixCanvas);
+    rain.start();
+
+    await sleep(200); // slight settle
+
+    typeWrap.style.opacity = '1';
+    await typeLine(l1, 'stay calm, human.', 100);
+    await sleep(300);
+    await typeLine(l2, 'the oracle awakens.', 100);
+
+    await sleep(600);
+
+    // fade to hero and unhide main
+    bootEl.classList.add('fade-out');
+    await sleep(800);
+    const app = document.getElementById('app');
+    app.classList.remove('hidden');
+
+    // stop rain and cleanup
+    rain.stop();
   }
 
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',runTimeline);}
-  else{runTimeline();}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();
