@@ -1,116 +1,134 @@
-<!doctype html>
+<!-- index.html -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>ProphetSolAI — Oracle Awakening</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ProphetSolAI — The Oracle</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <style>
-    html,body{margin:0;padding:0;height:100%;background:#000;overflow:hidden;font-family:'Share Tech Mono',monospace;color:#00ff90;}
-    .hide{opacity:0;pointer-events:none;transition:opacity 1s ease;}
-    .show{opacity:1;pointer-events:auto;transition:opacity 1s ease;}
-    .opening{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000;z-index:50;overflow:hidden;}
-    .opening img{max-width:80vw;max-height:80vh;filter:brightness(1.05) contrast(1.1) saturate(1.1);}
-    .cli{position:absolute;bottom:8vh;left:50%;transform:translateX(-50%);font-size:1rem;color:#00ff90;text-shadow:0 0 8px rgba(0,255,120,.5);}
-    .glitch{animation:glitchFlash 1s ease;}
-    @keyframes glitchFlash{
-      0%{filter:none;}
-      20%{filter:contrast(2) saturate(2) hue-rotate(60deg);}
-      40%{filter:invert(1);}
-      60%{filter:contrast(1.2) saturate(1.4);}
-      100%{filter:none;}
-    }
-    canvas{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;}
-    canvas.show{opacity:1;}
-    video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;}
-    video.show{opacity:1;}
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./cyber.css">
+  <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <audio id="glitch-sound" src="./glitch.mp3" preload="auto"></audio>
-  <audio id="type-sound" src="./type.mp3" preload="auto"></audio>
+  <!-- Boot / Opening Sequence -->
+  <div id="boot" aria-live="polite">
+    <img id="introImage" src="./intro-image.jpg" alt="ProphetSolAI intro" />
+    <div id="glitchFlash" aria-hidden="true"></div>
+    <canvas id="matrixBoot" aria-hidden="true"></canvas>
 
-  <section id="opening" class="opening">
-    <img src="./intro-image.jpg" alt="ProphetSolAI Vision">
-    <div id="cli" class="cli"></div>
-    <canvas id="matrix"></canvas>
-  </section>
+    <div id="bootType" role="status" aria-label="System initialization">
+      <div class="line">&gt; <span id="bootLine1"></span></div>
+      <div class="line">&gt; <span id="bootLine2"></span></div>
+    </div>
+  </div>
 
-  <video id="hero" muted autoplay loop playsinline>
-    <source src="./prophet-bg.webm" type="video/webm">
-  </video>
+  <!-- Main Site -->
+  <main id="app" class="hidden">
+    <!-- HERO -->
+    <header id="hero" role="banner" aria-label="ProphetSolAI Hero">
+      <video id="heroVideo" src="./prophet-bg.webm" autoplay muted loop playsinline aria-hidden="true"></video>
+      <div class="hero-overlay">
+        <h1 class="brand">ProphetSolAI</h1>
+        <p class="tagline">“The blockchain speaks — we interpret.”</p>
+        <a class="cta" href="#the-prophecy" aria-label="Initiate Prophecy">INITIATE PROPHECY</a>
+      </div>
+      <div class="scanlines" aria-hidden="true"></div>
+      <div class="noise" aria-hidden="true"></div>
+    </header>
 
-  <script>
-  // ===== MATRIX RAIN =====
-  const canvas=document.getElementById("matrix");
-  const ctx=canvas.getContext("2d");
-  let w,h,cols,drops,font=18,chars="01".split(""),active=false;
-  function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;cols=Math.floor(w/font);drops=Array(cols).fill(1);}
-  function draw(){
-    if(!active)return;
-    ctx.fillStyle="rgba(0,0,0,0.1)";
-    ctx.fillRect(0,0,w,h);
-    ctx.fillStyle="#00ff90";
-    ctx.font=font+"px Share Tech Mono";
-    for(let i=0;i<cols;i++){
-      const ch=chars[Math.floor(Math.random()*chars.length)];
-      const x=i*font,y=drops[i]*font;
-      ctx.fillText(ch,x,y);
-      if(y>h&&Math.random()>0.975)drops[i]=0;
-      drops[i]+=1;
-    }
-    requestAnimationFrame(draw);
-  }
-  resize();window.addEventListener("resize",resize);
+    <!-- THE PROPHECY -->
+    <section id="the-prophecy" aria-labelledby="prophecyTitle">
+      <canvas id="binaryDrift" aria-hidden="true"></canvas>
+      <div class="container">
+        <h2 id="prophecyTitle" class="section-title">The Prophecy</h2>
+        <p id="prophecyText" class="typewriter" aria-live="polite"></p>
+        <span class="cursor" aria-hidden="true">|</span>
+      </div>
+    </section>
 
-  // ===== TYPE EFFECT =====
-  function type(el,text,speed,done){
-    let i=0;el.textContent="";
-    (function step(){
-      if(i<text.length){
-        el.textContent+=text.charAt(i++);
-        const snd=document.getElementById("type-sound");
-        snd.currentTime=0;snd.play();
-        setTimeout(step,speed);
-      }else if(done)done();
-    })();
-  }
+    <!-- THE SYSTEM -->
+    <section id="the-system" aria-labelledby="systemTitle">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="container">
+        <h2 id="systemTitle" class="section-title">The System</h2>
+        <ul class="holo-lines" role="list">
+          <li class="holo-line">
+            <span class="label">ON-CHAIN HEALTH</span>
+            <span class="desc">liquidity depth, holder age mix, active-address elasticity, slippage resilience.</span>
+          </li>
+          <li class="holo-line">
+            <span class="label">MEME VELOCITY</span>
+            <span class="desc">propagation entropy, source authority, visual-text alignment, narrative half-life.</span>
+          </li>
+          <li class="holo-line">
+            <span class="label">WHALE RADAR</span>
+            <span class="desc">cluster coordination, net-inflow intent, distribution-phase detection.</span>
+          </li>
+          <li class="holo-line">
+            <span class="label">TRUST INDEX</span>
+            <span class="desc">dev cadence, version quality, bytecode risk, community retention.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  // ===== MAIN SEQUENCE =====
-  const opening=document.getElementById("opening");
-  const cli=document.getElementById("cli");
-  const glitchSound=document.getElementById("glitch-sound");
-  const hero=document.getElementById("hero");
+    <!-- THE FRAMEWORK -->
+    <section id="framework" aria-labelledby="frameworkTitle">
+      <div class="container split">
+        <div class="graph-wrap">
+          <canvas id="prophecyGraph" aria-label="Prophecy Engine Network"></canvas>
+        </div>
+        <div class="framework-copy">
+          <h2 id="frameworkTitle" class="section-title">The Prophecy Engine</h2>
 
-  function startSequence(){
-    // 1.5s image hold
-    setTimeout(()=>{
-      // glitch burst
-      opening.classList.add("glitch");
-      glitchSound.currentTime=0;glitchSound.play();
-    },1500);
+          <h3>Overview</h3>
+          <p>The Engine ingests multi-source signals across on-chain telemetry, liquidity topology, and memetic dynamics to produce an interpretable Prophecy Score that reflects short-horizon virality probability and structural risk.</p>
 
-    // switch to matrix
-    setTimeout(()=>{
-      opening.classList.remove("glitch");
-      const img=opening.querySelector("img");img.style.display="none";
-      canvas.classList.add("show");active=true;draw();
-      type(cli,"> stay calm, human.",100,()=>{
-        setTimeout(()=>type(cli,"> the oracle awakens.",100,()=>{
-          // fade out matrix + intro
-          setTimeout(()=>{
-            opening.classList.add("hide");
-            canvas.classList.remove("show");
-            hero.classList.add("show");
-          },2000);
-        }),600);
-      });
-    },2800);
-  }
+          <h3>Data Ingestion</h3>
+          <p>Real-time streams from RPC endpoints, indexers, and social firehoses are normalized, deduplicated, and assigned confidence weights.</p>
 
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",startSequence);
-  else startSequence();
-  </script>
+          <h3>Feature Engineering</h3>
+          <p>Graph features (pagerank, community modularity), liquidity curvature, wallet cohort aging, burstiness metrics, and meme-text embeddings.</p>
+
+          <h3>Modeling</h3>
+          <p>Hybrid ensemble: temporal gradient models + graph neural features + regime-switching volatility priors.</p>
+
+          <h3>Prophecy Score</h3>
+          <p>0–100 scale calibrated on out-of-sample event windows; emphasizes early acceleration with risk-adjusted conviction.</p>
+
+          <h3>Risk Controls</h3>
+          <p>Anomaly guards, bytecode fingerprints, deployer lineage, and liquidity manipulation detectors de-weight suspicious paths.</p>
+
+          <h3>Continuous Learning</h3>
+          <p>Online updates, drift monitors, and seasonal retraining with rolling validation.</p>
+
+          <h3>Interpretability</h3>
+          <p>Attribution maps highlight top drivers: whale coordination, liquidity friction, and meme narrative cohesion.</p>
+
+          <ul id="cli" class="cli" aria-live="polite"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE CORE -->
+    <section id="core" aria-labelledby="coreTitle" aria-describedby="coreSub">
+      <div class="container center">
+        <div class="energy-sphere" aria-hidden="true">
+          <div class="pulse"></div>
+        </div>
+        <h2 id="coreTitle" class="section-title">The Oracle never sleeps.</h2>
+        <p id="coreSub" class="terminal">&gt; awaiting next prophecy... <span class="cursor">|</span></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./matrix.js"></script>
+  <script src="./typing.js"></script>
+  <script src="./graph.js"></script>
+  <script src="./boot.js"></script>
 </body>
 </html>
