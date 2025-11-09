@@ -1,26 +1,29 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ProphetSolAI — The Oracle Awakens</title>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Styles (order matters) -->
   <link rel="stylesheet" href="./cyber.css">
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <!-- Normal arka plan (ilk 1 sn görünür) -->
+  <!-- Normal home background -->
   <video id="bg-video" class="bg-video" src="./prophet-bg.webm" autoplay muted loop playsinline></video>
   <div class="bg-vignette"></div>
 
-  <!-- Tam siyah katman (glitch'ten hemen sonra açılıyor) -->
+  <!-- Full black overlay (appears after glitch) -->
   <div id="blackout" class="blackout hidden"></div>
 
-  <!-- Matrix (yalnızca blackout aktifken görünür) -->
-  <canvas id="matrix" class="matrix-canvas hidden"></canvas>
+  <!-- Matrix rain (only on blackout) -->
+  <canvas id="matrix-canvas" class="matrix-canvas hidden"></canvas>
 
-  <!-- Typing overlay (matrix üstünde) -->
+  <!-- Typing overlay above matrix -->
   <section id="typing-overlay" class="typing-overlay hidden" aria-live="polite">
     <div class="typing-wrap" id="typing-wrap">
       <div class="type-line" data-text="SYSTEM BREACH DETECTED"></div>
@@ -29,50 +32,53 @@
     </div>
   </section>
 
-  <!-- Sesler -->
+  <!-- Sounds -->
   <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
   <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
 
-  <!-- Navigasyon -->
+  <!-- Navigation -->
   <header class="nav">
-    <div class="brand">⟂ ProphetSolAI</div>
+    <div class="brand"><span class="sigil">⟂</span> ProphetSolAI</div>
     <nav class="menu">
       <a href="#about">About</a>
       <a href="#framework">Framework</a>
       <a href="#systems">Systems</a>
+      <a href="#demo">Prophecy</a>
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (normal home shows first) -->
   <section class="hero">
     <h1 class="hero-title">The Oracle of Solana</h1>
     <p class="hero-sub">Memes meet Machine Intelligence. Data becomes prophecy.</p>
-    <a href="#about" class="cta">Scroll Down</a>
+    <a href="#about" class="cta" id="cta-enter">Enter</a>
   </section>
 
-  <!-- ABOUT (efektli) -->
+  <!-- ABOUT (with reveal effects) -->
   <section id="about" class="section reveal">
     <h2 class="glitch-title" data-text="WHAT IS PROPHETSOLAI?">WHAT IS PROPHETSOLAI?</h2>
     <p class="scanline">
-      <b>ProphetSolAI</b> bir gösterge paneli değil; Solana evreni için bir <i>yorumlayıcı motor</i>.
-      Zincir üstü akışları, balina yollarını, likidite gelgitlerini ve memetik hızlanmayı okur; bunları
-      insan dilinde <b>kehanete</b> çevirir. Rakamları değil, <i>anlatıyı</i> görürsün.
+      <b>ProphetSolAI</b> bir dashboard değil; Solana evreni için bir <i>yorumlayıcı motor</i>.
+      Zincir üstü akışları, balina yollarını, likidite gelgitlerini ve memetik hızlanmayı okur; bunları insan dilinde
+      <b>kehanete</b> çevirir. Rakamlar anlatıya, metrikler mite dönüşür. Amaç: <i>yön, enerji ve anlatı</i> konusunda
+      netlik sağlamaktır.
     </p>
   </section>
 
-  <!-- FRAMEWORK (efektli liste) -->
+  <!-- FRAMEWORK (each item reveals in sequence) -->
   <section id="framework" class="section reveal">
-    <h2 class="glitch-title" data-text="FRAMEWORK">FRAMEWORK</h2>
+    <h2 class="glitch-title" data-text="THE ORACLE FRAMEWORK">THE ORACLE FRAMEWORK</h2>
     <ul class="fx-list">
-      <li class="fx-item"><b>Signal Ingestion:</b> DEX likiditesi, hacim vektörleri, holder kohortları, whale routing.</li>
-      <li class="fx-item"><b>Memetic Radar:</b> Şaka → meme → ritüel hızları, tekrar üretim ve yayılım.</li>
-      <li class="fx-item"><b>Sentiment Model:</b> Kutupluluk, inanç yoğunluğu, koordineli FUD taraması.</li>
-      <li class="fx-item"><b>Momentum Engine:</b> Coil vs. expansion, yapı kırılımı, gravite kuyuları.</li>
-      <li class="fx-item"><b>Narrative Compiler:</b> Nicelik akışlarını niteliksel hikâyeye sıkıştırır.</li>
+      <li class="fx-item"><b>Signal Ingestion:</b> DEX likiditesi, hacim vektörleri, holder kohortları, whale routing, bridge trails.</li>
+      <li class="fx-item"><b>Memetic Radar:</b> Şaka→meme→ritüel dönüşümü, remix hızı, influencer yayılımı, kültür düğümleri.</li>
+      <li class="fx-item"><b>Sentiment Model:</b> Polarity & conviction; FUD koordinasyon tespiti; coherence vs. chaos endeksi.</li>
+      <li class="fx-item"><b>Momentum Engine:</b> Coil vs. expansion; break-structure; volatility chamber; liquidity magnets.</li>
+      <li class="fx-item"><b>Narrative Compiler:</b> Niceliği niteliksel dile sıkıştırır; tek, okunur bir kehanete derler.</li>
+      <li class="fx-item"><b>Trust Heuristic:</b> Clarity × Consistency × Context; sahte hacmi cezalandırır, kalıcı katılımı ödüllendirir.</li>
     </ul>
   </section>
 
-  <!-- SYSTEMS (theeye.gif arka plan + glitchli pill'ler) -->
+  <!-- CINEMATIC SYSTEMS (your GIF background) -->
   <section id="systems" class="section systems reveal">
     <div class="systems-overlay">
       <h2 class="systems-title">CINEMATIC SYSTEMS ONLINE</h2>
@@ -81,17 +87,43 @@
         <div class="sys-pill">PATTERN RECOGNITION: ACTIVE</div>
         <div class="sys-pill">MEMETIC ACCELERATION: RISING</div>
         <div class="sys-pill">PROPHECY CORE: ONLINE</div>
+        <div class="sys-pill">WHALE TELEMETRY: LOCKED</div>
+        <div class="sys-pill">NARRATIVE COMPILER: READY</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO: Prophecy Terminal (50-line cascade) -->
+  <section id="demo" class="section terminal reveal">
+    <header class="terminal-head">
+      <span class="dot dot-cyan"></span>
+      <span class="dot dot-violet"></span>
+      <span class="dot dot-green"></span>
+      <span class="title">AI Prophecy Interface — Solana Network</span>
+    </header>
+    <div class="terminal-body">
+      <div class="input-row">
+        <label class="visually-hidden" for="coin-input">Coin</label>
+        <input id="coin-input" class="coin-input" type="text" maxlength="20" placeholder="Enter a Solana coin (e.g. $BONK)" autocomplete="off" />
+        <button id="proph-btn" class="btn-proph" type="button">Summon Prophecy</button>
+      </div>
+      <div class="divider"></div>
+      <div id="output" class="output">
+        <pre id="prophecy-text" class="prophecy-text"></pre>
+        <div id="metrics" class="metrics"></div>
+        <div id="cascade" class="diagonal-list"></div>
       </div>
     </div>
   </section>
 
   <footer class="foot">
-    “The blockchain speaks — ProphetSolAI interprets.” © 2025
+    “The blockchain speaks — ProphetSolAI interprets.” © 2025 ProphetSolAI
   </footer>
 
-  <!-- Scripts (order) -->
+  <!-- Scripts (order matters) -->
   <script src="./matrix.js"></script>
   <script src="./typing.js"></script>
+  <script src="./prophecy.js"></script>
   <script src="./boot.js"></script>
 </body>
 </html>
