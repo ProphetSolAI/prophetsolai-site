@@ -1,14 +1,10 @@
-/* hero.css — typing overlay caret blink animation */
-.type-line{
-  position:relative;
-}
+/* hero.css */
+/* Only the typing caret blink and subtle glow for overlay lines */
+.type-line{position:relative}
 .type-line::after{
-  content:"";
-  position:absolute;right:10px;top:50%;transform:translateY(-50%);
-  width:10px;height:18px;background:var(--cyan);
-  box-shadow:0 0 12px rgba(0,255,247,.6);
-  animation:blink .9s steps(1,end) infinite;
-  opacity:0;
+  content:"";position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  width:10px;height:18px;background:var(--cyan);box-shadow:0 0 12px rgba(0,255,247,.6);
+  animation:blink .9s steps(1,end) infinite;opacity:0
 }
-.type-line.typing::after{opacity:1;}
+.type-line.typing::after{opacity:1}
 @keyframes blink{50%{opacity:0}}
