@@ -1,60 +1,84 @@
-/* cyber.css */
+/* cyber.css — ana stil + blackout/matrix + scroll efektleri */
+
 :root{
-  --bg:#00010D;
-  --cyan:#00FFF7;
-  --violet:#8F00FF;
-  --green:#00FF90;
-  --white:#F0F0F0;
+  --bg:#00010D; --cyan:#00FFF7; --violet:#8F00FF; --green:#00FF90; --white:#F0F0F0;
 }
 
 *{box-sizing:border-box}
+html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--white);font-family:"Share Tech Mono",monospace;overflow-x:hidden}
 
-/* background */
-.bg-video{position:fixed;inset:0;object-fit:cover;width:100%;height:100%;z-index:-3;opacity:.25}
-.overlay{position:fixed;inset:0;background:radial-gradient(circle,transparent 40%,rgba(0,0,0,.85));z-index:-2}
+/* Arka plan video (sadece başlangıçta görünür) */
+.bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;opacity:.25;filter:saturate(115%) contrast(110%)}
+.bg-vignette{position:fixed;inset:0;z-index:-2;background:radial-gradient(60% 50% at 50% 50%,transparent 0,rgba(0,0,0,.75) 70%,rgba(0,0,0,.95) 100%)}
 
-/* nav */
-.nav{position:fixed;top:0;width:100%;padding:16px 24px;z-index:3;display:flex;justify-content:center;background:rgba(0,0,0,.3);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.1)}
-.brand{font-family:"Orbitron",sans-serif;color:var(--cyan);letter-spacing:.08em;text-shadow:0 0 10px var(--cyan)}
-
-/* hero */
-.hero{height:100vh;display:grid;place-items:center;text-align:center;padding:20px}
-.hero-title{font-family:"Orbitron",sans-serif;font-size:3rem;margin:0;text-shadow:0 0 20px rgba(0,255,247,.4)}
-.hero-sub{opacity:.9;margin:10px 0 30px}
-.cta{padding:14px 22px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--green));color:#000;font-family:"Orbitron",sans-serif;text-decoration:none;box-shadow:0 0 25px rgba(0,255,247,.25)}
-
-/* section */
-.section{max-width:900px;margin:0 auto;padding:100px 20px;line-height:1.6}
-.section ul{list-style:none;padding:0}
-.section li{margin:10px 0;padding:8px 10px;background:rgba(255,255,255,.05);border-left:2px solid var(--cyan);border-radius:8px}
-.glitch-title{position:relative;font-family:"Orbitron",sans-serif;font-size:1.8rem;margin-bottom:16px}
-.glitch-title::before,.glitch-title::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
-.glitch-title::before{color:var(--cyan);transform:translate(2px,-2px);opacity:.3}
-.glitch-title::after{color:var(--violet);transform:translate(-2px,2px);opacity:.3}
-
-/* cinematic (eye.gif background) */
-.cinematic{position:relative;min-height:80vh;overflow:hidden;text-align:center}
-.cinematic-bg{position:absolute;inset:0;background:url('./theeye.gif') center/cover no-repeat;filter:brightness(.8) saturate(130%);z-index:-1;animation:glitchBG 3s infinite alternate ease-in-out}
-@keyframes glitchBG{0%{filter:hue-rotate(0deg) brightness(.8)}50%{filter:hue-rotate(40deg) brightness(1)}100%{filter:hue-rotate(-20deg) brightness(.85)}}
-.cinematic-content{position:relative;z-index:2;padding-top:200px}
-.systems-title{font-family:"Orbitron",sans-serif;color:var(--cyan);text-shadow:0 0 25px rgba(0,255,247,.4);font-size:2rem;animation:glowText 3s ease-in-out infinite alternate}
-@keyframes glowText{0%{text-shadow:0 0 20px rgba(0,255,247,.2)}100%{text-shadow:0 0 40px rgba(143,0,255,.4)}}
-
-/* footer */
-.foot{text-align:center;padding:60px 20px;color:#888}
-
-/* matrix */
-#matrix{position:fixed;inset:0;z-index:10;background:transparent;opacity:.7;mix-blend-mode:screen}
+/* BLACKOUT: tam siyah katman */
+.blackout{position:fixed;inset:0;background:#000;z-index:12;opacity:0;transition:opacity .3s ease}
+.blackout.show{opacity:1}
 .hidden{display:none!important}
 
-/* typing overlay */
-.typing-overlay{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:#000}
-.typing-wrap{max-width:700px;text-align:center}
-.type-line{font-size:1.8rem;margin:12px 0;color:var(--cyan);font-family:"Orbitron",sans-serif;text-shadow:0 0 15px var(--cyan)}
-.type-line.typing::after{content:"▌";animation:blink .8s steps(1,end) infinite}
-@keyframes blink{50%{opacity:0}}
+/* MATRIX canvas */
+.matrix-canvas{position:fixed;inset:0;z-index:14;opacity:.85;mix-blend-mode:screen;pointer-events:none}
 
-/* scroll animations */
-.fade-up{opacity:0;transform:translateY(40px);transition:all 1s ease-out}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+/* TYPING overlay (matrix üstünde) */
+.typing-overlay{position:fixed;inset:0;z-index:16;display:grid;place-items:center;background:transparent}
+.typing-wrap{width:min(900px,92vw);text-align:center}
+.type-line{
+  font-size:2rem;margin:14px 0;padding:10px 14px;border-left:2px solid rgba(255,255,255,.12);
+  background:linear-gradient(90deg,rgba(255,255,255,.06),transparent 60%);border-radius:8px;
+  color:var(--cyan);text-shadow:0 0 16px rgba(0,255,247,.6),0 0 28px rgba(143,0,255,.35)
+}
+
+/* NAV + HERO */
+.nav{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.12)}
+.brand{font-family:"Orbitron",sans-serif;color:var(--cyan);letter-spacing:.08em;text-shadow:0 0 16px rgba(0,255,247,.4)}
+.menu a{color:var(--white);text-decoration:none;margin-left:16px;opacity:.9}
+.menu a:hover{color:var(--cyan)}
+
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:64px 20px}
+.hero-title{font-family:"Orbitron",sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);margin:0 0 10px;text-shadow:0 0 20px rgba(0,255,247,.3)}
+.hero-sub{opacity:.9;margin:0 0 26px}
+.cta{display:inline-block;padding:14px 20px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--green));color:#001216;font-family:"Orbitron",sans-serif;text-decoration:none;box-shadow:0 8px 28px rgba(0,255,247,.3)}
+
+/* SECTIONS + SCROLL FX */
+.section{max-width:1100px;margin:0 auto;padding:96px 22px 60px;line-height:1.65}
+.glitch-title{position:relative;font-family:"Orbitron",sans-serif;font-size:clamp(1.6rem,3.6vw,2.3rem);margin:0 0 14px}
+.glitch-title::before,.glitch-title::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;pointer-events:none}
+.glitch-title::before{transform:translate(2px,-2px);color:var(--cyan);opacity:.35}
+.glitch-title::after{transform:translate(-2px,2px);color:var(--violet);opacity:.35}
+
+/* Scroll görünüm animasyonları */
+.reveal{opacity:0;transform:translateY(40px);filter:blur(6px)}
+.reveal.visible{animation:revealUp .9s ease-out forwards}
+@keyframes revealUp{to{opacity:1;transform:none;filter:blur(0)}}
+
+/* Metinlerde scanline + neon */
+.scanline{
+  position:relative;opacity:.0;transform:translateY(12px);
+  animation:scanIn .9s .15s ease-out forwards;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 55%);
+  border:1px solid rgba(255,255,255,.1);padding:12px;border-radius:10px
+}
+@keyframes scanIn{
+  0%{opacity:0;clip-path:inset(100% 0 0 0)}
+  100%{opacity:1;clip-path:inset(0 0 0 0)}
+}
+
+/* Framework listesi: sırayla parlamalı giriş */
+.fx-list{list-style:none;padding:0;margin:18px 0 0}
+.fx-item{opacity:0;transform:translateY(16px);padding:10px 12px;border-left:2px solid var(--cyan);background:rgba(255,255,255,.05);border-radius:10px;margin:10px 0}
+.fx-item.show{animation:itemIn .6s ease-out forwards}
+@keyframes itemIn{to{opacity:1;transform:none;box-shadow:0 0 24px rgba(0,255,247,.22)}}
+
+/* SYSTEMS (theeye.gif) */
+.systems{position:relative;min-height:70vh;border-radius:16px;overflow:hidden;background:url('./theeye.gif') center/cover no-repeat;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.systems::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%,rgba(0,0,0,.25),rgba(0,0,0,.85) 70%,#000 100%)}
+.systems-overlay{position:relative;z-index:1;height:100%;display:grid;place-items:center;padding:40px}
+.systems-title{font-family:"Orbitron",sans-serif;color:var(--cyan);text-shadow:0 0 22px rgba(0,255,247,.4);animation:glow 2.8s ease-in-out infinite alternate}
+@keyframes glow{0%{text-shadow:0 0 14px rgba(0,255,247,.25)}100%{text-shadow:0 0 36px rgba(143,0,255,.45)}}
+.systems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;max-width:980px;width:100%}
+.sys-pill{padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);text-align:center;animation:pillGlitch 3.2s ease-in-out infinite}
+@keyframes pillGlitch{0%{filter:brightness(1)}38%{filter:brightness(1.12)}39%{transform:translateX(1px)}40%{transform:translateX(-1px)}100%{filter:brightness(1)}}
+
+/* Footer */
+.foot{text-align:center;padding:60px 20px;color:#9aa}
