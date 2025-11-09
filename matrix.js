@@ -1,6 +1,6 @@
-// matrix.js — TAM SİYAH ekranda (blackout) görünen 0/1 yağmuru
+// matrix.js — TAM SİYAH ekran üstünde 0/1 yağmuru (hack vibe)
 (function(){
-  const canvas=document.getElementById('matrix');
+  const canvas=document.getElementById('matrix-canvas');
   if(!canvas) return;
   const ctx=canvas.getContext('2d');
 
@@ -23,11 +23,11 @@
     if(dt<28){ requestAnimationFrame(draw); return; }
     last=ts;
 
-    // arka planı hafif koyulaştır (iz bırakma)
-    ctx.fillStyle='rgba(0,0,0,0.20)';
+    // iz bırakma
+    ctx.fillStyle='rgba(0,0,0,0.22)';
     ctx.fillRect(0,0,w,h);
 
-    // parlak neon 0/1
+    // neon 0/1
     ctx.fillStyle='rgba(0,255,144,0.95)';
     ctx.font=`${fontSize}px monospace`;
 
@@ -37,12 +37,11 @@
       const y=drops[i]*fontSize;
       ctx.fillText(char,x,y);
 
-      // alt sınırı geçince nadiren sıfırla
       if(y>h && Math.random()>0.975) drops[i]=0;
       drops[i]+=1;
     }
 
-    // ara sıra flaş (hack vibe)
+    // nadiren mor parıltı
     if(Math.random()>0.985){
       ctx.fillStyle='rgba(143,0,255,0.06)';
       ctx.fillRect(0,0,w,h);
