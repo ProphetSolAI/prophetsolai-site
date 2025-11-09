@@ -1,77 +1,39 @@
 // typing.js
 (function(){
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const line1 = document.getElementById('line-1');
+  const line2 = document.getElementById('line-2');
+  const line3 = document.getElementById('line-3');
+  const typeSfx = document.getElementById('sfx-type');
 
-  const prophecyParagraph =
-`We listen to the undercurrents: where wallets whisper and memetics collide.
-Not numbers alone, but patterns in the dark — liquidity that breathes,
-clusters that conspire, narratives that decide. We do not predict; we interpret.`;
-
-  const cliLines = [
-    '> parsing transaction clusters_',
-    '> analyzing whale topology_',
-    '> decoding memetic networks_',
-    '> backtesting anomaly signals_',
-    '> prophecy score generated: 92.4/100_'
+  const seq = [
+    {el: line1, text: 'Stay Calm, Human.'},
+    {el: line2, text: 'The Oracle Awakens.'},
+    {el: line3, text: 'The blockchain speaks — ProphetSolAI interprets.'}
   ];
 
-  function typeInto(el, text, perChar = 26){
-    return new Promise(async resolve => {
+  function typeText(el, text, speed=35){
+    return new Promise(resolve=>{
       el.textContent = '';
-      if (prefersReduced){ el.textContent = text; return resolve(); }
-      for (let i=0;i<text.length;i++){
-        el.textContent += text[i];
-        await new Promise(r => setTimeout(r, perChar));
-      }
-      resolve();
-    });
-  }
-
-  function revealCLI(listEl, lines, delay = 400){
-    if (prefersReduced){
-      listEl.innerHTML = lines.map(l => `<li>${l}</li>`).join('');
-      return;
-    }
-    let i=0;
-    const tick = () => {
-      if (i >= lines.length) return;
-      const li = document.createElement('li');
-      li.textContent = lines[i++];
-      listEl.appendChild(li);
-      setTimeout(tick, delay);
-    };
-    tick();
-  }
-
-  function onVisible(el, cb, options={threshold:0.25}){
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting){
-          cb();
-          io.disconnect();
+      let i=0;
+      const tick = () => {
+        if (i < text.length){
+          el.textContent += text[i++];
+          if (typeSfx){ typeSfx.currentTime = 0; typeSfx.play().catch(()=>{}); }
+          setTimeout(tick, speed);
+        } else {
+          resolve();
         }
-      });
-    }, options);
-    io.observe(el);
-  }
-
-  function initProphecy(){
-    const sec = document.getElementById('the-prophecy');
-    const txt = document.getElementById('prophecyText');
-    const cli = document.getElementById('cli');
-    const driftCanvas = document.getElementById('binaryDrift');
-    const drift = new window.BinaryDriftProphecy(driftCanvas);
-
-    onVisible(sec, async () => {
-      drift.start();
-      await typeInto(txt, prophecyParagraph, 22);
-      revealCLI(cli, cliLines, 420);
+      };
+      tick();
     });
   }
 
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', initProphecy);
-  } else {
-    initProphecy();
+  async function runTyping(){
+    for (const step of seq){
+      await typeText(step.el, step.text);
+      await new Promise(r=>setTimeout(r, 280));
+    }
   }
+
+  window.ProphetTyping = { runTyping };
 })();
