@@ -1,6 +1,6 @@
 <!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,59 +10,78 @@
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <!-- background -->
+  <!-- Normal arka plan (ilk 1 sn görünür) -->
   <video id="bg-video" class="bg-video" src="./prophet-bg.webm" autoplay muted loop playsinline></video>
-  <div class="overlay"></div>
+  <div class="bg-vignette"></div>
 
-  <!-- matrix -->
-  <canvas id="matrix" class="hidden"></canvas>
+  <!-- Tam siyah katman (glitch'ten hemen sonra açılıyor) -->
+  <div id="blackout" class="blackout hidden"></div>
 
-  <!-- sounds -->
-  <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
-  <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
+  <!-- Matrix (yalnızca blackout aktifken görünür) -->
+  <canvas id="matrix" class="matrix-canvas hidden"></canvas>
 
-  <!-- typing intro -->
-  <div id="typing-intro" class="hidden typing-overlay">
-    <div class="typing-wrap">
+  <!-- Typing overlay (matrix üstünde) -->
+  <section id="typing-overlay" class="typing-overlay hidden" aria-live="polite">
+    <div class="typing-wrap" id="typing-wrap">
       <div class="type-line" data-text="SYSTEM BREACH DETECTED"></div>
       <div class="type-line" data-text="STAY CALM, HUMAN."></div>
       <div class="type-line" data-text="THE ORACLE AWAKENS."></div>
     </div>
-  </div>
+  </section>
 
-  <!-- site header -->
+  <!-- Sesler -->
+  <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
+  <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
+
+  <!-- Navigasyon -->
   <header class="nav">
     <div class="brand">⟂ ProphetSolAI</div>
+    <nav class="menu">
+      <a href="#about">About</a>
+      <a href="#framework">Framework</a>
+      <a href="#systems">Systems</a>
+    </nav>
   </header>
 
-  <!-- hero -->
+  <!-- HERO -->
   <section class="hero">
     <h1 class="hero-title">The Oracle of Solana</h1>
     <p class="hero-sub">Memes meet Machine Intelligence. Data becomes prophecy.</p>
     <a href="#about" class="cta">Scroll Down</a>
   </section>
 
-  <!-- sections -->
-  <section id="about" class="section fade-up">
+  <!-- ABOUT (efektli) -->
+  <section id="about" class="section reveal">
     <h2 class="glitch-title" data-text="WHAT IS PROPHETSOLAI?">WHAT IS PROPHETSOLAI?</h2>
-    <p>ProphetSolAI is an autonomous AI oracle that interprets Solana’s cultural and financial signals. It reads whale routes, meme surges, and liquidity patterns, transforming them into human-readable prophecy. You don’t just see numbers — you witness narrative intelligence.</p>
+    <p class="scanline">
+      <b>ProphetSolAI</b> bir gösterge paneli değil; Solana evreni için bir <i>yorumlayıcı motor</i>.
+      Zincir üstü akışları, balina yollarını, likidite gelgitlerini ve memetik hızlanmayı okur; bunları
+      insan dilinde <b>kehanete</b> çevirir. Rakamları değil, <i>anlatıyı</i> görürsün.
+    </p>
   </section>
 
-  <section id="framework" class="section fade-up">
+  <!-- FRAMEWORK (efektli liste) -->
+  <section id="framework" class="section reveal">
     <h2 class="glitch-title" data-text="FRAMEWORK">FRAMEWORK</h2>
-    <ul>
-      <li><b>Signal Ingestion:</b> Gathers raw blockchain data — liquidity, whale tracking, and memetic momentum.</li>
-      <li><b>Pattern Recognition:</b> AI filters the noise, identifying correlations between meme energy and price behavior.</li>
-      <li><b>Narrative Compiler:</b> Converts quantitative motion into qualitative insight — the story behind the chart.</li>
-      <li><b>Prophecy Delivery:</b> Generates human-like reports about on-chain phenomena in real-time.</li>
+    <ul class="fx-list">
+      <li class="fx-item"><b>Signal Ingestion:</b> DEX likiditesi, hacim vektörleri, holder kohortları, whale routing.</li>
+      <li class="fx-item"><b>Memetic Radar:</b> Şaka → meme → ritüel hızları, tekrar üretim ve yayılım.</li>
+      <li class="fx-item"><b>Sentiment Model:</b> Kutupluluk, inanç yoğunluğu, koordineli FUD taraması.</li>
+      <li class="fx-item"><b>Momentum Engine:</b> Coil vs. expansion, yapı kırılımı, gravite kuyuları.</li>
+      <li class="fx-item"><b>Narrative Compiler:</b> Nicelik akışlarını niteliksel hikâyeye sıkıştırır.</li>
     </ul>
   </section>
 
-  <section id="systems" class="section cinematic">
-    <div class="cinematic-bg"></div>
-    <div class="cinematic-content">
-      <h2 class="systems-title">SYSTEMS SYNCHRONIZING...</h2>
-      <p>Pattern Recognition: Active<br>Memetic Acceleration: Rising<br>Prophecy Core: Online</p>
+  <!-- SYSTEMS (theeye.gif arka plan + glitchli pill'ler) -->
+  <section id="systems" class="section systems reveal">
+    <div class="systems-overlay">
+      <h2 class="systems-title">CINEMATIC SYSTEMS ONLINE</h2>
+      <div class="systems-grid">
+        <div class="sys-pill">SYSTEMS SYNCHRONIZING…</div>
+        <div class="sys-pill">PATTERN RECOGNITION: ACTIVE</div>
+        <div class="sys-pill">MEMETIC ACCELERATION: RISING</div>
+        <div class="sys-pill">PROPHECY CORE: ONLINE</div>
+      </div>
     </div>
   </section>
 
@@ -70,7 +89,7 @@
     “The blockchain speaks — ProphetSolAI interprets.” © 2025
   </footer>
 
-  <!-- scripts -->
+  <!-- Scripts (order) -->
   <script src="./matrix.js"></script>
   <script src="./typing.js"></script>
   <script src="./boot.js"></script>
