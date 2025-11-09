@@ -1,3 +1,4 @@
+/* cyber.css — main design, glitch, layout, scroll, terminal */
 :root{
   --bg:#00010D;
   --cyan:#00FFF7;
@@ -6,178 +7,41 @@
   --white:#F0F0F0;
   --dim:#8A8E99;
   --glass:rgba(255,255,255,.06);
-  --glass-2:rgba(255,255,255,.12);
   --shadow:0 12px 48px rgba(0,0,0,.6);
 }
-
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--white);
-  font-family:"Share Tech Mono",monospace;
-  line-height:1.55;
-  overflow-x:hidden;
-}
-
-/* -------- BACKGROUND ELEMENTS -------- */
-.bg-video{
-  position:fixed; inset:0;
-  width:100%; height:100%; object-fit:cover; opacity:.25;
-  filter:saturate(115%) contrast(110%);
-  z-index:-3;
-}
-.bg-vignette{
-  position:fixed; inset:0; z-index:-2;
-  background:
-    radial-gradient(70% 60% at 50% 50%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.88) 100%),
-    linear-gradient(180deg, rgba(0,0,0,.00) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.6) 100%);
-}
-.matrix-canvas{
-  position:fixed; inset:0; z-index:-1; opacity:.35; mix-blend-mode:screen;
-}
-.hidden{ display:none !important; }
-
-/* -------- OVERLAYS: GLITCH + BLACKOUT -------- */
-.glitch-overlay{
-  pointer-events:none; position:fixed; inset:0; z-index:10;
-  background:linear-gradient(0deg, rgba(0,255,247,.12), rgba(143,0,255,.12));
-  mix-blend-mode:screen; opacity:0;
-  animation:none;
-}
-.glitch-on{ animation:glitchPulse .45s steps(2,end) 0s 3; }
-@keyframes glitchPulse{
-  0%{ opacity:0 }
-  20%{ opacity:.9; transform:translate(2px,-2px) }
-  40%{ opacity:.2; transform:translate(-2px,2px) }
-  60%{ opacity:.9; transform:translate(1px,-1px) }
-  80%{ opacity:.2; transform:translate(-1px,1px) }
-  100%{ opacity:0; transform:none }
-}
-.blackout{
-  position:fixed; inset:0; z-index:12; background:#000; opacity:0;
-  transition:opacity .35s ease;
-}
-.blackout.show{ opacity:1; }
-
-/* -------- NAVIGATION -------- */
-.nav{
-  position:sticky; top:0; z-index:3;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 24px;
-  background:rgba(0,0,0,.35);
-  border-bottom:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(8px);
-}
-.brand{
-  font-family:"Orbitron",sans-serif; letter-spacing:.06em;
-  color:var(--cyan);
-  text-shadow:0 0 12px rgba(0,255,247,.35), 0 0 32px rgba(0,255,247,.15);
-}
-.menu a{
-  color:var(--white); text-decoration:none; margin-left:18px; opacity:.85;
-}
-.menu a:hover{ color:var(--cyan); }
-
-/* -------- HERO SECTION -------- */
-.home .hero{
-  min-height:76vh; display:grid; place-items:center;
-  text-align:center; padding:64px 20px 24px;
-}
-.hero-title{
-  font-family:"Orbitron",sans-serif; font-size:clamp(2.2rem,5vw,3.6rem);
-  margin:0 0 14px 0; letter-spacing:.04em;
-  text-shadow:0 0 20px rgba(0,255,247,.25);
-}
-.hero-sub{ margin:0 0 26px 0; opacity:.9; }
-.cta{
-  display:inline-block; padding:14px 20px; border-radius:12px;
-  font-family:"Orbitron",sans-serif; letter-spacing:.06em; text-transform:uppercase;
-  color:#001216; background:linear-gradient(90deg, var(--cyan), var(--green));
-  box-shadow:0 10px 30px rgba(0,255,247,.25);
-}
-.cta:hover{ filter:saturate(120%); }
-
-/* -------- SCROLL SECTIONS -------- */
-.section{
-  max-width:1100px; margin:0 auto; padding:96px 22px 48px;
-}
-.glitch-title{
-  position:relative; font-family:"Orbitron",sans-serif; letter-spacing:.06em;
-  font-size:clamp(1.6rem,3.8vw,2.4rem); margin:0 0 14px 0;
-  color:var(--white);
-}
-.glitch-title::before,
-.glitch-title::after{
-  content:attr(data-text);
-  position:absolute; left:0; top:0; width:100%; overflow:hidden; pointer-events:none;
-}
-.glitch-title::before{
-  transform:translate(2px,-2px); color:var(--cyan); opacity:.35; clip-path:inset(0 0 40% 0);
-}
-.glitch-title::after{
-  transform:translate(-2px,2px); color:var(--violet); opacity:.35; clip-path:inset(60% 0 0 0);
-}
-.section-text{ opacity:.9; max-width:80ch; }
-.framework-list{ list-style:none; padding:0; margin:18px 0 0 0; }
-.framework-list li{ margin:10px 0; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); padding:10px 12px; border-radius:10px; }
-.framework-list b{ color:var(--cyan); }
-
-/* -------- TERMINAL / DEMO SECTION -------- */
-.terminal-head{
-  display:flex; align-items:center; gap:10px;
-  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-  border:1px solid rgba(255,255,255,.18); border-bottom:none;
-  padding:14px 16px; border-radius:14px 14px 0 0;
-  box-shadow:var(--shadow); backdrop-filter:blur(8px);
-}
-.terminal-head .title{ font-family:"Orbitron",sans-serif; letter-spacing:.06em; opacity:.9; }
-.dot{ width:10px; height:10px; border-radius:50%; display:inline-block; box-shadow:0 0 10px currentColor; }
-.dot-cyan{ color:var(--cyan); background:currentColor; }
-.dot-violet{ color:var(--violet); background:currentColor; }
-.dot-green{ color:var(--green); background:currentColor; }
-
-.terminal-body{
-  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.65)), var(--glass);
-  border:1px solid rgba(255,255,255,.16); border-top:none;
-  border-radius:0 0 14px 14px; box-shadow:var(--shadow); padding:18px;
-}
-.input-row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-.coin-input{
-  flex:1 1 360px; padding:14px 16px; background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.18); color:var(--white); border-radius:10px;
-  outline:none; caret-color:var(--cyan); transition:border .2s ease, box-shadow .2s ease;
-}
-.coin-input:focus{ border-color:var(--cyan); box-shadow:0 0 0 3px rgba(0,255,247,.15); }
-.btn-proph{
-  padding:14px 18px; font-family:"Orbitron",sans-serif; letter-spacing:.06em;
-  color:#001216; background:linear-gradient(90deg, var(--cyan), var(--green));
-  border:none; border-radius:10px; cursor:pointer; text-transform:uppercase; font-weight:700;
-  box-shadow:0 6px 24px rgba(0,255,247,.25), 0 0 0 1px rgba(0,0,0,.3) inset;
-}
-.btn-proph:hover{ filter:saturate(120%); }
-
-.output{ min-height:200px; display:grid; gap:12px; }
-.prophecy-text{
-  margin:0; font-size:1.05rem; letter-spacing:.02em; white-space:pre-wrap; word-break:break-word;
-  text-shadow:0 0 12px rgba(0,255,247,.25);
-}
-.metrics{ display:flex; flex-wrap:wrap; gap:10px; }
-.metric{
-  padding:8px 12px; border-radius:8px; background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.14); font-size:.95rem;
-}
-.metric b{ color:var(--cyan); }
-
-/* -------- FOOTER -------- */
-.foot{
-  opacity:.9; text-align:center; padding:56px 20px 80px;
-  color:var(--dim); font-size:.95rem;
-}
-
-/* RESPONSIVE */
-@media (max-width:720px){
-  .type-line{ font-size:1.5rem; }
-  .menu a{ margin-left:12px; }
-}
+body{margin:0;background:var(--bg);color:var(--white);font-family:"Share Tech Mono",monospace;line-height:1.55;overflow-x:hidden}
+.bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;opacity:.25;filter:saturate(115%) contrast(110%);z-index:-3}
+.bg-vignette{position:fixed;inset:0;z-index:-2;background:radial-gradient(70% 60% at 50% 50%,transparent 0%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.88) 100%)}
+.matrix-canvas{position:fixed;inset:0;z-index:-1;opacity:.35;mix-blend-mode:screen}
+.hidden{display:none!important}
+.glitch-overlay{pointer-events:none;position:fixed;inset:0;z-index:10;background:linear-gradient(0deg,rgba(0,255,247,.12),rgba(143,0,255,.12));mix-blend-mode:screen;opacity:0;animation:none}
+.glitch-on{animation:glitchPulse .45s steps(2,end) 0s 3}
+@keyframes glitchPulse{0%{opacity:0}20%{opacity:.9;transform:translate(2px,-2px)}40%{opacity:.2;transform:translate(-2px,2px)}60%{opacity:.9;transform:translate(1px,-1px)}80%{opacity:.2;transform:translate(-1px,1px)}100%{opacity:0;transform:none}}
+.blackout{position:fixed;inset:0;z-index:12;background:#000;opacity:0;transition:opacity .35s ease}
+.blackout.show{opacity:1}
+.nav{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(0,0,0,.35);border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+.brand{font-family:"Orbitron",sans-serif;letter-spacing:.06em;color:var(--cyan);text-shadow:0 0 12px rgba(0,255,247,.35),0 0 32px rgba(0,255,247,.15)}
+.menu a{color:var(--white);text-decoration:none;margin-left:18px;opacity:.85}
+.menu a:hover{color:var(--cyan)}
+.home .hero{min-height:76vh;display:grid;place-items:center;text-align:center;padding:64px 20px 24px}
+.hero-title{font-family:"Orbitron",sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);margin:0 0 14px 0;letter-spacing:.04em;text-shadow:0 0 20px rgba(0,255,247,.25)}
+.hero-sub{margin:0 0 26px 0;opacity:.9}
+.cta{display:inline-block;padding:14px 20px;border-radius:12px;font-family:"Orbitron",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#001216;background:linear-gradient(90deg,var(--cyan),var(--green));box-shadow:0 10px 30px rgba(0,255,247,.25)}
+.section{max-width:1100px;margin:0 auto;padding:96px 22px 48px}
+.glitch-title{position:relative;font-family:"Orbitron",sans-serif;letter-spacing:.06em;font-size:clamp(1.6rem,3.8vw,2.4rem);margin:0 0 14px 0;color:var(--white)}
+.glitch-title::before,.glitch-title::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;pointer-events:none}
+.glitch-title::before{transform:translate(2px,-2px);color:var(--cyan);opacity:.35;clip-path:inset(0 0 40% 0)}
+.glitch-title::after{transform:translate(-2px,2px);color:var(--violet);opacity:.35;clip-path:inset(60% 0 0 0)}
+.terminal-head{display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.18);border-bottom:none;padding:14px 16px;border-radius:14px 14px 0 0}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;box-shadow:0 0 10px currentColor}
+.dot-cyan{color:var(--cyan);background:currentColor}
+.dot-violet{color:var(--violet);background:currentColor}
+.dot-green{color:var(--green);background:currentColor}
+.terminal-body{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.65)),var(--glass);border:1px solid rgba(255,255,255,.16);border-top:none;border-radius:0 0 14px 14px;padding:18px}
+.coin-input{flex:1 1 360px;padding:14px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:var(--white);border-radius:10px}
+.btn-proph{padding:14px 18px;font-family:"Orbitron",sans-serif;color:#001216;background:linear-gradient(90deg,var(--cyan),var(--green));border:none;border-radius:10px;cursor:pointer;text-transform:uppercase;font-weight:700}
+.output{min-height:200px;display:grid;gap:12px}
+.prophecy-text{margin:0;font-size:1.05rem;letter-spacing:.02em;white-space:pre-wrap;text-shadow:0 0 12px rgba(0,255,247,.25)}
+.foot{opacity:.9;text-align:center;padding:56px 20px 80px;color:var(--dim);font-size:.95rem}
