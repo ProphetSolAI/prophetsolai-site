@@ -1,5 +1,6 @@
 /* hero.css */
-/* Only the typing caret blink and subtle glow for overlay lines */
+/* typing caret blink + subtle glow for overlay lines */
+
 .type-line{position:relative}
 .type-line::after{
   content:"";position:absolute;right:10px;top:50%;transform:translateY(-50%);
