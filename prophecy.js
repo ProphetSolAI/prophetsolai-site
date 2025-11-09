@@ -1,5 +1,5 @@
 // prophecy.js
-// Randomized prophecy generator + typed output + diagonal cascade
+// Builds a professional-sounding prophecy + 50-line cascade list
 (function(){
   const mood = ['serene','volatile','electric','ominous','radiant','hungry','playful','ascendant','turbulent','mythic'];
   const momentum = [
@@ -16,14 +16,23 @@
     'oracle candles burn clean','tide maps redraw themselves','memes molt into myth','fear calcifies then shatters'
   ];
   const trustLevels = [62,67,71,74,78,82,85,88,91,95];
+
+  // 50+ cascade phrases (professional tone)
   const cascadePhrases = [
-    'Signal Strength: Stable','Whale Patterns: Converging','Liquidity Tides: Rising',
-    'Volatility Chamber: Compressing','Breakout Vector: ENE','Community Energy: Radiant',
-    'Memetic Traction: Increasing','On-Chain Gravity: Intensifying','Orderflow: Net Bid',
-    'FUD Shielding: Active','Candle Memory: Long','Fear Index: Dissolving',
-    'Momentum Coil: Tight','Degen Choir: In Harmony','Whale Echo: Returning',
-    'Support Runes: Lit','Resistance Mirrors: Fractured','Solstice Window: Nearing',
-    'Latency: Low','Oracle Sync: True'
+    'Signal Strength: Stable','Whale Patterns: Converging','Liquidity Tides: Rising','Volatility Chamber: Compressing',
+    'Breakout Vector: ENE','Community Energy: Radiant','Memetic Traction: Increasing','On-Chain Gravity: Intensifying',
+    'Orderflow: Net Bid','FUD Shielding: Active','Candle Memory: Long','Fear Index: Dissolving','Momentum Coil: Tight',
+    'Degen Choir: In Harmony','Whale Echo: Returning','Support Runes: Lit','Resistance Mirrors: Fractured',
+    'Solstice Window: Nearing','Latency: Low','Oracle Sync: True','Funding Gradient: Favorable','Holder Cohesion: Elevated',
+    'Liquidity Map: Magnetic','Liquidity Voids: Detected','Pullback Elasticity: Healthy','Microstructure: Coherent',
+    'Impulse Quality: Clean','Liquidity Refill: Consistent','Break Structure: Intact','Retail Halo: Forming',
+    'Whale Perimeter: Expanding','Bot Pressure: Contained','Maker Activity: Constructive','Taker Aggression: Controlled',
+    'Path Dependence: Strong','Narrative Density: Thickening','Influencer Carry: Rising','Remix Rate: High',
+    'Meme Half-Life: Extended','Propagation Speed: Accelerating','Sentiment Polarity: Positive','Conviction Index: Firm',
+    'Hype/Reality Delta: Narrowing','Liquidity Spirals: Damped','Reflexivity: Upward','Drawdown Risk: Moderate',
+    'Stop Hunt Probability: Lowered','Reaccumulation Likelihood: Elevated','Squeeze Potential: Present','Catalyst Sensitivity: High',
+    'Volatility Budget: Refilled','Liquidity Stress: Minimal','Market Microstructure: Favorable','Whale Routing: Coherent',
+    'Bridge Trails: Quiet','Derivative Skew: Balanced'
   ];
 
   function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
@@ -82,7 +91,7 @@ Whales trace concentric paths; retail forms the halo.`;
 
   async function renderCascade(root){
     root.innerHTML = '';
-    const count = 12 + Math.floor(Math.random()*8); // 12–19
+    const count = 50; // exact 50 lines
     let shift = 0;
     for(let i=0;i<count;i++){
       const it = document.createElement('div');
@@ -90,8 +99,8 @@ Whales trace concentric paths; retail forms the halo.`;
       it.style.setProperty('--shift', `${shift}px`);
       it.textContent = '> ' + pick(cascadePhrases);
       root.appendChild(it);
-      shift += 8;
-      await new Promise(r=>setTimeout(r, 90 + Math.random()*120));
+      shift += 6; // slight diagonal drift
+      await new Promise(r=>setTimeout(r, 60 + Math.random()*70));
     }
   }
 
