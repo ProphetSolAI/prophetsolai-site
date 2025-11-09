@@ -1,97 +1,18 @@
 /* hero.css */
-/* Opening sequence layers */
-#boot{
-  position:fixed; inset:0;
-  background:#000;
-  display:block;
-  z-index:9999;
-  overflow:hidden;
-}
-#introImage{
-  position:absolute; top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  max-width:80vw; max-height:80vh;
-  object-fit:contain;
-  opacity:1;
-}
-#glitchFlash{
-  position:absolute; inset:0;
-  mix-blend-mode:screen;
-  pointer-events:none;
-  opacity:0;
-}
-#glitchFlash.active{
-  animation: glitchFlash 1000ms steps(1,end);
-}
-@keyframes glitchFlash{
-  0%{
-    background:
-      repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px),
-      linear-gradient(0deg, #fff, #fff);
-    filter: invert(1);
-    opacity:1;
-  }
-  40%{ background: linear-gradient(90deg, #fff 0, #000 100%); opacity:.9; }
-  60%{ background: linear-gradient(90deg, #000 0, #fff 100%); opacity:.8; }
-  80%{ background: #fff; opacity:.6; }
-  100%{ background: transparent; opacity:0; }
-}
+.hero-line#line-1{font-size:clamp(26px,4vw,42px); color:var(--cyan)}
+.hero-line#line-2{font-size:clamp(22px,3.2vw,34px); color:var(--violet)}
+.hero-tag#line-3{font-size:clamp(16px,2vw,18px); color:var(--white); opacity:.9}
 
-#matrixBoot{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  display:none;
-  background:#000;
+@keyframes glowPulse{
+  0%{text-shadow:0 0 10px rgba(0,255,247,.4)}
+  50%{text-shadow:0 0 20px rgba(143,0,255,.55)}
+  100%{text-shadow:0 0 10px rgba(0,255,247,.4)}
 }
-#matrixBoot.active{ display:block; }
+.hero-line{animation:glowPulse 3s ease-in-out infinite}
 
-#bootType{
-  position:absolute; inset:auto 0 18vh 0;
-  display:flex; flex-direction:column; align-items:center;
-  gap:10px; text-align:center;
-  opacity:0;
-  transition: opacity 300ms ease;
-  color:#CFFFF1;
-  text-shadow: 0 0 6px rgba(0,255,144,.5);
-}
-#bootType .line{
-  font-size:clamp(1rem, .9rem + .6vw, 1.4rem);
-}
-
-/* Boot fade out */
-#boot.fade-out{
-  animation: bootFade 800ms ease forwards;
-}
-@keyframes bootFade{
-  to{ opacity:0; visibility:hidden; }
-}
-
-/* Hero helpers */
-.scanlines{
-  position:absolute; inset:0;
-  background: linear-gradient(transparent 95%, rgba(255,255,255,.05) 100%);
-  background-size:100% 2px;
-  opacity:.12;
-  pointer-events:none;
-}
-.noise{
-  position:absolute; inset:0;
-  background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
-  background-size:3px 3px;
-  opacity:.06; pointer-events:none;
-}
-
-/* Chromatic aberration on hover links and labels */
-a:hover, .holo-line:hover .label{
-  text-shadow:
-    -1px 0 0 rgba(0,255,247,.5),
-    1px 0 0 rgba(143,0,255,.5),
-    0 0 18px rgba(0,255,247,.25);
-}
-
-/* Reduce motion — neutralize the heavy opening visuals */
 @media (prefers-reduced-motion: reduce){
-  #glitchFlash{ display:none !important; }
-  #matrixBoot{ display:none !important; }
-  #bootType{ opacity:1 !important; }
+  .hero-line{animation:none}
 }
+
+/* reveal app when active */
+.app.active{display:block}
