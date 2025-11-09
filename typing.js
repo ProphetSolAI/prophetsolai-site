@@ -1,31 +1,22 @@
 // typing.js
-// Typing engine for the intro lines (tık tık tık)
 (function(){
-  const typeSfx = document.getElementById('sfx-type');
-
-  async function typeLine(el, text, cps = 50){
+  const sfx = document.getElementById('sfx-type');
+  async function typeLine(el, txt, cps=55){
     el.classList.add('typing');
-    el.textContent = '';
-    const delay = 1000 / cps;
-    for(let i=0;i<text.length;i++){
-      el.textContent += text[i];
-      if(typeSfx && i % 2 === 0){
-        try{ typeSfx.currentTime = 0; typeSfx.play().catch(()=>{});}catch(_){}
-      }
-      await new Promise(r=>setTimeout(r, delay));
+    el.textContent='';
+    for(let i=0;i<txt.length;i++){
+      el.textContent+=txt[i];
+      if(sfx && i%2===0){try{sfx.currentTime=0;sfx.play().catch(()=>{})}catch{}}
+      await new Promise(r=>setTimeout(r,1000/cps));
     }
     el.classList.remove('typing');
   }
-
-  async function typeSequence(container){
-    const lines = Array.from(container.querySelectorAll('.type-line'));
-    for(const line of lines){
-      const text = line.getAttribute('data-text') || '';
-      await typeLine(line, text, 54);
-      await new Promise(r=>setTimeout(r, 260));
+  async function run(container){
+    const lines=[...container.querySelectorAll('.type-line')];
+    for(const l of lines){
+      await typeLine(l,l.dataset.text);
+      await new Promise(r=>setTimeout(r,400));
     }
-    container.dispatchEvent(new CustomEvent('typing:done', {bubbles:true}));
   }
-
-  window.ProphetTyping = { typeSequence };
+  window.TypeWriter={run};
 })();
