@@ -1,18 +1,14 @@
-/* hero.css */
-.hero-line#line-1{font-size:clamp(26px,4vw,42px); color:var(--cyan)}
-.hero-line#line-2{font-size:clamp(22px,3.2vw,34px); color:var(--violet)}
-.hero-tag#line-3{font-size:clamp(16px,2vw,18px); color:var(--white); opacity:.9}
-
-@keyframes glowPulse{
-  0%{text-shadow:0 0 10px rgba(0,255,247,.4)}
-  50%{text-shadow:0 0 20px rgba(143,0,255,.55)}
-  100%{text-shadow:0 0 10px rgba(0,255,247,.4)}
+/* hero.css — typing overlay caret blink animation */
+.type-line{
+  position:relative;
 }
-.hero-line{animation:glowPulse 3s ease-in-out infinite}
-
-@media (prefers-reduced-motion: reduce){
-  .hero-line{animation:none}
+.type-line::after{
+  content:"";
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  width:10px;height:18px;background:var(--cyan);
+  box-shadow:0 0 12px rgba(0,255,247,.6);
+  animation:blink .9s steps(1,end) infinite;
+  opacity:0;
 }
-
-/* reveal app when active */
-.app.active{display:block}
+.type-line.typing::after{opacity:1;}
+@keyframes blink{50%{opacity:0}}
