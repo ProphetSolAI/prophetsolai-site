@@ -1,52 +1,51 @@
-// boot.js — HACK açılışı: 1sn sonra glitch + blackout → matrix → typing → geri dönüş
+// boot.js — 1s sonra glitch+ses → blackout (full siyah) → matrix → typing → hepsi kapanır → normal site
 (function(){
   const glitch = document.getElementById('sfx-glitch');
   const blackout = document.getElementById('blackout');
-  const matrix = document.getElementById('matrix');
+  const matrix = document.getElementById('matrix-canvas');
   const typing = document.getElementById('typing-overlay');
   const wrap = document.getElementById('typing-wrap');
 
-  function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+  const input = document.getElementById('coin-input');
+  const btn = document.getElementById('proph-btn');
+
+  function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
   async function intro(){
-    // 1) 1 saniye normal sayfa
-    await sleep(1000);
+    await sleep(1000); // 1s normal ekran
 
-    // 2) Glitch sesi + blackout görünür (tam siyah)
-    try{ glitch.currentTime=0; glitch.volume=.85; await glitch.play(); }catch(_){}
+    // glitch + full black
+    try{ glitch.currentTime=0; glitch.volume=.9; await glitch.play(); }catch(_){}
     blackout.classList.remove('hidden');
-    // bir frame sonra opacity animasyon
-    requestAnimationFrame(()=> blackout.classList.add('show'));
-    await sleep(320);
+    requestAnimationFrame(()=> blackout.classList.add('show')); // fade to black
+    await sleep(350);
 
-    // 3) Matrix'i SİM SİYAH ekranın üstünde aç
+    // matrix over black
     matrix.classList.remove('hidden');
-
-    // 4) Typing overlay (matrix üstü)
     await sleep(500);
-    typing.classList.remove('hidden');
-    await window.TypeWriter.run(wrap);
 
-    // 5) Kapat: typing → matrix → blackout
+    // typing over matrix
+    typing.classList.remove('hidden');
+    await window.ProphetTyping.run(wrap);
+
+    // close layers in order
     await sleep(500);
     typing.classList.add('hidden');
     await sleep(150);
     matrix.classList.add('hidden');
-    blackout.classList.remove('show');  // fade-out of black screen
-    await sleep(300);
+    blackout.classList.remove('show');
+    await sleep(320);
     blackout.classList.add('hidden');
   }
 
-  // Scroll efektlerini tetikle
   function scrollFx(){
     const io=new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
           e.target.classList.add('visible');
-          // framework list maddelerini sırayla göster
           if(e.target.matches('#framework')){
             [...e.target.querySelectorAll('.fx-item')].forEach((li,i)=>{
-              setTimeout(()=>li.classList.add('show'), 150*i);
+              setTimeout(()=>li.classList.add('show'),150*i);
             });
           }
         }
@@ -55,8 +54,18 @@
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
 
-  window.addEventListener('load', async ()=>{
+  function wireTerminal(){
+    async function summon(){
+      if(input.value.trim().length===0) input.value='$BONK';
+      await window.ProphetOracle.prophesy(input.value);
+    }
+    btn.addEventListener('click',summon);
+    input.addEventListener('keydown',(e)=>{if(e.key==='Enter'){e.preventDefault();summon();}});
+  }
+
+  window.addEventListener('load',async()=>{
     scrollFx();
+    wireTerminal();
     await intro();
   });
 })();
