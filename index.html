@@ -14,11 +14,11 @@
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <!-- Background video (visible in normal home state) -->
+  <!-- Background video (normal home) -->
   <video id="bg-video" class="bg-video" src="./prophet-bg.webm" autoplay muted loop playsinline></video>
   <div class="bg-vignette"></div>
 
-  <!-- Matrix rain (hidden until intro sequence) -->
+  <!-- Matrix layer (shown during intro) -->
   <canvas id="matrix-canvas" class="matrix-canvas hidden"></canvas>
 
   <!-- SFX -->
@@ -29,7 +29,7 @@
   <div id="glitch-overlay" class="glitch-overlay hidden"></div>
   <div id="blackout" class="blackout hidden"></div>
 
-  <!-- Typing overlay (appears on blackout) -->
+  <!-- Typing overlay during blackout -->
   <section id="typing-overlay" class="typing-overlay hidden" aria-live="polite">
     <div class="typing-wrap" id="typing-wrap">
       <div class="type-line" data-text="Stay calm, human."></div>
@@ -38,45 +38,69 @@
     </div>
   </section>
 
-  <!-- Normal Home -->
+  <!-- Sticky Nav -->
   <header class="nav">
     <div class="brand"><span class="sigil">⟂</span> ProphetSolAI</div>
     <nav class="menu">
       <a href="#about">About</a>
       <a href="#framework">Framework</a>
+      <a href="#systems">Systems</a>
       <a href="#demo">Prophecy</a>
     </nav>
   </header>
 
   <main id="home" class="home">
+    <!-- HERO (normal home appears first) -->
     <section class="hero">
       <h1 class="hero-title">The Oracle of Solana</h1>
-      <p class="hero-sub">Memes meet machine intelligence. Signals become stories.</p>
-      <a id="cta-enter" class="cta" href="#demo">Summon Prophecy</a>
+      <p class="hero-sub">Memes meet Machine Intelligence. Signals become stories.</p>
+      <a id="cta-enter" class="cta" href="#about">Enter the Oracle</a>
     </section>
 
-    <!-- About -->
+    <!-- ABOUT — detailed manifesto -->
     <section id="about" class="section">
       <h2 class="glitch-title" data-text="What is ProphetSolAI?">What is ProphetSolAI?</h2>
       <p class="section-text">
-        ProphetSolAI is a cinematic oracle interface for the Solana realm — blending on-chain cues, culture, and narrative AI.
-        First you see the world as it is; then the Oracle awakens, the screen falls to black, the matrix rains, and the prophecy is written.
+        <b>ProphetSolAI</b> is not a dashboard. It is an <i>interpretation engine</i> for the Solana realm.
+        We ingest on-chain signals, liquidity tides, whale clusters, memetic surges, and sentiment currents — then translate
+        them into human prophecy. Data becomes narrative. Metrics become myth. The aim is clarity: a confident,
+        readable judgment about where attention and energy are moving, and why the culture might follow.
+      </p>
+      <p class="section-text">
+        We do not promise certainty. We surface <i>coherent possibilities</i> — framed by trust, momentum, and community energy.
+        The blockchain speaks. <b>ProphetSolAI interprets.</b>
       </p>
     </section>
 
-    <!-- Framework -->
+    <!-- FRAMEWORK — deep, professional breakdown -->
     <section id="framework" class="section">
       <h2 class="glitch-title" data-text="The Oracle Framework">The Oracle Framework</h2>
       <ul class="framework-list">
-        <li><b>Signal Ingestion:</b> Liquidity tides, whale wakes, memetic tremors.</li>
-        <li><b>Narrative Engine:</b> Metrics reframed as legible myth.</li>
-        <li><b>Momentum Model:</b> Coiling, breakouts, gravity wells.</li>
-        <li><b>Community Pulse:</b> Energy, cohesion, ritual, resonance.</li>
-        <li><b>Trust Heuristic:</b> Clarity × Consistency × Context.</li>
+        <li><b>Signal Ingestion.</b> AIS-style on-chain flow: DEX liquidity, volume vectors, holder cohorts, whale routing, bridge trails.</li>
+        <li><b>Memetic Radar.</b> Velocity of jokes → memes → rituals. Post half-life, re-mix rate, influencer propagation, culture nodes.</li>
+        <li><b>Sentiment Model.</b> Polarity and conviction; fear/greed asymmetry; coordinated FUD detection; coherence vs. chaos indexing.</li>
+        <li><b>Momentum Engine.</b> Coiling vs. expansion; break structure; gravity wells; volatility chambers; liquidity magnets.</li>
+        <li><b>Narrative Compiler.</b> Quant streams → qualitative language. Compresses complexity into a single readable prophecy.</li>
+        <li><b>Trust Heuristic.</b> Clarity × Consistency × Context. Penalizes spoof, wash, hollow hype; rewards durable participation.</li>
       </ul>
     </section>
 
-    <!-- Demo Terminal -->
+    <!-- CINEMATIC SYSTEMS — your GIF as background -->
+    <section id="systems" class="section systems">
+      <div class="systems-overlay">
+        <h2 class="systems-title">CINEMATIC SYSTEMS ONLINE</h2>
+        <div class="systems-grid">
+          <div class="sys-pill">SYSTEMS SYNCHRONIZING…</div>
+          <div class="sys-pill">PATTERN RECOGNITION: ACTIVE</div>
+          <div class="sys-pill">MEMETIC ACCELERATION: RISING</div>
+          <div class="sys-pill">PROPHECY CORE: SYNCED</div>
+          <div class="sys-pill">WHALE TELEMETRY: LOCKED</div>
+          <div class="sys-pill">NARRATIVE COMPILER: READY</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO TERMINAL — 50-line cascade -->
     <section id="demo" class="section terminal">
       <header class="terminal-head">
         <span class="dot dot-cyan"></span>
