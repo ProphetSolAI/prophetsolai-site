@@ -1,39 +1,31 @@
 // typing.js
+// Exposes ProphetTyping.typeSequence(container) to animate .type-line elements
 (function(){
-  const line1 = document.getElementById('line-1');
-  const line2 = document.getElementById('line-2');
-  const line3 = document.getElementById('line-3');
   const typeSfx = document.getElementById('sfx-type');
 
-  const seq = [
-    {el: line1, text: 'Stay Calm, Human.'},
-    {el: line2, text: 'The Oracle Awakens.'},
-    {el: line3, text: 'The blockchain speaks — ProphetSolAI interprets.'}
-  ];
-
-  function typeText(el, text, speed=35){
-    return new Promise(resolve=>{
-      el.textContent = '';
-      let i=0;
-      const tick = () => {
-        if (i < text.length){
-          el.textContent += text[i++];
-          if (typeSfx){ typeSfx.currentTime = 0; typeSfx.play().catch(()=>{}); }
-          setTimeout(tick, speed);
-        } else {
-          resolve();
-        }
-      };
-      tick();
-    });
+  async function typeLine(el, text, cps = 48){
+    el.classList.add('typing');
+    el.textContent = '';
+    const delay = 1000 / cps;
+    for(let i=0;i<text.length;i++){
+      el.textContent += text[i];
+      if(typeSfx && i % 2 === 0){
+        try{ typeSfx.currentTime = 0; typeSfx.play().catch(()=>{});}catch(_){}
+      }
+      await new Promise(r=>setTimeout(r, delay));
+    }
+    el.classList.remove('typing');
   }
 
-  async function runTyping(){
-    for (const step of seq){
-      await typeText(step.el, step.text);
+  async function typeSequence(container){
+    const lines = Array.from(container.querySelectorAll('.type-line'));
+    for(const line of lines){
+      const text = line.getAttribute('data-text') || '';
+      await typeLine(line, text, 52);
       await new Promise(r=>setTimeout(r, 280));
     }
+    container.dispatchEvent(new CustomEvent('typing:done', {bubbles:true}));
   }
 
-  window.ProphetTyping = { runTyping };
+  window.ProphetTyping = { typeSequence };
 })();
