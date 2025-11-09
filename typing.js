@@ -1,9 +1,9 @@
 // typing.js
-// Exposes ProphetTyping.typeSequence(container) to animate .type-line elements
+// Typing engine for the intro lines (tık tık tık)
 (function(){
   const typeSfx = document.getElementById('sfx-type');
 
-  async function typeLine(el, text, cps = 48){
+  async function typeLine(el, text, cps = 50){
     el.classList.add('typing');
     el.textContent = '';
     const delay = 1000 / cps;
@@ -21,8 +21,8 @@
     const lines = Array.from(container.querySelectorAll('.type-line'));
     for(const line of lines){
       const text = line.getAttribute('data-text') || '';
-      await typeLine(line, text, 52);
-      await new Promise(r=>setTimeout(r, 280));
+      await typeLine(line, text, 54);
+      await new Promise(r=>setTimeout(r, 260));
     }
     container.dispatchEvent(new CustomEvent('typing:done', {bubbles:true}));
   }
