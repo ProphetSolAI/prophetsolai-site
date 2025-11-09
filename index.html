@@ -6,30 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ProphetSolAI — The Oracle of Solana</title>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
+  <!-- Styles (order matters) -->
   <link rel="stylesheet" href="./cyber.css">
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
+  <!-- Background video (visible in normal home state) -->
   <video id="bg-video" class="bg-video" src="./prophet-bg.webm" autoplay muted loop playsinline></video>
   <div class="bg-vignette"></div>
+
+  <!-- Matrix rain (hidden until intro sequence) -->
   <canvas id="matrix-canvas" class="matrix-canvas hidden"></canvas>
 
+  <!-- SFX -->
   <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
   <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
 
+  <!-- Overlays -->
   <div id="glitch-overlay" class="glitch-overlay hidden"></div>
   <div id="blackout" class="blackout hidden"></div>
 
+  <!-- Typing overlay (appears on blackout) -->
   <section id="typing-overlay" class="typing-overlay hidden" aria-live="polite">
-    <div class="typing-wrap">
+    <div class="typing-wrap" id="typing-wrap">
       <div class="type-line" data-text="Stay calm, human."></div>
       <div class="type-line" data-text="The Oracle Awakens."></div>
       <div class="type-line" data-text="The blockchain speaks — ProphetSolAI interprets."></div>
     </div>
   </section>
 
+  <!-- Normal Home -->
   <header class="nav">
     <div class="brand"><span class="sigil">⟂</span> ProphetSolAI</div>
     <nav class="menu">
@@ -43,27 +52,31 @@
     <section class="hero">
       <h1 class="hero-title">The Oracle of Solana</h1>
       <p class="hero-sub">Memes meet machine intelligence. Signals become stories.</p>
-      <a class="cta" href="#demo">Summon Prophecy</a>
+      <a id="cta-enter" class="cta" href="#demo">Summon Prophecy</a>
     </section>
 
+    <!-- About -->
     <section id="about" class="section">
       <h2 class="glitch-title" data-text="What is ProphetSolAI?">What is ProphetSolAI?</h2>
       <p class="section-text">
         ProphetSolAI is a cinematic oracle interface for the Solana realm — blending on-chain cues, culture, and narrative AI.
+        First you see the world as it is; then the Oracle awakens, the screen falls to black, the matrix rains, and the prophecy is written.
       </p>
     </section>
 
+    <!-- Framework -->
     <section id="framework" class="section">
       <h2 class="glitch-title" data-text="The Oracle Framework">The Oracle Framework</h2>
       <ul class="framework-list">
         <li><b>Signal Ingestion:</b> Liquidity tides, whale wakes, memetic tremors.</li>
-        <li><b>Narrative Engine:</b> Converts metrics into mythic, legible language.</li>
-        <li><b>Momentum Model:</b> Detects coiling, breakouts, and gravity wells.</li>
-        <li><b>Community Pulse:</b> Energy, cohesion, ritual, and resonance.</li>
-        <li><b>Trust Heuristic:</b> A composite of clarity, consistency, and context.</li>
+        <li><b>Narrative Engine:</b> Metrics reframed as legible myth.</li>
+        <li><b>Momentum Model:</b> Coiling, breakouts, gravity wells.</li>
+        <li><b>Community Pulse:</b> Energy, cohesion, ritual, resonance.</li>
+        <li><b>Trust Heuristic:</b> Clarity × Consistency × Context.</li>
       </ul>
     </section>
 
+    <!-- Demo Terminal -->
     <section id="demo" class="section terminal">
       <header class="terminal-head">
         <span class="dot dot-cyan"></span>
@@ -73,8 +86,9 @@
       </header>
       <div class="terminal-body">
         <div class="input-row">
+          <label class="visually-hidden" for="coin-input">Coin</label>
           <input id="coin-input" class="coin-input" type="text" maxlength="20" placeholder="Enter a Solana coin (e.g. $BONK)" autocomplete="off" />
-          <button id="proph-btn" class="btn-proph">Summon Prophecy</button>
+          <button id="proph-btn" class="btn-proph" type="button">Summon Prophecy</button>
         </div>
         <div class="divider"></div>
         <div id="output" class="output">
@@ -91,6 +105,7 @@
     </footer>
   </main>
 
+  <!-- Scripts (order matters) -->
   <script src="./matrix.js"></script>
   <script src="./typing.js"></script>
   <script src="./prophecy.js"></script>
