@@ -1,4 +1,4 @@
-// typing.js — matrix üzerindeki intro satırlarını yazar
+// typing.js — matrix üzerindeki intro satırlarını tık tık yazar
 (function(){
   const sfx = document.getElementById('sfx-type');
 
@@ -17,9 +17,9 @@
     const lines=[...container.querySelectorAll('.type-line')];
     for(const l of lines){
       await typeLine(l,l.dataset.text,58);
-      await new Promise(r=>setTimeout(r,350));
+      await new Promise(r=>setTimeout(r,320));
     }
   }
 
-  window.TypeWriter={ run };
+  window.ProphetTyping={ run };
 })();
