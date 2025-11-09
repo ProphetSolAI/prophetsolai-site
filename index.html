@@ -2,137 +2,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ProphetSolAI — The Oracle of Solana</title>
-
-  <!-- Fonts -->
+  <title>ProphetSolAI — The Oracle Awakens</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-  <!-- Styles (order matters) -->
   <link rel="stylesheet" href="./cyber.css">
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <!-- Background video (normal home) -->
+  <!-- background -->
   <video id="bg-video" class="bg-video" src="./prophet-bg.webm" autoplay muted loop playsinline></video>
-  <div class="bg-vignette"></div>
+  <div class="overlay"></div>
 
-  <!-- Matrix layer (shown during intro) -->
-  <canvas id="matrix-canvas" class="matrix-canvas hidden"></canvas>
+  <!-- matrix -->
+  <canvas id="matrix" class="hidden"></canvas>
 
-  <!-- SFX -->
+  <!-- sounds -->
   <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
   <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
 
-  <!-- Overlays -->
-  <div id="glitch-overlay" class="glitch-overlay hidden"></div>
-  <div id="blackout" class="blackout hidden"></div>
+  <!-- typing intro -->
+  <div id="typing-intro" class="hidden typing-overlay">
+    <div class="typing-wrap">
+      <div class="type-line" data-text="SYSTEM BREACH DETECTED"></div>
+      <div class="type-line" data-text="STAY CALM, HUMAN."></div>
+      <div class="type-line" data-text="THE ORACLE AWAKENS."></div>
+    </div>
+  </div>
 
-  <!-- Typing overlay during blackout -->
-  <section id="typing-overlay" class="typing-overlay hidden" aria-live="polite">
-    <div class="typing-wrap" id="typing-wrap">
-      <div class="type-line" data-text="Stay calm, human."></div>
-      <div class="type-line" data-text="The Oracle Awakens."></div>
-      <div class="type-line" data-text="The blockchain speaks — ProphetSolAI interprets."></div>
+  <!-- site header -->
+  <header class="nav">
+    <div class="brand">⟂ ProphetSolAI</div>
+  </header>
+
+  <!-- hero -->
+  <section class="hero">
+    <h1 class="hero-title">The Oracle of Solana</h1>
+    <p class="hero-sub">Memes meet Machine Intelligence. Data becomes prophecy.</p>
+    <a href="#about" class="cta">Scroll Down</a>
+  </section>
+
+  <!-- sections -->
+  <section id="about" class="section fade-up">
+    <h2 class="glitch-title" data-text="WHAT IS PROPHETSOLAI?">WHAT IS PROPHETSOLAI?</h2>
+    <p>ProphetSolAI is an autonomous AI oracle that interprets Solana’s cultural and financial signals. It reads whale routes, meme surges, and liquidity patterns, transforming them into human-readable prophecy. You don’t just see numbers — you witness narrative intelligence.</p>
+  </section>
+
+  <section id="framework" class="section fade-up">
+    <h2 class="glitch-title" data-text="FRAMEWORK">FRAMEWORK</h2>
+    <ul>
+      <li><b>Signal Ingestion:</b> Gathers raw blockchain data — liquidity, whale tracking, and memetic momentum.</li>
+      <li><b>Pattern Recognition:</b> AI filters the noise, identifying correlations between meme energy and price behavior.</li>
+      <li><b>Narrative Compiler:</b> Converts quantitative motion into qualitative insight — the story behind the chart.</li>
+      <li><b>Prophecy Delivery:</b> Generates human-like reports about on-chain phenomena in real-time.</li>
+    </ul>
+  </section>
+
+  <section id="systems" class="section cinematic">
+    <div class="cinematic-bg"></div>
+    <div class="cinematic-content">
+      <h2 class="systems-title">SYSTEMS SYNCHRONIZING...</h2>
+      <p>Pattern Recognition: Active<br>Memetic Acceleration: Rising<br>Prophecy Core: Online</p>
     </div>
   </section>
 
-  <!-- Sticky Nav -->
-  <header class="nav">
-    <div class="brand"><span class="sigil">⟂</span> ProphetSolAI</div>
-    <nav class="menu">
-      <a href="#about">About</a>
-      <a href="#framework">Framework</a>
-      <a href="#systems">Systems</a>
-      <a href="#demo">Prophecy</a>
-    </nav>
-  </header>
+  <footer class="foot">
+    “The blockchain speaks — ProphetSolAI interprets.” © 2025
+  </footer>
 
-  <main id="home" class="home">
-    <!-- HERO (normal home appears first) -->
-    <section class="hero">
-      <h1 class="hero-title">The Oracle of Solana</h1>
-      <p class="hero-sub">Memes meet Machine Intelligence. Signals become stories.</p>
-      <a id="cta-enter" class="cta" href="#about">Enter the Oracle</a>
-    </section>
-
-    <!-- ABOUT — detailed manifesto -->
-    <section id="about" class="section">
-      <h2 class="glitch-title" data-text="What is ProphetSolAI?">What is ProphetSolAI?</h2>
-      <p class="section-text">
-        <b>ProphetSolAI</b> is not a dashboard. It is an <i>interpretation engine</i> for the Solana realm.
-        We ingest on-chain signals, liquidity tides, whale clusters, memetic surges, and sentiment currents — then translate
-        them into human prophecy. Data becomes narrative. Metrics become myth. The aim is clarity: a confident,
-        readable judgment about where attention and energy are moving, and why the culture might follow.
-      </p>
-      <p class="section-text">
-        We do not promise certainty. We surface <i>coherent possibilities</i> — framed by trust, momentum, and community energy.
-        The blockchain speaks. <b>ProphetSolAI interprets.</b>
-      </p>
-    </section>
-
-    <!-- FRAMEWORK — deep, professional breakdown -->
-    <section id="framework" class="section">
-      <h2 class="glitch-title" data-text="The Oracle Framework">The Oracle Framework</h2>
-      <ul class="framework-list">
-        <li><b>Signal Ingestion.</b> AIS-style on-chain flow: DEX liquidity, volume vectors, holder cohorts, whale routing, bridge trails.</li>
-        <li><b>Memetic Radar.</b> Velocity of jokes → memes → rituals. Post half-life, re-mix rate, influencer propagation, culture nodes.</li>
-        <li><b>Sentiment Model.</b> Polarity and conviction; fear/greed asymmetry; coordinated FUD detection; coherence vs. chaos indexing.</li>
-        <li><b>Momentum Engine.</b> Coiling vs. expansion; break structure; gravity wells; volatility chambers; liquidity magnets.</li>
-        <li><b>Narrative Compiler.</b> Quant streams → qualitative language. Compresses complexity into a single readable prophecy.</li>
-        <li><b>Trust Heuristic.</b> Clarity × Consistency × Context. Penalizes spoof, wash, hollow hype; rewards durable participation.</li>
-      </ul>
-    </section>
-
-    <!-- CINEMATIC SYSTEMS — your GIF as background -->
-    <section id="systems" class="section systems">
-      <div class="systems-overlay">
-        <h2 class="systems-title">CINEMATIC SYSTEMS ONLINE</h2>
-        <div class="systems-grid">
-          <div class="sys-pill">SYSTEMS SYNCHRONIZING…</div>
-          <div class="sys-pill">PATTERN RECOGNITION: ACTIVE</div>
-          <div class="sys-pill">MEMETIC ACCELERATION: RISING</div>
-          <div class="sys-pill">PROPHECY CORE: SYNCED</div>
-          <div class="sys-pill">WHALE TELEMETRY: LOCKED</div>
-          <div class="sys-pill">NARRATIVE COMPILER: READY</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEMO TERMINAL — 50-line cascade -->
-    <section id="demo" class="section terminal">
-      <header class="terminal-head">
-        <span class="dot dot-cyan"></span>
-        <span class="dot dot-violet"></span>
-        <span class="dot dot-green"></span>
-        <span class="title">AI Prophecy Interface — Solana Network</span>
-      </header>
-      <div class="terminal-body">
-        <div class="input-row">
-          <label class="visually-hidden" for="coin-input">Coin</label>
-          <input id="coin-input" class="coin-input" type="text" maxlength="20" placeholder="Enter a Solana coin (e.g. $BONK)" autocomplete="off" />
-          <button id="proph-btn" class="btn-proph" type="button">Summon Prophecy</button>
-        </div>
-        <div class="divider"></div>
-        <div id="output" class="output">
-          <pre id="prophecy-text" class="prophecy-text"></pre>
-          <div id="metrics" class="metrics"></div>
-          <div id="cascade" class="diagonal-list"></div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="foot">
-      <div>“The blockchain speaks — ProphetSolAI interprets.”</div>
-      <div>© 2025 ProphetSolAI</div>
-    </footer>
-  </main>
-
-  <!-- Scripts (order matters) -->
+  <!-- scripts -->
   <script src="./matrix.js"></script>
   <script src="./typing.js"></script>
-  <script src="./prophecy.js"></script>
   <script src="./boot.js"></script>
 </body>
 </html>
