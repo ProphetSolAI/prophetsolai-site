@@ -1,12 +1,12 @@
 // matrix.js
-// Lightweight 0/1 rain (enabled/disabled by adding/removing .hidden on #matrix-canvas)
+// Neon 0/1 rain used during the intro sequence
 (function(){
   const canvas = document.getElementById('matrix-canvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
 
   let w, h, cols, drops, fontSize = 16;
-  const glyphs = '0101010101010101010101010101';
+  const glyphs = '01010101010101010101010101010101';
 
   function resize(){
     w = canvas.width = window.innerWidth;
@@ -20,13 +20,13 @@
   let last = 0;
   function draw(ts){
     const dt = ts - last;
-    if(dt < 28){ requestAnimationFrame(draw); return; } // ~35fps
+    if(dt < 28){ requestAnimationFrame(draw); return; }
     last = ts;
 
-    ctx.fillStyle = 'rgba(0, 1, 13, 0.20)';
+    ctx.fillStyle = 'rgba(0,1,13,0.22)';
     ctx.fillRect(0,0,w,h);
 
-    ctx.fillStyle = 'rgba(0,255,247,0.85)'; // neon cyan
+    ctx.fillStyle = 'rgba(0,255,247,0.88)'; // neon cyan
     ctx.font = `${fontSize}px monospace`;
 
     for(let i=0;i<drops.length;i++){
