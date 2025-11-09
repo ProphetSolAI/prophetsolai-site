@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,6 @@
   <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
   <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
 
-  <!-- GLITCH + BLACKOUT + TYPING OVERLAYS -->
   <div id="glitch-overlay" class="glitch-overlay hidden"></div>
   <div id="blackout" class="blackout hidden"></div>
 
@@ -30,11 +30,8 @@
     </div>
   </section>
 
-  <!-- NORMAL HOME / HERO -->
   <header class="nav">
-    <div class="brand">
-      <span class="sigil">⟂</span> ProphetSolAI
-    </div>
+    <div class="brand"><span class="sigil">⟂</span> ProphetSolAI</div>
     <nav class="menu">
       <a href="#about">About</a>
       <a href="#framework">Framework</a>
@@ -53,7 +50,6 @@
       <h2 class="glitch-title" data-text="What is ProphetSolAI?">What is ProphetSolAI?</h2>
       <p class="section-text">
         ProphetSolAI is a cinematic oracle interface for the Solana realm — blending on-chain cues, culture, and narrative AI.
-        The blockchain speaks; we interpret. Expect glitch-light, matrix rain, and insight stitched into myth.
       </p>
     </section>
 
@@ -77,7 +73,6 @@
       </header>
       <div class="terminal-body">
         <div class="input-row">
-          <label for="coin-input" class="visually-hidden">Coin</label>
           <input id="coin-input" class="coin-input" type="text" maxlength="20" placeholder="Enter a Solana coin (e.g. $BONK)" autocomplete="off" />
           <button id="proph-btn" class="btn-proph">Summon Prophecy</button>
         </div>
