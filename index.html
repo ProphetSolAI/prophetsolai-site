@@ -2,133 +2,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ProphetSolAI — The Oracle</title>
+  <title>ProphetSolAI — The Oracle Awakens</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
+  <!-- Styles -->
   <link rel="stylesheet" href="./cyber.css">
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <!-- Boot / Opening Sequence -->
-  <div id="boot" aria-live="polite">
-    <img id="introImage" src="./intro-image.jpg" alt="ProphetSolAI intro" />
-    <div id="glitchFlash" aria-hidden="true"></div>
-    <canvas id="matrixBoot" aria-hidden="true"></canvas>
+  <!-- Background video -->
+  <video id="bg-video" autoplay muted loop playsinline preload="auto">
+    <source src="./prophet-bg.webm" type="video/webm">
+  </video>
 
-    <div id="bootType" role="status" aria-label="System initialization">
-      <div class="line">&gt; <span id="bootLine1"></span></div>
-      <div class="line">&gt; <span id="bootLine2"></span></div>
-    </div>
-  </div>
+  <!-- Matrix canvas -->
+  <canvas id="matrix"></canvas>
 
-  <!-- Main Site -->
-  <main id="app" class="hidden">
+  <!-- Audio -->
+  <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
+  <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
+
+  <!-- Page wrapper -->
+  <div class="page">
     <!-- HERO -->
-    <header id="hero" role="banner" aria-label="ProphetSolAI Hero">
-      <video id="heroVideo" src="./prophet-bg.webm" autoplay muted loop playsinline aria-hidden="true"></video>
-      <div class="hero-overlay">
-        <h1 class="brand">ProphetSolAI</h1>
-        <p class="tagline">“The blockchain speaks — we interpret.”</p>
-        <a class="cta" href="#the-prophecy" aria-label="Initiate Prophecy">INITIATE PROPHECY</a>
-      </div>
-      <div class="scanlines" aria-hidden="true"></div>
-      <div class="noise" aria-hidden="true"></div>
+    <header class="hero">
+      <img src="./intro-image.jpg" alt="ProphetSolAI Sigil" class="hero-logo" />
+      <h1 class="hero-line" id="line-1" aria-live="polite"></h1>
+      <h2 class="hero-line" id="line-2" aria-live="polite"></h2>
+      <p class="hero-tag" id="line-3" aria-live="polite"></p>
+      <button id="cta-enter" class="btn btn-primary" aria-label="Enter the Oracle">Enter the Oracle</button>
     </header>
 
-    <!-- THE PROPHECY -->
-    <section id="the-prophecy" aria-labelledby="prophecyTitle">
-      <canvas id="binaryDrift" aria-hidden="true"></canvas>
-      <div class="container">
-        <h2 id="prophecyTitle" class="section-title">The Prophecy</h2>
-        <p id="prophecyText" class="typewriter" aria-live="polite"></p>
-        <span class="cursor" aria-hidden="true">|</span>
-      </div>
-    </section>
-
-    <!-- THE SYSTEM -->
-    <section id="the-system" aria-labelledby="systemTitle">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <div class="container">
-        <h2 id="systemTitle" class="section-title">The System</h2>
-        <ul class="holo-lines" role="list">
-          <li class="holo-line">
-            <span class="label">ON-CHAIN HEALTH</span>
-            <span class="desc">liquidity depth, holder age mix, active-address elasticity, slippage resilience.</span>
-          </li>
-          <li class="holo-line">
-            <span class="label">MEME VELOCITY</span>
-            <span class="desc">propagation entropy, source authority, visual-text alignment, narrative half-life.</span>
-          </li>
-          <li class="holo-line">
-            <span class="label">WHALE RADAR</span>
-            <span class="desc">cluster coordination, net-inflow intent, distribution-phase detection.</span>
-          </li>
-          <li class="holo-line">
-            <span class="label">TRUST INDEX</span>
-            <span class="desc">dev cadence, version quality, bytecode risk, community retention.</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- THE FRAMEWORK -->
-    <section id="framework" aria-labelledby="frameworkTitle">
-      <div class="container split">
-        <div class="graph-wrap">
-          <canvas id="prophecyGraph" aria-label="Prophecy Engine Network"></canvas>
+    <!-- APP -->
+    <main id="app" class="app hidden" aria-hidden="true">
+      <section class="terminal">
+        <div class="terminal-header">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title">AI Prophecy Terminal</span>
         </div>
-        <div class="framework-copy">
-          <h2 id="frameworkTitle" class="section-title">The Prophecy Engine</h2>
+        <div class="terminal-body">
+          <label for="coin-input" class="visually-hidden">Enter a Solana coin</label>
+          <div class="input-row">
+            <input id="coin-input" type="text" autocomplete="off" maxlength="18"
+                   placeholder="Enter a Solana coin (e.g. $BONK)" />
+            <button id="btn-prophecy" class="btn btn-neon">Summon Prophecy</button>
+          </div>
 
-          <h3>Overview</h3>
-          <p>The Engine ingests multi-source signals across on-chain telemetry, liquidity topology, and memetic dynamics to produce an interpretable Prophecy Score that reflects short-horizon virality probability and structural risk.</p>
+          <div id="prophecy-output" class="output" role="status" aria-live="polite"></div>
 
-          <h3>Data Ingestion</h3>
-          <p>Real-time streams from RPC endpoints, indexers, and social firehoses are normalized, deduplicated, and assigned confidence weights.</p>
-
-          <h3>Feature Engineering</h3>
-          <p>Graph features (pagerank, community modularity), liquidity curvature, wallet cohort aging, burstiness metrics, and meme-text embeddings.</p>
-
-          <h3>Modeling</h3>
-          <p>Hybrid ensemble: temporal gradient models + graph neural features + regime-switching volatility priors.</p>
-
-          <h3>Prophecy Score</h3>
-          <p>0–100 scale calibrated on out-of-sample event windows; emphasizes early acceleration with risk-adjusted conviction.</p>
-
-          <h3>Risk Controls</h3>
-          <p>Anomaly guards, bytecode fingerprints, deployer lineage, and liquidity manipulation detectors de-weight suspicious paths.</p>
-
-          <h3>Continuous Learning</h3>
-          <p>Online updates, drift monitors, and seasonal retraining with rolling validation.</p>
-
-          <h3>Interpretability</h3>
-          <p>Attribution maps highlight top drivers: whale coordination, liquidity friction, and meme narrative cohesion.</p>
-
-          <ul id="cli" class="cli" aria-live="polite"></ul>
+          <div class="hints">
+            <span class="hint">Tip: Try $BONK, $JUP, $WIF, $SOL.</span>
+            <span class="hint">Disclaimer: Demo generator — entertainment only.</span>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- THE CORE -->
-    <section id="core" aria-labelledby="coreTitle" aria-describedby="coreSub">
-      <div class="container center">
-        <div class="energy-sphere" aria-hidden="true">
-          <div class="pulse"></div>
-        </div>
-        <h2 id="coreTitle" class="section-title">The Oracle never sleeps.</h2>
-        <p id="coreSub" class="terminal">&gt; awaiting next prophecy... <span class="cursor">|</span></p>
-      </div>
-    </section>
-  </main>
+    <footer class="site-footer">
+      <p>The blockchain speaks — ProphetSolAI interprets.</p>
+      <p>© 2025 ProphetSolAI</p>
+    </footer>
+  </div>
 
+  <!-- Scripts (order required) -->
   <script src="./matrix.js"></script>
   <script src="./typing.js"></script>
-  <script src="./graph.js"></script>
+  <script src="./prophecy.js"></script>
   <script src="./boot.js"></script>
 </body>
 </html>
