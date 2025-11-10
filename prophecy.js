@@ -1,4 +1,4 @@
-// prophecy.js — profesyonel tonda kehanet + 50 satır akış
+// prophecy.js — deterministic cache: same coin = same prophecy (10min)
 (function(){
   const mood=['serene','volatile','electric','ominous','radiant','hungry','playful','ascendant','turbulent','mythic'];
   const momentum=['coiling for release','quiet accumulation building','snapping into trend','tracking whales at range','liquidity fractures forming','surfing memetic shockwaves','compressing in a volatility chamber','realigning with on-chain gravity'];
@@ -31,6 +31,17 @@
     return c;
   }
 
+  // Cache system
+  const CACHE_KEY='ProphetCache';
+  let cache={};
+  try{
+    cache=JSON.parse(localStorage.getItem(CACHE_KEY)||'{}');
+  }catch{cache={};}
+
+  function saveCache(){
+    localStorage.setItem(CACHE_KEY,JSON.stringify(cache));
+  }
+
   function build(raw){
     const coin=norm(raw);
     const t=pick(trust);
@@ -45,7 +56,7 @@
 `${coin} surges under lunar influence. Meme velocity high.
 Community energy: ${pick(['radiant','focused','feral','rising','resolute'])}.
 Whales trace concentric paths; retail forms the halo.`;
-    return {coin,lines,narrative,trust:t,velocity:v,purity:p};
+    return {coin,lines,narrative,trust:t,velocity:v,purity:p,time:Date.now()};
   }
 
   async function typeInto(el, text, cps=56){
@@ -61,7 +72,7 @@ Whales trace concentric paths; retail forms the halo.`;
 
   function renderMetrics(root,d){
     root.innerHTML='';
-    const mk=(k,v)=>{const d=document.createElement('div');d.className='metric';d.innerHTML=`<b>${k}:</b> ${v}`;return d;};
+    const mk=(k,v)=>{const dEl=document.createElement('div');dEl.className='metric';dEl.innerHTML=`<b>${k}:</b> ${v}`;return dEl;};
     root.appendChild(mk('Trust',d.trust+'%'));
     root.appendChild(mk('Meme Velocity',d.velocity));
     root.appendChild(mk('Signal Purity',d.purity+'%'));
@@ -82,11 +93,27 @@ Whales trace concentric paths; retail forms the halo.`;
     }
   }
 
+  function getCachedOrNew(raw){
+    const coin=norm(raw);
+    const entry=cache[coin];
+    const now=Date.now();
+    const tenMin=10*60*1000;
+    if(entry && (now-entry.time)<tenMin){
+      return entry; // return cached prophecy
+    } else {
+      const d=build(raw);
+      cache[coin]=d;
+      saveCache();
+      return d;
+    }
+  }
+
   async function prophesy(input){
     const out=document.getElementById('prophecy-text');
     const metrics=document.getElementById('metrics');
     const cascade=document.getElementById('cascade');
-    const d=build(input);
+
+    const d=getCachedOrNew(input);
     const text=[
       `Prophecy: ${d.lines[0]}`,
       d.lines[1],
@@ -94,6 +121,7 @@ Whales trace concentric paths; retail forms the halo.`;
       '',
       d.narrative
     ].join('\n');
+
     await typeInto(out,text,56);
     renderMetrics(metrics,d);
     await renderCascade(cascade);
