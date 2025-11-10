@@ -9,17 +9,15 @@
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <!-- background -->
+  <!-- Background -->
   <video id="bg-video" class="bg-video" src="./prophet-bg.webm" autoplay muted loop playsinline></video>
   <div class="bg-vignette"></div>
 
-  <!-- blackout -->
+  <!-- Blackout -->
   <div id="blackout" class="blackout hidden"></div>
-
-  <!-- matrix -->
   <canvas id="matrix-canvas" class="matrix-canvas hidden"></canvas>
 
-  <!-- typing overlay -->
+  <!-- Typing intro -->
   <section id="typing-overlay" class="typing-overlay hidden">
     <div class="typing-wrap" id="typing-wrap">
       <div class="type-line" data-text="SYSTEM BREACH DETECTED"></div>
@@ -28,11 +26,11 @@
     </div>
   </section>
 
-  <!-- sounds -->
+  <!-- Sounds -->
   <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
   <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
 
-  <!-- nav -->
+  <!-- Header -->
   <header class="nav">
     <div class="brand"><span class="sigil">⟂</span> ProphetSolAI</div>
     <nav class="menu">
@@ -43,53 +41,48 @@
     </nav>
   </header>
 
-  <!-- hero -->
+  <!-- Hero -->
   <section class="hero">
     <h1 class="hero-title">The Oracle of Solana</h1>
     <p class="hero-sub">Memes meet Machine Intelligence. Data becomes prophecy.</p>
     <a href="#about" class="cta" id="cta-enter">Enter</a>
   </section>
 
-  <!-- about -->
+  <!-- About -->
   <section id="about" class="section reveal">
     <h2 class="glitch-title" data-text="WHAT IS PROPHETSOLAI?">WHAT IS PROPHETSOLAI?</h2>
     <p class="scanline">
-      <b>ProphetSolAI</b> is not a dashboard; it is an <i>interpretation engine</i> for the Solana network.
-      It reads whale movements, liquidity tides, memetic surges, and sentiment flows, translating raw on-chain data into
-      human-readable prophecy. Numbers become narrative. Metrics become myth. The goal is <i>clarity</i>—to understand
-      where attention and energy are truly moving.
+      <b>ProphetSolAI</b> is not a dashboard — it’s an <i>interpretation engine</i> for the Solana ecosystem.
+      It translates raw on-chain signals into human prophecy. Data becomes narrative. Metrics become myth.
+      Its goal: <b>clarity</b> — to see where attention and energy flow before the world does.
     </p>
   </section>
 
-  <!-- framework -->
+  <!-- Framework -->
   <section id="framework" class="section reveal">
     <h2 class="glitch-title" data-text="THE ORACLE FRAMEWORK">THE ORACLE FRAMEWORK</h2>
     <ul class="fx-list">
-      <li class="fx-item"><b>Signal Ingestion:</b> Collects DEX liquidity, volume vectors, holder clusters, whale routing, and bridge trails.</li>
-      <li class="fx-item"><b>Memetic Radar:</b> Tracks the velocity of jokes→memes→rituals, remix rates, influencer propagation, and culture nodes.</li>
-      <li class="fx-item"><b>Sentiment Model:</b> Measures polarity, conviction, coordinated FUD patterns, and coherence versus chaos indexing.</li>
-      <li class="fx-item"><b>Momentum Engine:</b> Detects coiling vs. expansion, structural breaks, volatility chambers, and liquidity magnets.</li>
-      <li class="fx-item"><b>Narrative Compiler:</b> Compresses quantitative motion into qualitative storylines.</li>
-      <li class="fx-item"><b>Trust Heuristic:</b> Evaluates clarity × consistency × context — rewarding authentic engagement over empty hype.</li>
+      <li class="fx-item"><b>Signal Ingestion:</b> Collects DEX liquidity, whale routing, and holder clusters.</li>
+      <li class="fx-item"><b>Memetic Radar:</b> Detects meme propagation and narrative density.</li>
+      <li class="fx-item"><b>Sentiment Model:</b> Measures conviction, polarity, and FUD coordination.</li>
+      <li class="fx-item"><b>Momentum Engine:</b> Identifies coiling, breakout, and volatility chambers.</li>
+      <li class="fx-item"><b>Narrative Compiler:</b> Turns quantitative noise into qualitative clarity.</li>
+      <li class="fx-item"><b>Trust Heuristic:</b> Scores clarity × consistency × context.</li>
     </ul>
   </section>
 
-  <!-- systems -->
+  <!-- The Eye -->
   <section id="systems" class="section systems reveal">
     <div class="systems-overlay">
-      <h2 class="systems-title">CINEMATIC SYSTEMS ONLINE</h2>
-      <div class="systems-grid">
-        <div class="sys-pill">SYSTEMS SYNCHRONIZING…</div>
-        <div class="sys-pill">PATTERN RECOGNITION: ACTIVE</div>
-        <div class="sys-pill">MEMETIC ACCELERATION: RISING</div>
-        <div class="sys-pill">PROPHECY CORE: ONLINE</div>
-        <div class="sys-pill">WHALE TELEMETRY: LOCKED</div>
-        <div class="sys-pill">NARRATIVE COMPILER: READY</div>
+      <div class="system-typing">
+        <span class="sys-line" data-text="SYSTEMS SYNCHRONIZING..."></span>
+        <span class="sys-line" data-text="PATTERN RECOGNITION: ACTIVE"></span>
+        <span class="sys-line" data-text="PROPHECY CORE ONLINE"></span>
       </div>
     </div>
   </section>
 
-  <!-- demo -->
+  <!-- Prophecy -->
   <section id="demo" class="section terminal reveal">
     <header class="terminal-head">
       <span class="dot dot-cyan"></span>
@@ -99,7 +92,6 @@
     </header>
     <div class="terminal-body">
       <div class="input-row">
-        <label class="visually-hidden" for="coin-input">Coin</label>
         <input id="coin-input" class="coin-input" type="text" maxlength="20" placeholder="Enter a Solana coin (e.g. $BONK)" autocomplete="off" />
         <button id="proph-btn" class="btn-proph" type="button">Summon Prophecy</button>
       </div>
@@ -112,11 +104,30 @@
     </div>
   </section>
 
+  <!-- Metrics Explanation -->
+  <section id="metrics-info" class="section reveal">
+    <h2 class="glitch-title" data-text="DECODING THE PROPHECY METRICS">DECODING THE PROPHECY METRICS</h2>
+    <div class="metric-explain">
+      <div class="metric-card">
+        <h3>Trust Level</h3>
+        <p>Confidence level of the oracle. High = stable signals, aligned whale movement.</p>
+      </div>
+      <div class="metric-card">
+        <h3>Meme Velocity</h3>
+        <p>The speed of cultural spread across Solana. Faster means greater social acceleration.</p>
+      </div>
+      <div class="metric-card">
+        <h3>Signal Purity</h3>
+        <p>How organic the trend is. High purity means less manipulation, more conviction.</p>
+      </div>
+    </div>
+  </section>
+
   <footer class="foot">
     “The blockchain speaks — ProphetSolAI interprets.” © 2025 ProphetSolAI
   </footer>
 
-  <!-- scripts -->
+  <!-- Scripts -->
   <script src="./matrix.js"></script>
   <script src="./typing.js"></script>
   <script src="./prophecy.js"></script>
