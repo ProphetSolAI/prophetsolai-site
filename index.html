@@ -1,30 +1,26 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ProphetSolAI — The Oracle Awakens</title>
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-  <!-- Styles (order matters) -->
   <link rel="stylesheet" href="./cyber.css">
   <link rel="stylesheet" href="./hero.css">
 </head>
 <body>
-  <!-- Normal home background -->
+  <!-- background -->
   <video id="bg-video" class="bg-video" src="./prophet-bg.webm" autoplay muted loop playsinline></video>
   <div class="bg-vignette"></div>
 
-  <!-- Full black overlay (appears after glitch) -->
+  <!-- blackout -->
   <div id="blackout" class="blackout hidden"></div>
 
-  <!-- Matrix rain (only on blackout) -->
+  <!-- matrix -->
   <canvas id="matrix-canvas" class="matrix-canvas hidden"></canvas>
 
-  <!-- Typing overlay above matrix -->
-  <section id="typing-overlay" class="typing-overlay hidden" aria-live="polite">
+  <!-- typing overlay -->
+  <section id="typing-overlay" class="typing-overlay hidden">
     <div class="typing-wrap" id="typing-wrap">
       <div class="type-line" data-text="SYSTEM BREACH DETECTED"></div>
       <div class="type-line" data-text="STAY CALM, HUMAN."></div>
@@ -32,11 +28,11 @@
     </div>
   </section>
 
-  <!-- Sounds -->
+  <!-- sounds -->
   <audio id="sfx-glitch" src="./glitch.mp3" preload="auto"></audio>
   <audio id="sfx-type" src="./type.mp3" preload="auto"></audio>
 
-  <!-- Navigation -->
+  <!-- nav -->
   <header class="nav">
     <div class="brand"><span class="sigil">⟂</span> ProphetSolAI</div>
     <nav class="menu">
@@ -47,38 +43,38 @@
     </nav>
   </header>
 
-  <!-- HERO (normal home shows first) -->
+  <!-- hero -->
   <section class="hero">
     <h1 class="hero-title">The Oracle of Solana</h1>
     <p class="hero-sub">Memes meet Machine Intelligence. Data becomes prophecy.</p>
     <a href="#about" class="cta" id="cta-enter">Enter</a>
   </section>
 
-  <!-- ABOUT (with reveal effects) -->
+  <!-- about -->
   <section id="about" class="section reveal">
     <h2 class="glitch-title" data-text="WHAT IS PROPHETSOLAI?">WHAT IS PROPHETSOLAI?</h2>
     <p class="scanline">
-      <b>ProphetSolAI</b> bir dashboard değil; Solana evreni için bir <i>yorumlayıcı motor</i>.
-      Zincir üstü akışları, balina yollarını, likidite gelgitlerini ve memetik hızlanmayı okur; bunları insan dilinde
-      <b>kehanete</b> çevirir. Rakamlar anlatıya, metrikler mite dönüşür. Amaç: <i>yön, enerji ve anlatı</i> konusunda
-      netlik sağlamaktır.
+      <b>ProphetSolAI</b> is not a dashboard; it is an <i>interpretation engine</i> for the Solana network.
+      It reads whale movements, liquidity tides, memetic surges, and sentiment flows, translating raw on-chain data into
+      human-readable prophecy. Numbers become narrative. Metrics become myth. The goal is <i>clarity</i>—to understand
+      where attention and energy are truly moving.
     </p>
   </section>
 
-  <!-- FRAMEWORK (each item reveals in sequence) -->
+  <!-- framework -->
   <section id="framework" class="section reveal">
     <h2 class="glitch-title" data-text="THE ORACLE FRAMEWORK">THE ORACLE FRAMEWORK</h2>
     <ul class="fx-list">
-      <li class="fx-item"><b>Signal Ingestion:</b> DEX likiditesi, hacim vektörleri, holder kohortları, whale routing, bridge trails.</li>
-      <li class="fx-item"><b>Memetic Radar:</b> Şaka→meme→ritüel dönüşümü, remix hızı, influencer yayılımı, kültür düğümleri.</li>
-      <li class="fx-item"><b>Sentiment Model:</b> Polarity & conviction; FUD koordinasyon tespiti; coherence vs. chaos endeksi.</li>
-      <li class="fx-item"><b>Momentum Engine:</b> Coil vs. expansion; break-structure; volatility chamber; liquidity magnets.</li>
-      <li class="fx-item"><b>Narrative Compiler:</b> Niceliği niteliksel dile sıkıştırır; tek, okunur bir kehanete derler.</li>
-      <li class="fx-item"><b>Trust Heuristic:</b> Clarity × Consistency × Context; sahte hacmi cezalandırır, kalıcı katılımı ödüllendirir.</li>
+      <li class="fx-item"><b>Signal Ingestion:</b> Collects DEX liquidity, volume vectors, holder clusters, whale routing, and bridge trails.</li>
+      <li class="fx-item"><b>Memetic Radar:</b> Tracks the velocity of jokes→memes→rituals, remix rates, influencer propagation, and culture nodes.</li>
+      <li class="fx-item"><b>Sentiment Model:</b> Measures polarity, conviction, coordinated FUD patterns, and coherence versus chaos indexing.</li>
+      <li class="fx-item"><b>Momentum Engine:</b> Detects coiling vs. expansion, structural breaks, volatility chambers, and liquidity magnets.</li>
+      <li class="fx-item"><b>Narrative Compiler:</b> Compresses quantitative motion into qualitative storylines.</li>
+      <li class="fx-item"><b>Trust Heuristic:</b> Evaluates clarity × consistency × context — rewarding authentic engagement over empty hype.</li>
     </ul>
   </section>
 
-  <!-- CINEMATIC SYSTEMS (your GIF background) -->
+  <!-- systems -->
   <section id="systems" class="section systems reveal">
     <div class="systems-overlay">
       <h2 class="systems-title">CINEMATIC SYSTEMS ONLINE</h2>
@@ -93,7 +89,7 @@
     </div>
   </section>
 
-  <!-- DEMO: Prophecy Terminal (50-line cascade) -->
+  <!-- demo -->
   <section id="demo" class="section terminal reveal">
     <header class="terminal-head">
       <span class="dot dot-cyan"></span>
@@ -120,7 +116,7 @@
     “The blockchain speaks — ProphetSolAI interprets.” © 2025 ProphetSolAI
   </footer>
 
-  <!-- Scripts (order matters) -->
+  <!-- scripts -->
   <script src="./matrix.js"></script>
   <script src="./typing.js"></script>
   <script src="./prophecy.js"></script>
