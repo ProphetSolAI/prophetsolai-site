@@ -1,47 +1,38 @@
-// ==========================================================
-// ProphetSolAI — boot.js
-// Entry logic: glitch → matrix → typing → site reveal
-// ==========================================================
+// boot.js — Auto intro: 1s idle → glitch+blackout → matrix+typing (no click needed)
 (function(){
-  const glitch = document.getElementById("sfx-glitch");
-  const enterBtn = document.getElementById("cta-enter");
+  function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
 
-  async function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
+  async function autoIntro(){
+    // 1) show normal page for ~1s
+    await sleep(1000);
 
-  async function startIntro(){
-    try { glitch.currentTime = 0; glitch.volume = 0.6; glitch.play(); } catch {}
-    await sleep(600);
+    // 2) start the typing intro (this plays glitch, triggers blackout, matrix, then types)
     await window.ProphetTyping.runTyping();
+    // (runTyping already hides layers at the end and reveals the site)
   }
 
-  enterBtn.addEventListener("click", async (e)=>{
-    e.preventDefault();
-    startIntro();
-  });
-
-  // === Scroll reveal logic ===
+  // Scroll reveal
   const reveals = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add("visible"); }
-    });
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("visible"); });
   }, { threshold: 0.15 });
   reveals.forEach(r=>io.observe(r));
 
-  // === Framework list animation ===
+  // Framework list cascade
   const fxItems = document.querySelectorAll(".fx-item");
   const ioFx = new IntersectionObserver(entries=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){
-        fxItems.forEach((item,j)=>setTimeout(()=>item.classList.add("show"), j*180));
-        ioFx.disconnect();
-      }
-    });
+    if(entries.some(e=>e.isIntersecting)){
+      fxItems.forEach((el,i)=> setTimeout(()=> el.classList.add("show"), i*180));
+      ioFx.disconnect();
+    }
   }, { threshold: 0.2 });
-  fxItems.forEach(f=>ioFx.observe(f));
+  fxItems.forEach(el=>ioFx.observe(el));
 
-  // === Prophecy button ===
+  // Prophecy button
   const btn = document.getElementById("proph-btn");
   const input = document.getElementById("coin-input");
-  btn.addEventListener("click", ()=> window.ProphetOracle.prophesy(input.value));
+  btn.addEventListener("click", ()=> window.ProphetOracle.prophesy(input.value || "$BONK"));
+
+  // Start automatically on load
+  window.addEventListener("load", autoIntro);
 })();
