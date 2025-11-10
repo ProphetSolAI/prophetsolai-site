@@ -1,52 +1,42 @@
-// matrix.js — TAM SİYAH ekran üstünde 0/1 yağmuru (hack vibe)
+// ==========================================================
+// ProphetSolAI — matrix.js
+// Matrix rain + glitch intro sequencing
+// ==========================================================
 (function(){
-  const canvas=document.getElementById('matrix-canvas');
-  if(!canvas) return;
-  const ctx=canvas.getContext('2d');
+  const canvas = document.getElementById("matrix-canvas");
+  const ctx = canvas.getContext("2d");
 
-  let w,h,cols,drops;
-  const fontSize=16;
-  const chars='01';
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+  let columns = Math.floor(width / 20);
+  let drops = Array(columns).fill(1);
+  const chars = "01";
 
-  function resize(){
-    w=canvas.width=window.innerWidth;
-    h=canvas.height=window.innerHeight;
-    cols=Math.floor(w/fontSize);
-    drops=new Array(cols).fill(0).map(()=> Math.random()*h/fontSize);
-  }
-  window.addEventListener('resize',resize,{passive:true});
-  resize();
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    columns = Math.floor(width / 20);
+    drops = Array(columns).fill(1);
+  });
 
-  let last=0;
-  function draw(ts){
-    const dt=ts-last;
-    if(dt<28){ requestAnimationFrame(draw); return; }
-    last=ts;
-
-    // iz bırakma
-    ctx.fillStyle='rgba(0,0,0,0.22)';
-    ctx.fillRect(0,0,w,h);
-
-    // neon 0/1
-    ctx.fillStyle='rgba(0,255,144,0.95)';
-    ctx.font=`${fontSize}px monospace`;
-
-    for(let i=0;i<cols;i++){
-      const char=chars[(Math.random()*2)|0];
-      const x=i*fontSize;
-      const y=drops[i]*fontSize;
-      ctx.fillText(char,x,y);
-
-      if(y>h && Math.random()>0.975) drops[i]=0;
-      drops[i]+=1;
+  function draw(){
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    ctx.fillRect(0,0,width,height);
+    ctx.fillStyle = "#00FF90";
+    ctx.font = "16px Share Tech Mono";
+    for(let i=0;i<drops.length;i++){
+      const text = chars[Math.floor(Math.random()*chars.length)];
+      ctx.fillText(text,i*20,drops[i]*20);
+      if(drops[i]*20 > height && Math.random() > 0.975){ drops[i]=0; }
+      drops[i]++;
     }
-
-    // nadiren mor parıltı
-    if(Math.random()>0.985){
-      ctx.fillStyle='rgba(143,0,255,0.06)';
-      ctx.fillRect(0,0,w,h);
-    }
-    requestAnimationFrame(draw);
   }
-  requestAnimationFrame(draw);
+
+  function startMatrix(){
+    canvas.classList.remove("hidden");
+    const id = setInterval(draw, 33);
+    setTimeout(()=>{ clearInterval(id); canvas.classList.add("hidden"); }, 4200);
+  }
+
+  window.MatrixEffect = { startMatrix };
 })();
